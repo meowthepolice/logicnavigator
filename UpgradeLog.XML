@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="Logic Navigator">
+</Property><Property Name="Solution File" Value="C:\Users\User\Projects\c#\Logic Navigator v227\Logic Navigator.sln">
+</Property><Property Name="User Options File" Value="C:\Users\User\Projects\c#\Logic Navigator v227\Logic Navigator.suo">
+</Property><Property Name="Date" Value="Sunday, 2 August 2009">
+</Property><Property Name="Time" Value="23:52 PM">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="Logic Navigator.sln" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\Logic Navigator.sln">
+</Event><Event ErrorLevel="0" Project="" Source="Logic Navigator.suo" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\Logic Navigator.suo">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="Logic Navigator.csproj" Description="Project file successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\Logic Navigator.csproj">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="Logic Navigator.csproj.user" Description="Project user file successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\Logic Navigator.csproj.user">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="AssemblyInfo.cs" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="Classes\clsGlobal.cs" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\Classes\clsGlobal.cs">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="Classes\clsMain.cs" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\Classes\clsMain.cs">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="Classes\ColumnStyle.cs" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\Classes\ColumnStyle.cs">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="frmAbout.cs" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\frmAbout.cs">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="frmMChild.cs" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\frmMChild.cs">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="frmMChild_Card.cs" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\frmMChild_Card.cs">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="frmMChild_Choose.cs" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\frmMChild_Choose.cs">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="frmMChild_Housings.cs" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\frmMChild_Housings.cs">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="frmMChild_Latches.cs" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\frmMChild_Latches.cs">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="frmMChild_Search.cs" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\frmMChild_Search.cs">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="frmMChild_Versions.cs" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\frmMChild_Versions.cs">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="frmMDIMain.cs" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\frmMDIMain.cs">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="frmSChild.cs" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\frmSChild.cs">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="frmSplash.cs" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\frmSplash.cs">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="app.config" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\app.config">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="Logic Navigator.ico" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\Logic Navigator.ico">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="frmAbout.resx" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\frmAbout.resx">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="frmMChild.resx" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\frmMChild.resx">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="frmMChild_Card.resx" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\frmMChild_Card.resx">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="frmMChild_Choose.resx" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\frmMChild_Choose.resx">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="frmMChild_Housings.resx" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\frmMChild_Housings.resx">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="frmMChild_Latches.resx" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\frmMChild_Latches.resx">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="frmMChild_Search.resx" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\frmMChild_Search.resx">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="frmMChild_Versions.resx" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\frmMChild_Versions.resx">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="frmMDIMain.resx" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\frmMDIMain.resx">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="frmSChild.resx" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\frmSChild.resx">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="frmSplash.resx" Description="File successfully backed up as C:\Users\User\Projects\c#\Logic Navigator v227\Backup\frmSplash.resx">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="Logic Navigator.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Logic Navigator" Source="Logic Navigator.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="Logic Navigator.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="Logic Navigator.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Logic Navigator" Source="Logic Navigator.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>
