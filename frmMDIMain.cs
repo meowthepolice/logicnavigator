@@ -373,7 +373,6 @@ namespace Logic_Navigator
         private Label label5;
         private Label label6;
         private MenuItem menuItem65;
-        private MenuItem menuItem66;
         private TextBox CurrentLayout;
         private TextBox CurrentMap1;
         private TextBox CurrentState;
@@ -635,7 +634,6 @@ namespace Logic_Navigator
             this.menuItem78 = new System.Windows.Forms.MenuItem();
             this.menuItem80 = new System.Windows.Forms.MenuItem();
             this.menuItem70 = new System.Windows.Forms.MenuItem();
-            this.menuItem66 = new System.Windows.Forms.MenuItem();
             this.menuItem69 = new System.Windows.Forms.MenuItem();
             this.menuItem110 = new System.Windows.Forms.MenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -1605,26 +1603,19 @@ namespace Logic_Navigator
             // 
             this.menuItem70.Index = 3;
             this.menuItem70.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.menuItem66,
             this.menuItem69,
             this.menuItem110});
             this.menuItem70.Text = "Other";
             // 
-            // menuItem66
-            // 
-            this.menuItem66.Index = 0;
-            this.menuItem66.Text = "Play Chess";
-            this.menuItem66.Click += new System.EventHandler(this.menuItem66_Click_1);
-            // 
             // menuItem69
             // 
-            this.menuItem69.Index = 1;
+            this.menuItem69.Index = 0;
             this.menuItem69.Text = "Mandelbrot Set";
             this.menuItem69.Click += new System.EventHandler(this.menuItem69_Click);
             // 
             // menuItem110
             // 
-            this.menuItem110.Index = 2;
+            this.menuItem110.Index = 1;
             this.menuItem110.Text = "Game of Life";
             this.menuItem110.Click += new System.EventHandler(this.menuItem110_Click);
             // 
@@ -7143,11 +7134,6 @@ namespace Logic_Navigator
                         frmAbout objfrmMChild = (frmAbout)this.ActiveMdiChild;
                         objfrmMChild.Close();
                     }
-                    if (this.ActiveMdiChild.Name == "frmMChild_Chess")
-                    {
-                        frmMChild_Chess objfrmMChild = (frmMChild_Chess)this.ActiveMdiChild;
-                        objfrmMChild.Close();
-                    }
                     if (this.ActiveMdiChild.Name == "frmMChild_Log")
                     {
                         frmMChild_Log objfrmMChild = (frmMChild_Log)this.ActiveMdiChild;
@@ -7741,16 +7727,6 @@ namespace Logic_Navigator
                 sColumns += "\r\n";
             }
             Clipboard.SetDataObject(sColumns.ToString(), true);
-        }
-
-        private void menu_Chess_Click(object sender, EventArgs e)
-        {
-            frmMChild_Chess objfrmMChild = new frmMChild_Chess(scaleFactor, 80);
-            //objfrmMChild.Size = new Size(700, 700);            
-            //objfrmMChild.Location = new System.Drawing.Point(1, 1);
-            objfrmMChild.Text = rungName;
-            objfrmMChild.MdiParent = this;
-            objfrmMChild.Show();
         }
 
         private void menuItem24_Click(object sender, EventArgs e)
@@ -10782,26 +10758,6 @@ namespace Logic_Navigator
             Indentations.Visible = true;
             spacesbetweencolumns.Visible = true;
             SpaceperGrouping.Visible = true;
-        }
-
-        private void menuItem66_Click_1(object sender, EventArgs e)
-        {
-            frmMChild_Chess objfrmMChild = new frmMChild_Chess(scaleFactor / 2, 40);
-            //objfrmMChild.Size = new Size(700, 700);            
-            //objfrmMChild.Location = new System.Drawing.Point(1, 1);
-            objfrmMChild.Text = rungName;
-            objfrmMChild.MdiParent = this;
-            objfrmMChild.Show();
-        }
-
-        private void menuItem67_Click(object sender, EventArgs e)
-        {
-            frmMChild_Chess objfrmMChild = new frmMChild_Chess(scaleFactor / 2, 60);
-            //objfrmMChild.Size = new Size(700, 700);            
-            //objfrmMChild.Location = new System.Drawing.Point(1, 1);
-            objfrmMChild.Text = rungName;
-            objfrmMChild.MdiParent = this;
-            objfrmMChild.Show();
         }
 
         private void saveProjectFileDialog_FileOk(object sender, CancelEventArgs e)
