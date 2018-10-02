@@ -188,10 +188,20 @@ namespace Logic_Navigator
                     for (int j = 0; j < housingPointer.Count; j++)
                     {
                         ArrayList cardPointer = (ArrayList)housingPointer[j];
-                        if (string.Compare(cardPointer[0].ToString(), "DIAG") != 0)
+                        if (string.Compare(cardPointer[0].ToString(), "DIAG") != 0 && string.Compare(cardPointer[0].ToString(), "WCM") != 0)
+                        {
                             DrawCard(grfx, (int)cardPointer[2], i, j, RedPen, RedBrush, cardPointer[0].ToString());
+                        }
                         else
-                            DrawCard(grfx, 1, i, j, RedPen, RedBrush, cardPointer[0].ToString());
+                        {
+                            if(string.Compare(cardPointer[0].ToString(), "WCM") == 0)
+                            {
+                                DrawCard(grfx, (int)cardPointer[1], i, j, RedPen, RedBrush, cardPointer[0].ToString());
+                            } else
+                            {
+                                DrawCard(grfx, 1, i, j, RedPen, RedBrush, cardPointer[0].ToString());
+                            }
+                        }
                     }
                 }
                 try
@@ -207,7 +217,8 @@ namespace Logic_Navigator
             }
             catch
             {
-               // MessageBox.Show("Logic Navigator experienced difficulties drawing the housing", "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                
+               MessageBox.Show("Logic Navigator experienced difficulties drawing the housing.  Please send site data to Ken Karrasch if possible.", "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -286,7 +297,7 @@ namespace Logic_Navigator
 			if(string.Compare(CardType,"VTC232") == 0) return 1;
 			if(string.Compare(CardType,"VROM50") == 0) return 2;
 			if(string.Compare(CardType,"VPIM50") == 0) return 2;
-			if(string.Compare(CardType,"VLOMFT110") == 0) return 3;
+			if(string.Compare(CardType,"VLOMFT110") == 0) return 2;
 			if(string.Compare(CardType,"NCDM") == 0) return 1;				
 			if(string.Compare(CardType,"DIAG") == 0) return 1;
 			else return 1;
