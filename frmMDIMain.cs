@@ -386,7 +386,6 @@ namespace Logic_Navigator
         private MenuItem menuItem20;
         private MenuItem menuItem68;
         private MenuItem menuItem63;
-        private MenuItem menuItem70;
         private MenuItem menuItem71;
         private MenuItem menuItem72;
         private TextBox CurrentMap5;
@@ -462,8 +461,6 @@ namespace Logic_Navigator
         private MenuItem menuItem111;
         private MenuItem menuItem114;
         private MenuItem menuItem116;
-        private MenuItem menuItem69;
-        private MenuItem menuItem110;
         private TextBox TAL2FileName;
         private TextBox TAL3FileName;
         private TextBox TAL4FileName;
@@ -633,9 +630,6 @@ namespace Logic_Navigator
             this.menuItem77 = new System.Windows.Forms.MenuItem();
             this.menuItem78 = new System.Windows.Forms.MenuItem();
             this.menuItem80 = new System.Windows.Forms.MenuItem();
-            this.menuItem70 = new System.Windows.Forms.MenuItem();
-            this.menuItem69 = new System.Windows.Forms.MenuItem();
-            this.menuItem110 = new System.Windows.Forms.MenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.NewFileName = new System.Windows.Forms.TextBox();
             this.statusBar1 = new System.Windows.Forms.StatusBar();
@@ -1498,8 +1492,7 @@ namespace Logic_Navigator
             this.menuItem5.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuItem100,
             this.mnuHelpAbout,
-            this.menuItem75,
-            this.menuItem70});
+            this.menuItem75});
             this.menuItem5.Text = "&Help";
             // 
             // menuItem100
@@ -1598,26 +1591,6 @@ namespace Logic_Navigator
             // 
             this.menuItem80.Index = 3;
             this.menuItem80.Text = "Red is High, Blue is Low";
-            // 
-            // menuItem70
-            // 
-            this.menuItem70.Index = 3;
-            this.menuItem70.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.menuItem69,
-            this.menuItem110});
-            this.menuItem70.Text = "Other";
-            // 
-            // menuItem69
-            // 
-            this.menuItem69.Index = 0;
-            this.menuItem69.Text = "Mandelbrot Set";
-            this.menuItem69.Click += new System.EventHandler(this.menuItem69_Click);
-            // 
-            // menuItem110
-            // 
-            this.menuItem110.Index = 1;
-            this.menuItem110.Text = "Game of Life";
-            this.menuItem110.Click += new System.EventHandler(this.menuItem110_Click);
             // 
             // openFileDialog1
             // 
@@ -11565,22 +11538,6 @@ namespace Logic_Navigator
         {
             frmMChild_Prefix objfrmMChild = new frmMChild_Prefix();
             objfrmMChild.Text = "Prefix Editor";
-            objfrmMChild.MdiParent = this;
-            objfrmMChild.Show();
-        }
-
-        private void menuItem69_Click(object sender, EventArgs e)
-        {
-            frmMChild_Mandelbrot objfrmMChild = new frmMChild_Mandelbrot();
-            objfrmMChild.Text = "Mandelbrot";
-            objfrmMChild.MdiParent = this;
-            objfrmMChild.Show();
-        }
-
-        private void menuItem110_Click(object sender, EventArgs e)
-        {
-            frmMChild_GameOfLife objfrmMChild = new frmMChild_GameOfLife();
-            objfrmMChild.Text = "Game of Life";
             objfrmMChild.MdiParent = this;
             objfrmMChild.Show();
         }

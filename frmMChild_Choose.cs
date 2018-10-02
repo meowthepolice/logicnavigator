@@ -11,8 +11,7 @@ namespace Logic_Navigator
 	{	
 
 		string rungNameOld = "";
-		string rungNameNew = "";		
-		bool dragging = false;
+		string rungNameNew = "";
 		public ArrayList interlockingNew;
 		public ArrayList interlockingOld;
 		private Font drawFnt;

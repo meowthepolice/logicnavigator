@@ -182,12 +182,6 @@
     <None Include="Resources\pixel_arrow_cursorbrooch.jpg" />
     <None Include="Resources\Untitled.png" />
     <None Include="Resources\images.jpg" />
-    <EmbeddedResource Include="frmMChild_GameOfLife.resx">
-      <DependentUpon>frmMChild_GameOfLife.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmMChild_Mandelbrot.resx">
-      <DependentUpon>frmMChild_Mandelbrot.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmMChild_Prefix.resx">
       <DependentUpon>frmMChild_Prefix.cs</DependentUpon>
     </EmbeddedResource>
@@ -225,12 +219,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Classes\CRC32.cs" />
-    <Compile Include="frmMChild_GameOfLife.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmMChild_Mandelbrot.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="frmMChild_Prefix.cs">
       <SubType>Form</SubType>
     </Compile>
