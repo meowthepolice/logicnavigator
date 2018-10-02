@@ -516,35 +516,38 @@ namespace Logic_Navigator
 			float y = currenttopBound - localoffsetY;
 			mousePointer.X = mouseX;
 			mousePointer.Y = mouseY;
-	
-			if((currentI != -1) && (currentJ != -1))
-			{
-				ArrayList housingPointer = (ArrayList) HousingsNew[currentI];                
-				ArrayList cardPointer = (ArrayList) housingPointer[currentJ];
-				ArrayList IOPointer = (ArrayList) cardPointer[4];	
-				int j = 0;
-                if (currentJ > housingPointer.Count)
-                    statusBar2.Text = "bug found";
-				CardSize = GetCardSize(cardPointer[0].ToString());  
-				for(int i=0; i < IOPointer.Count; i++)
-				{
-					j = i + 1;	
-					if(mousePointer.X > x + CardSize * CardWidth * scaleFactor )
-						if(mousePointer.X <= x + CardSize * CardWidth * scaleFactor + (float) (cellWidthStatic * scaleFactor))
-							if(mousePointer.Y > y + j * 18 * scaleFactor)
-								if(mousePointer.Y <= y + j * 18 * scaleFactor + (18 * scaleFactor)) 
-									return(i);
-				}				
-				for(int i = IOPointer.Count; i < 12; i++)
-				{
-					j = i + 1;
-					if((mousePointer.X > x + CardSize * CardWidth * scaleFactor) &&
-					   (mousePointer.X <= x + CardSize * CardWidth * scaleFactor + (float) (cellWidthStatic * scaleFactor)) &&
-						(mousePointer.Y > y + j * 18 * scaleFactor) &&
-						(mousePointer.Y <= y + j * 18 * scaleFactor + (18 * scaleFactor))) 
-						return(i);
-				}
-			}
+
+            if ((currentI != -1) && (currentJ != -1))
+            {
+                ArrayList housingPointer = (ArrayList)HousingsNew[currentI];
+                ArrayList cardPointer = (ArrayList)housingPointer[currentJ];
+                if (cardPointer.Count > 4)
+                {
+                    ArrayList IOPointer = (ArrayList)cardPointer[4];
+                    int j = 0;
+                    if (currentJ > housingPointer.Count)
+                        statusBar2.Text = "bug found";
+                    CardSize = GetCardSize(cardPointer[0].ToString());
+                    for (int i = 0; i < IOPointer.Count; i++)
+                    {
+                        j = i + 1;
+                        if (mousePointer.X > x + CardSize * CardWidth * scaleFactor)
+                            if (mousePointer.X <= x + CardSize * CardWidth * scaleFactor + (float)(cellWidthStatic * scaleFactor))
+                                if (mousePointer.Y > y + j * 18 * scaleFactor)
+                                    if (mousePointer.Y <= y + j * 18 * scaleFactor + (18 * scaleFactor))
+                                        return (i);
+                    }
+                    for (int i = IOPointer.Count; i < 12; i++)
+                    {
+                        j = i + 1;
+                        if ((mousePointer.X > x + CardSize * CardWidth * scaleFactor) &&
+                           (mousePointer.X <= x + CardSize * CardWidth * scaleFactor + (float)(cellWidthStatic * scaleFactor)) &&
+                            (mousePointer.Y > y + j * 18 * scaleFactor) &&
+                            (mousePointer.Y <= y + j * 18 * scaleFactor + (18 * scaleFactor)))
+                            return (i);
+                    }
+                }
+            }
 			return(-1);
 		}
 
