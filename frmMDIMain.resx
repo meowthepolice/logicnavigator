@@ -127,7 +127,7 @@
     <value>375, 17</value>
   </metadata>
   <data name="openFileDialog2.Filter" xml:space="preserve">
-    <value>Logic file|*.ins;*.wt2;*.ncd;*.ml2;*.gn2;*.mlk;*.vtl;*.lsv;*.nv|INS file|*.ins|WT2 file|*.wt2|NCD file|*.ncd|ML2 file|*.ml2|GN2 file|*.gn2|MLK file|*.mlk|VTL file|*.vtl|LSV file|*.lsv|NV file|*.nv|S2 file|*.txt|All Files|*.*</value>
+    <value>Logic file|*.ins;*.wt2;*.ncd;*.ml2;*.gn2;*.mlk;*.vtl;*.lsv;*.nv;*.ini|INS file|*.ins|WT2 file|*.wt2|NCD file|*.ncd|ML2 file|*.ml2|GN2 file|*.gn2|MLK file|*.mlk|VTL file|*.vtl|LSV file|*.lsv|NV file|*.nv|S2 file|*.txt|FEP file|*.ini|All Files|*.*</value>
   </data>
   <metadata name="fontDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>515, 17</value>
@@ -140,7 +140,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAA+
-        MQEAAk1TRnQBSQFMAgEBFwEAAbQBAwG0AQMBIAEAASABAAT/ARkBAAj/AUIBTQE2BwABNgMAASgDAAGA
+        MQEAAk1TRnQBSQFMAgEBFwEAAcQBAwHEAQMBIAEAASABAAT/ARkBAAj/AUIBTQE2BwABNgMAASgDAAGA
         AwABwAMAAQEBAAEYBgABIAEBGgAC7wHwAYABfgF9AWoBQAEkAYEBTgEfAZYBVQEWAZgBVgEWAZgBVwEX
         AZkBWQEVAZkBWQEUAZsBWgETAZsBWgETAZsBWgETAZsBWgETAZsBWgETAZsBWgETAZsBWgETAZkBWQEU
         AZkBWQEVAZkBWAEWAZgBVwEXAZgBVgEWAZYBVQEWAZEBTwEXAYIBRgEWAV0BQwEuAZUBlwGSAfYB+AH6

@@ -26,6 +26,9 @@ namespace Logic_Navigator
         public bool block = false;
         public string searchString = "";
 
+        private int X;
+        private int Y;
+
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox searchString1;

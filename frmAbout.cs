@@ -29,10 +29,13 @@ namespace Logic_Navigator
         private PictureBox pictureBox1;
         private Label label20;
         private Label label21;
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.Container components = null;
+        private Label label16;
+        private Label label17;
+
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.Container components = null;
 
 		public frmAbout()
 		{
@@ -87,6 +90,8 @@ namespace Logic_Navigator
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,14 +99,15 @@ namespace Logic_Navigator
             // 
             this.label2.Location = new System.Drawing.Point(18, 58);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(344, 16);
+            this.label2.Size = new System.Drawing.Size(369, 29);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Software written by Ken Karrasch, Brisbane, Queensland, Australia.";
+            this.label2.Text = "Software written by Ken Karrasch (Developer) and Dylan Willis (Debugging and some" +
+    " coding), Brisbane, Queensland, Australia.";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(20, 223);
+            this.label1.Location = new System.Drawing.Point(20, 231);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(464, 16);
             this.label1.TabIndex = 3;
@@ -109,7 +115,7 @@ namespace Logic_Navigator
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(20, 237);
+            this.label3.Location = new System.Drawing.Point(20, 245);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(464, 16);
             this.label3.TabIndex = 4;
@@ -118,7 +124,7 @@ namespace Logic_Navigator
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(20, 251);
+            this.label4.Location = new System.Drawing.Point(20, 259);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(464, 16);
             this.label4.TabIndex = 5;
@@ -143,7 +149,7 @@ namespace Logic_Navigator
             // 
             // label8
             // 
-            this.label8.Location = new System.Drawing.Point(18, 167);
+            this.label8.Location = new System.Drawing.Point(18, 182);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(118, 29);
             this.label8.TabIndex = 9;
@@ -151,7 +157,7 @@ namespace Logic_Navigator
             // 
             // label9
             // 
-            this.label9.Location = new System.Drawing.Point(12, 207);
+            this.label9.Location = new System.Drawing.Point(12, 215);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(48, 16);
             this.label9.TabIndex = 10;
@@ -163,12 +169,12 @@ namespace Logic_Navigator
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(80, 24);
             this.label7.TabIndex = 13;
-            this.label7.Text = "(Build 0.0595)";
+            this.label7.Text = "(Build 0.0601)";
             this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label10
             // 
-            this.label10.Location = new System.Drawing.Point(131, 167);
+            this.label10.Location = new System.Drawing.Point(131, 193);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(316, 29);
             this.label10.TabIndex = 14;
@@ -176,7 +182,7 @@ namespace Logic_Navigator
             // 
             // label11
             // 
-            this.label11.Location = new System.Drawing.Point(131, 182);
+            this.label11.Location = new System.Drawing.Point(131, 204);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(316, 27);
             this.label11.TabIndex = 15;
@@ -184,7 +190,7 @@ namespace Logic_Navigator
             // 
             // label12
             // 
-            this.label12.Location = new System.Drawing.Point(131, 196);
+            this.label12.Location = new System.Drawing.Point(131, 215);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(141, 14);
             this.label12.TabIndex = 16;
@@ -192,7 +198,7 @@ namespace Logic_Navigator
             // 
             // label13
             // 
-            this.label13.Location = new System.Drawing.Point(18, 74);
+            this.label13.Location = new System.Drawing.Point(18, 87);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(392, 24);
             this.label13.TabIndex = 17;
@@ -202,7 +208,7 @@ namespace Logic_Navigator
             // 
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.label14.Location = new System.Drawing.Point(18, 94);
+            this.label14.Location = new System.Drawing.Point(18, 109);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(413, 69);
             this.label14.TabIndex = 18;
@@ -211,7 +217,7 @@ namespace Logic_Navigator
             // 
             // label15
             // 
-            this.label15.Location = new System.Drawing.Point(20, 265);
+            this.label15.Location = new System.Drawing.Point(20, 273);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(462, 16);
             this.label15.TabIndex = 19;
@@ -223,7 +229,7 @@ namespace Logic_Navigator
             // 
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(437, 19);
+            this.pictureBox1.Location = new System.Drawing.Point(437, 27);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(425, 222);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -234,7 +240,7 @@ namespace Logic_Navigator
             // 
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.Color.Red;
-            this.label20.Location = new System.Drawing.Point(12, 283);
+            this.label20.Location = new System.Drawing.Point(12, 290);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(61, 15);
             this.label20.TabIndex = 26;
@@ -243,17 +249,34 @@ namespace Logic_Navigator
             // label21
             // 
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(20, 300);
+            this.label21.Location = new System.Drawing.Point(20, 311);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(668, 56);
+            this.label21.Size = new System.Drawing.Size(842, 47);
             this.label21.TabIndex = 27;
             this.label21.Text = resources.GetString("label21.Text");
+            // 
+            // label16
+            // 
+            this.label16.Location = new System.Drawing.Point(131, 180);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(316, 29);
+            this.label16.TabIndex = 28;
+            this.label16.Text = "- S2 Scanner data - rung.txt outputfile(limited support for timers)";
+            // 
+            // label17
+            // 
+            this.label17.Location = new System.Drawing.Point(275, 216);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(141, 14);
+            this.label17.TabIndex = 29;
+            this.label17.Text = "- FEP - config.ini";
             // 
             // frmAbout
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(873, 367);
+            this.Controls.Add(this.label17);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.pictureBox1);
@@ -272,11 +295,13 @@ namespace Logic_Navigator
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.label16);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmAbout";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "About Logic Navigator";
+            this.Load += new System.EventHandler(this.frmAbout_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -304,6 +329,11 @@ namespace Logic_Navigator
         }
 
         private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmAbout_Load(object sender, EventArgs e)
         {
 
         }

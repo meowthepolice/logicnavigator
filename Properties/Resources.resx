@@ -124,6 +124,12 @@
   <data name="pixel_arrow_cursorbrooch" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pixel_arrow_cursorbrooch.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ChessBoard" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ChessBoard.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WhitePawn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WhitePawn.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="expandright" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\expandright.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -133,8 +139,20 @@
   <data name="zoom-in" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\zoom-in.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="BlackPawn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BlackPawn.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BlackRook" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BlackRook.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="close16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\close16.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WhiteRook" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WhiteRook.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WhiteBishop" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WhiteBishop.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="images" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\images.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -142,14 +160,35 @@
   <data name="zoom-in-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\zoom-in-icon.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="WhiteKnight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WhiteKnight.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="close" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\close.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BlackQueen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BlackQueen.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WhiteKing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WhiteKing.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BlackKnight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BlackKnight.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BlackBishop" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BlackBishop.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BlackKing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BlackKing.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Undo-icon (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Undo-icon (1).png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Redo-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Redo-icon.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WhiteQueen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WhiteQueen.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="expandright16" type="System.Resources.ResXFileRef, System.Windows.Forms">

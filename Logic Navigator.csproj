@@ -10,7 +10,7 @@
     <ApplicationIcon>Resources\LN512.ico</ApplicationIcon>
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
-    <AssemblyName>Logic Navigator v0.0595</AssemblyName>
+    <AssemblyName>Logic Navigator v0.0601</AssemblyName>
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
     <DefaultClientScript>JScript</DefaultClientScript>
@@ -182,6 +182,28 @@
     <None Include="Resources\pixel_arrow_cursorbrooch.jpg" />
     <None Include="Resources\Untitled.png" />
     <None Include="Resources\images.jpg" />
+    <None Include="Resources\ChessBoard.bmp" />
+    <None Include="Resources\BlackQueen.bmp" />
+    <None Include="Resources\BlackKing.bmp" />
+    <None Include="Resources\BlackKnight.bmp" />
+    <None Include="Resources\BlackRook.bmp" />
+    <None Include="Resources\BlackPawn.bmp" />
+    <None Include="Resources\WhiteQueen.bmp" />
+    <None Include="Resources\WhiteKnight.bmp" />
+    <None Include="Resources\WhiteKing.bmp" />
+    <None Include="Resources\WhiteBishop.bmp" />
+    <None Include="Resources\WhitePawn.bmp" />
+    <None Include="Resources\WhiteRook.bmp" />
+    <None Include="Resources\WhiteBishop.jpg" />
+    <EmbeddedResource Include="frmMChild_GameOfLife.resx">
+      <DependentUpon>frmMChild_GameOfLife.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMChild_Mandelbrot.resx">
+      <DependentUpon>frmMChild_Mandelbrot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMChild_Prefixmap.resx">
+      <DependentUpon>frmMChild_Prefixmap.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMChild_Prefix.resx">
       <DependentUpon>frmMChild_Prefix.cs</DependentUpon>
     </EmbeddedResource>
@@ -206,6 +228,12 @@
     <EmbeddedResource Include="frmMChild_SimInputs.resx">
       <DependentUpon>frmMChild_SimInputs.cs</DependentUpon>
     </EmbeddedResource>
+    <Compile Include="Advance_Pawn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Advance_Pawn.Designer.cs">
+      <DependentUpon>Advance_Pawn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Classes\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -219,6 +247,15 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Classes\CRC32.cs" />
+    <Compile Include="frmMChild_GameOfLife.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMChild_Mandelbrot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMChild_Prefixmap.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmMChild_Prefix.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -260,6 +297,9 @@
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>frmMChild_SimInputs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMChild_Chess.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmAbout.cs">
       <SubType>Form</SubType>
@@ -305,6 +345,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Advance_Pawn.resx">
+      <DependentUpon>Advance_Pawn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMChild_Chess.resx">
+      <DependentUpon>frmMChild_Chess.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -347,6 +393,18 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <Content Include="bin\Debug\BlackKing.jpg" />
+    <Content Include="bin\Debug\BlackKnight.jpg" />
+    <Content Include="bin\Debug\BlackPawn.jpg" />
+    <Content Include="bin\Debug\BlackQueen.jpg" />
+    <Content Include="bin\Debug\BlackRook.jpg" />
+    <Content Include="bin\Debug\Chessboard_wood.jpg" />
+    <Content Include="bin\Debug\WhiteBishop.jpg" />
+    <Content Include="bin\Debug\WhiteKing.jpg" />
+    <Content Include="bin\Debug\WhiteKnight.jpg" />
+    <Content Include="bin\Debug\WhitePawn.jpg" />
+    <Content Include="bin\Debug\WhiteQueen.jpg" />
+    <Content Include="bin\Debug\WhiteRook.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

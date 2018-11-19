@@ -103,7 +103,7 @@ namespace Logic_Navigator
             // 
             // statusBar2
             // 
-            this.statusBar2.Location = new System.Drawing.Point(0, 736);
+            this.statusBar2.Location = new System.Drawing.Point(0, 727);
             this.statusBar2.Name = "statusBar2";
             this.statusBar2.Size = new System.Drawing.Size(992, 22);
             this.statusBar2.TabIndex = 1;
@@ -118,7 +118,7 @@ namespace Logic_Navigator
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(992, 758);
+            this.ClientSize = new System.Drawing.Size(992, 749);
             this.Controls.Add(this.statusBar2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmMChild_Housings";
@@ -189,19 +189,20 @@ namespace Logic_Navigator
                     {
                         ArrayList cardPointer = (ArrayList)housingPointer[j];
                         if (string.Compare(cardPointer[0].ToString(), "DIAG") != 0 && string.Compare(cardPointer[0].ToString(), "WCM") != 0)
-                        {
                             DrawCard(grfx, (int)cardPointer[2], i, j, RedPen, RedBrush, cardPointer[0].ToString());
-                        }
                         else
                         {
-                            if(string.Compare(cardPointer[0].ToString(), "WCM") == 0)
-                            {
+                            if (string.Compare(cardPointer[0].ToString(), "WCM") == 0)
                                 DrawCard(grfx, (int)cardPointer[1], i, j, RedPen, RedBrush, cardPointer[0].ToString());
-                            } else
-                            {
+                            else
                                 DrawCard(grfx, 1, i, j, RedPen, RedBrush, cardPointer[0].ToString());
-                            }
                         }
+
+                        /*
+                        if (string.Compare(cardPointer[0].ToString(), "DIAG") != 0)
+                            DrawCard(grfx, (int)cardPointer[2], i, j, RedPen, RedBrush, cardPointer[0].ToString());
+                        else
+                            DrawCard(grfx, 1, i, j, RedPen, RedBrush, cardPointer[0].ToString());*/
                     }
                 }
                 try
@@ -217,8 +218,7 @@ namespace Logic_Navigator
             }
             catch
             {
-                
-               MessageBox.Show("Logic Navigator experienced difficulties drawing the housing.  Please send site data to Ken Karrasch if possible.", "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+               // MessageBox.Show("Logic Navigator experienced difficulties drawing the housing", "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -297,7 +297,7 @@ namespace Logic_Navigator
 			if(string.Compare(CardType,"VTC232") == 0) return 1;
 			if(string.Compare(CardType,"VROM50") == 0) return 2;
 			if(string.Compare(CardType,"VPIM50") == 0) return 2;
-			if(string.Compare(CardType,"VLOMFT110") == 0) return 2;
+			if(string.Compare(CardType,"VLOMFT110") == 0) return 3;
 			if(string.Compare(CardType,"NCDM") == 0) return 1;				
 			if(string.Compare(CardType,"DIAG") == 0) return 1;
 			else return 1;
@@ -559,8 +559,39 @@ namespace Logic_Navigator
                     }
                 }
             }
-			return(-1);
-		}
+            return (-1);
+        
+        /*
+        if((currentI != -1) && (currentJ != -1))
+        {
+            ArrayList housingPointer = (ArrayList) HousingsNew[currentI];                
+            ArrayList cardPointer = (ArrayList) housingPointer[currentJ];
+            ArrayList IOPointer = (ArrayList) cardPointer[4];	
+            int j = 0;
+            if (currentJ > housingPointer.Count)
+                statusBar2.Text = "bug found";
+            CardSize = GetCardSize(cardPointer[0].ToString());  
+            for(int i=0; i < IOPointer.Count; i++)
+            {
+                j = i + 1;	
+                if(mousePointer.X > x + CardSize * CardWidth * scaleFactor )
+                    if(mousePointer.X <= x + CardSize * CardWidth * scaleFactor + (float) (cellWidthStatic * scaleFactor))
+                        if(mousePointer.Y > y + j * 18 * scaleFactor)
+                            if(mousePointer.Y <= y + j * 18 * scaleFactor + (18 * scaleFactor)) 
+                                return(i);
+            }				
+            for(int i = IOPointer.Count; i < 12; i++)
+            {
+                j = i + 1;
+                if((mousePointer.X > x + CardSize * CardWidth * scaleFactor) &&
+                   (mousePointer.X <= x + CardSize * CardWidth * scaleFactor + (float) (cellWidthStatic * scaleFactor)) &&
+                    (mousePointer.Y > y + j * 18 * scaleFactor) &&
+                    (mousePointer.Y <= y + j * 18 * scaleFactor + (18 * scaleFactor))) 
+                    return(i);
+            }
+        }
+        return(-1);*/
+    }
 
 		
 		private int rungOptionChosen(int mouseX, int mouseY)
@@ -680,12 +711,15 @@ namespace Logic_Navigator
 					float scaleF, string drawMde, Font drawFt, string name)
 		{
             frmMChild objfrmMChild = new frmMChild(interlockingOldPointer, interlockingNewPointer, timersOld, timersNew, oldIndex, newIndex,
-                        scaleF, drawMde, drawFnt, highlightName, true, true, Color.Blue, Color.Red);//this.Text);
-					objfrmMChild.Size = new Size(500, 300);	
-					objfrmMChild.Text = name;	
-					objfrmMChild.MdiParent = this.MdiParent;
-					objfrmMChild.Show();	
-		}
+                           scaleF, drawMde, drawFnt, highlightName, false, true, Color.Blue, Color.Red);
+
+            objfrmMChild.Size = new Size(objfrmMChild.RecommendedWidthofWindow(newIndex - 1), objfrmMChild.RecommendedHeightofWindow(newIndex - 1));
+
+            //objfrmMChild.Size = new Size(500, 300);	
+            objfrmMChild.Text = name;	
+            objfrmMChild.MdiParent = this.MdiParent;
+            objfrmMChild.Show();
+        }
 
 		private void timer1_Tick(object sender, System.EventArgs e)
 		{  //Bug not here

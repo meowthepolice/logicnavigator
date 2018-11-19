@@ -373,6 +373,7 @@ namespace Logic_Navigator
         private Label label5;
         private Label label6;
         private MenuItem menuItem65;
+        private MenuItem menuItem66;
         private TextBox CurrentLayout;
         private TextBox CurrentMap1;
         private TextBox CurrentState;
@@ -386,6 +387,7 @@ namespace Logic_Navigator
         private MenuItem menuItem20;
         private MenuItem menuItem68;
         private MenuItem menuItem63;
+        private MenuItem menuItem70;
         private MenuItem menuItem71;
         private MenuItem menuItem72;
         private TextBox CurrentMap5;
@@ -461,6 +463,8 @@ namespace Logic_Navigator
         private MenuItem menuItem111;
         private MenuItem menuItem114;
         private MenuItem menuItem116;
+        private MenuItem menuItem69;
+        private MenuItem menuItem110;
         private TextBox TAL2FileName;
         private TextBox TAL3FileName;
         private TextBox TAL4FileName;
@@ -469,6 +473,8 @@ namespace Logic_Navigator
         private TextBox prefixt2;
         private TextBox prefixt1;
         private TextBox prefixmain;
+        private MenuItem menuItem112;
+        private MenuItem menuItem113;
         private System.Windows.Forms.MenuItem menuItem6;
 
         public frmMDIMain()
@@ -560,6 +566,8 @@ namespace Logic_Navigator
             this.menuItem61 = new System.Windows.Forms.MenuItem();
             this.menuItem64 = new System.Windows.Forms.MenuItem();
             this.menuItem65 = new System.Windows.Forms.MenuItem();
+            this.menuItem112 = new System.Windows.Forms.MenuItem();
+            this.menuItem113 = new System.Windows.Forms.MenuItem();
             this.menuItem35 = new System.Windows.Forms.MenuItem();
             this.menuItem53 = new System.Windows.Forms.MenuItem();
             this.menuItem38 = new System.Windows.Forms.MenuItem();
@@ -630,6 +638,10 @@ namespace Logic_Navigator
             this.menuItem77 = new System.Windows.Forms.MenuItem();
             this.menuItem78 = new System.Windows.Forms.MenuItem();
             this.menuItem80 = new System.Windows.Forms.MenuItem();
+            this.menuItem70 = new System.Windows.Forms.MenuItem();
+            this.menuItem66 = new System.Windows.Forms.MenuItem();
+            this.menuItem69 = new System.Windows.Forms.MenuItem();
+            this.menuItem110 = new System.Windows.Forms.MenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.NewFileName = new System.Windows.Forms.TextBox();
             this.statusBar1 = new System.Windows.Forms.StatusBar();
@@ -728,8 +740,6 @@ namespace Logic_Navigator
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.TAL2FileName = new System.Windows.Forms.TextBox();
             this.TAL3FileName = new System.Windows.Forms.TextBox();
             this.TAL4FileName = new System.Windows.Forms.TextBox();
@@ -738,6 +748,8 @@ namespace Logic_Navigator
             this.prefixt2 = new System.Windows.Forms.TextBox();
             this.prefixt1 = new System.Windows.Forms.TextBox();
             this.prefixmain = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.RungGrid)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -963,7 +975,8 @@ namespace Logic_Navigator
             this.menuItem63,
             this.menuItem81,
             this.menuItem114,
-            this.menuItem116});
+            this.menuItem116,
+            this.menuItem112});
             this.Tools.Text = "&Tools";
             // 
             // menuItem2
@@ -1064,6 +1077,7 @@ namespace Logic_Navigator
             this.menuItem116.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuItem68});
             this.menuItem116.Text = "Microlock Tools";
+            this.menuItem116.Click += new System.EventHandler(this.menuItem116_Click);
             // 
             // menuItem68
             // 
@@ -1098,6 +1112,19 @@ namespace Logic_Navigator
             this.menuItem65.Index = 3;
             this.menuItem65.Text = "Show Parameters";
             this.menuItem65.Click += new System.EventHandler(this.menuItem65_Click_1);
+            // 
+            // menuItem112
+            // 
+            this.menuItem112.Index = 12;
+            this.menuItem112.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem113});
+            this.menuItem112.Text = "Sim Tools";
+            // 
+            // menuItem113
+            // 
+            this.menuItem113.Index = 0;
+            this.menuItem113.Text = "Append Prefix to MAP";
+            this.menuItem113.Click += new System.EventHandler(this.menuItem113_Click);
             // 
             // menuItem35
             // 
@@ -1492,7 +1519,8 @@ namespace Logic_Navigator
             this.menuItem5.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuItem100,
             this.mnuHelpAbout,
-            this.menuItem75});
+            this.menuItem75,
+            this.menuItem70});
             this.menuItem5.Text = "&Help";
             // 
             // menuItem100
@@ -1592,6 +1620,33 @@ namespace Logic_Navigator
             this.menuItem80.Index = 3;
             this.menuItem80.Text = "Red is High, Blue is Low";
             // 
+            // menuItem70
+            // 
+            this.menuItem70.Index = 3;
+            this.menuItem70.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem66,
+            this.menuItem69,
+            this.menuItem110});
+            this.menuItem70.Text = "Other";
+            // 
+            // menuItem66
+            // 
+            this.menuItem66.Index = 0;
+            this.menuItem66.Text = "Play Chess";
+            this.menuItem66.Click += new System.EventHandler(this.menuItem66_Click_1);
+            // 
+            // menuItem69
+            // 
+            this.menuItem69.Index = 1;
+            this.menuItem69.Text = "Mandelbrot Set";
+            this.menuItem69.Click += new System.EventHandler(this.menuItem69_Click);
+            // 
+            // menuItem110
+            // 
+            this.menuItem110.Index = 2;
+            this.menuItem110.Text = "Game of Life";
+            this.menuItem110.Click += new System.EventHandler(this.menuItem110_Click);
+            // 
             // openFileDialog1
             // 
             this.openFileDialog1.DefaultExt = "L:\\My Projects\\c#\\MDI";
@@ -1608,7 +1663,7 @@ namespace Logic_Navigator
             // 
             // statusBar1
             // 
-            this.statusBar1.Location = new System.Drawing.Point(144, 551);
+            this.statusBar1.Location = new System.Drawing.Point(144, 530);
             this.statusBar1.Name = "statusBar1";
             this.statusBar1.Size = new System.Drawing.Size(1122, 22);
             this.statusBar1.TabIndex = 3;
@@ -1631,7 +1686,7 @@ namespace Logic_Navigator
             this.treeView.Location = new System.Drawing.Point(0, 88);
             this.treeView.Name = "treeView";
             this.treeView.ShowRootLines = false;
-            this.treeView.Size = new System.Drawing.Size(144, 463);
+            this.treeView.Size = new System.Drawing.Size(144, 442);
             this.treeView.TabIndex = 11;
             this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);
             // 
@@ -1640,6 +1695,7 @@ namespace Logic_Navigator
             this.openFileDialog2.DefaultExt = "L:\\My Projects\\c#\\MDI";
             this.openFileDialog2.Filter = resources.GetString("openFileDialog2.Filter");
             this.openFileDialog2.Title = "Open INS/WT2/NCD/ML2/GN2/MLK/VTL/LSV/NV/TXT file (Old)";
+            this.openFileDialog2.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog2_FileOk);
             // 
             // OldFileName
             // 
@@ -1664,7 +1720,7 @@ namespace Logic_Navigator
             this.splitter1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.splitter1.Location = new System.Drawing.Point(0, 64);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(144, 509);
+            this.splitter1.Size = new System.Drawing.Size(144, 488);
             this.splitter1.TabIndex = 18;
             this.splitter1.TabStop = false;
             // 
@@ -1694,9 +1750,10 @@ namespace Logic_Navigator
             this.RungGrid.Name = "RungGrid";
             this.RungGrid.PreferredColumnWidth = 30;
             this.RungGrid.RowHeadersVisible = false;
-            this.RungGrid.Size = new System.Drawing.Size(144, 463);
+            this.RungGrid.Size = new System.Drawing.Size(144, 442);
             this.RungGrid.TabIndex = 22;
             this.RungGrid.Visible = false;
+            this.RungGrid.Navigate += new System.Windows.Forms.NavigateEventHandler(this.RungGrid_Navigate);
             this.RungGrid.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RungGrid_MouseDown);
             // 
             // Search
@@ -2443,28 +2500,6 @@ namespace Logic_Navigator
             this.label14.Text = "Messages Received:";
             this.label14.Visible = false;
             // 
-            // button2
-            // 
-            this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Image = global::Logic_Navigator.Properties.Resources.close16;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.button2.Location = new System.Drawing.Point(88, 65);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(28, 24);
-            this.button2.TabIndex = 32;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button1
-            // 
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Image = global::Logic_Navigator.Properties.Resources.expandright16;
-            this.button1.Location = new System.Drawing.Point(112, 65);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(32, 23);
-            this.button1.TabIndex = 24;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // TAL2FileName
             // 
             this.TAL2FileName.Location = new System.Drawing.Point(367, 228);
@@ -2529,13 +2564,35 @@ namespace Logic_Navigator
             this.prefixmain.TabIndex = 116;
             this.prefixmain.Visible = false;
             // 
+            // button2
+            // 
+            this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button2.Image = global::Logic_Navigator.Properties.Resources.close16;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.button2.Location = new System.Drawing.Point(88, 65);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(28, 24);
+            this.button2.TabIndex = 32;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button1.Image = global::Logic_Navigator.Properties.Resources.expandright16;
+            this.button1.Location = new System.Drawing.Point(112, 65);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(32, 23);
+            this.button1.TabIndex = 24;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmMDIMain
             // 
             this.AllowDrop = true;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.BackColor = System.Drawing.SystemColors.Control;
             this.CancelButton = this.button2;
-            this.ClientSize = new System.Drawing.Size(1266, 573);
+            this.ClientSize = new System.Drawing.Size(1266, 552);
             this.Controls.Add(this.prefixmain);
             this.Controls.Add(this.prefixt4);
             this.Controls.Add(this.prefixt3);
@@ -2978,7 +3035,7 @@ namespace Logic_Navigator
                     ParseWT2Rungs(interlockingOld, filenameString);
                     ParseHousings(Housings_Old, timersOld, "WT2", filenameString);
                 }
-                else if (filenameString.EndsWith(".ml2", true, ci) || filenameString.EndsWith(".ML2", true, ci))
+                else if (filenameString.EndsWith(".ml2", true, ci))
                 {
                     fileType = "ML2";
                     installationNameOld = ParseML2InstallationName(FileName.Text);
@@ -2986,7 +3043,7 @@ namespace Logic_Navigator
                     ParseML2Timers(timersOld, filenameString);
                     ParseML2Rungs(interlockingOld, filenameString);
                 }
-                else if (filenameString.EndsWith(".gn2", true, ci) || filenameString.EndsWith(".GN2", true, ci))
+                else if (filenameString.EndsWith(".gn2", true, ci))
                 {
                     fileType = "GN2";
                     installationNameOld = ParseGN2InstallationName();
@@ -2994,14 +3051,14 @@ namespace Logic_Navigator
                     ParseML2Timers(timersOld, filenameString);
                     ParseML2Rungs(interlockingOld, filenameString);
                 }
-                else if (filenameString.EndsWith(".lsv", true, ci) || filenameString.EndsWith(".LSV", true, ci))
+                else if (filenameString.EndsWith(".lsv", true, ci))
                 {
                     fileType = "LSV";
                     installationNameOld = "";
                     GCSSVersionOld = "";
                     ParseLSVRungs(interlockingOld, filenameString);
                 }
-                else if (filenameString.EndsWith(".mlk", true, ci) || filenameString.EndsWith(".MLK", true, ci))
+                else if (filenameString.EndsWith(".mlk", true, ci))
                 {
                     fileType = "MLK";
                     installationNameOld = ParseMLKInstallationName();
@@ -3009,7 +3066,7 @@ namespace Logic_Navigator
                     ParseMLKTimers(timersOld, filenameString);
                     ParseMLKRungs(interlockingOld, filenameString);
                 }
-                else if (filenameString.EndsWith(".vtl", true, ci) || filenameString.EndsWith(".vtl", true, ci))
+                else if (filenameString.EndsWith(".vtl", true, ci))
                 {
                     fileType = "VTL";
                     installationNameOld = "";//ParseML2InstallationName();
@@ -3017,7 +3074,7 @@ namespace Logic_Navigator
                     ParseVTLTimers(timersOld, filenameString);
                     ParseVTLRungs(interlockingOld, filenameString);
                 }
-                else if (filenameString.EndsWith(".nv", true, ci) || filenameString.EndsWith(".nv", true, ci))
+                else if (filenameString.EndsWith(".nv", true, ci))
                 {
                     fileType = "NV";
                     installationNameOld = "";//ParseML2InstallationName();
@@ -3025,13 +3082,21 @@ namespace Logic_Navigator
                     ParseVTLTimers(timersOld, filenameString);
                     ParseVTLRungs(interlockingOld, filenameString);
                 }
-                else if (filenameString.EndsWith(".TXT", true, ci) || filenameString.EndsWith(".txt", true, ci))
+                else if (filenameString.EndsWith(".TXT", true, ci))
                 {
                     fileType = "TXT";
                     installationNameOld = ParseTXTInstallationName(filenameString);
                     GCSSVersionOld = "";
                     //ParseTXTTimers(timersOld, FileName.Text);
                     ParseTXTRungs(interlockingOld, timersOld, filenameString);
+                }
+                else if (filenameString.EndsWith(".INI", true, ci))
+                {
+                    fileType = "FEP";
+                    //installationNameOld = ParseFEPInstallationName(filenameString);
+                    GCSSVersionOld = "";
+                    //ParseTXTTimers(timersOld, FileName.Text);
+                    ParseFEPRungs(interlockingOld, filenameString);
                 }
 
                 this.Text = "(" + OldFileName.Text + ")" + " vs (" + NewFileName.Text + ") - Logic Navigator";
@@ -3128,7 +3193,7 @@ namespace Logic_Navigator
                     ParseWT2Rungs(interlockingNew, filenameString);
                     ParseHousings(Housings_New, timersNew, "WT2", filenameString);
                 }
-                else if (filenameString.EndsWith(".lsv", true, ci) || filenameString.EndsWith(".LSV", true, ci))
+                else if (filenameString.EndsWith(".lsv", true, ci))
                 {
                     fileType = "LSV";
                     installationNameNew = "";
@@ -3137,7 +3202,7 @@ namespace Logic_Navigator
                     ParseLSVRungs(interlockingNew, filenameString);
                     //ParseHousings(Housings_Old);
                 }
-                else if (filenameString.EndsWith(".ml2", true, ci) || filenameString.EndsWith(".ML2", true, ci))
+                else if (filenameString.EndsWith(".ml2", true, ci))
                 {
                     fileType = "ML2";
                     installationNameNew = ParseML2InstallationName(FileName.Text);
@@ -3147,7 +3212,7 @@ namespace Logic_Navigator
                     ParseML2Rungs(interlockingNew, filenameString);
                     //ParseHousings(Housings_Old);
                 }
-                else if (filenameString.EndsWith(".gn2", true, ci) || filenameString.EndsWith(".GN2", true, ci))
+                else if (filenameString.EndsWith(".gn2", true, ci))
                 {
                     fileType = "GN2";
                     installationNameNew = ParseGN2InstallationName();
@@ -3156,7 +3221,7 @@ namespace Logic_Navigator
                     ParseML2Rungs(interlockingNew, filenameString);
                     //ParseHousings(Housings_Old);
                 }
-                else if (filenameString.EndsWith(".mlk", true, ci) || filenameString.EndsWith(".MLK", true, ci))
+                else if (filenameString.EndsWith(".mlk", true, ci))
                 {
                     fileType = "MLK";
                     installationNameNew = ParseMLKInstallationName();
@@ -3166,7 +3231,7 @@ namespace Logic_Navigator
                     ParseMLKRungs(interlockingNew, filenameString);
                     //ParseHousings(Housings_Old);
                 }
-                else if (filenameString.EndsWith(".vtl", true, ci) || filenameString.EndsWith(".vtl", true, ci))
+                else if (filenameString.EndsWith(".vtl", true, ci))
                 {
                     fileType = "VTL";
                     installationNameNew = "";
@@ -3174,7 +3239,7 @@ namespace Logic_Navigator
                     ParseVTLTimers(timersNew, FileName.Text);
                     ParseVTLRungs(interlockingNew, filenameString);
                 }
-                else if (filenameString.EndsWith(".nv", true, ci) || filenameString.EndsWith(".nv", true, ci))
+                else if (filenameString.EndsWith(".nv", true, ci))
                 {
                     fileType = "NV";
                     installationNameNew = "";//ParseML2InstallationName();
@@ -3182,13 +3247,21 @@ namespace Logic_Navigator
                     ParseVTLTimers(timersNew, FileName.Text);
                     ParseVTLRungs(interlockingNew, filenameString);
                 }
-                else if (filenameString.EndsWith(".TXT", true, ci) || filenameString.EndsWith(".txt", true, ci))
+                else if (filenameString.EndsWith(".TXT", true, ci))
                 {
                     fileType = "TXT";
                     installationNameOld = ParseTXTInstallationName(filenameString);
                     GCSSVersionOld = "";
                     //ParseTXTTimers(timersOld, FileName.Text);
                     ParseTXTRungs(interlockingNew, timersNew, filenameString);
+                }
+                else if (filenameString.EndsWith(".INI", true, ci))
+                {
+                    fileType = "FEP";
+                    //installationNameOld = ParseFEPInstallationName(filenameString);
+                    GCSSVersionNew = "";
+                    //ParseTXTTimers(timersOld, FileName.Text);
+                    ParseFEPRungs(interlockingNew, filenameString);
                 }
                 this.Text = "(" + OldFileName.Text + ")" + " vs (" + NewFileName.Text + ") - Logic Navigator";
                 NewFileText.Text = NewFileName.Text;
@@ -3452,6 +3525,7 @@ namespace Logic_Navigator
                 while (((line = SR.ReadLine()) != null) && (endOfLadder != true)) //Put logic into a single string
                 {
                     line = " " + line + " ";
+                    line = line.Replace("FIXED", "");
                     commentLineMode = false;
                     if (counter == 700)
                         dumpline = false;
@@ -3940,6 +4014,131 @@ namespace Logic_Navigator
                         ArrayList runglist = new ArrayList();
                         //if (RungLogic.IndexOf("(GG-YY)*(br)w") != -1)
                            // RungLogic = RungLogic;
+
+                        RungLogic = ProcessBrackets(RungLogic);
+
+                        ParseML2Rung(runglist, RungLogic, i);
+                        ArrayList rung = new ArrayList();
+                        rung.Add(RungNumber); RungNumber++;
+                        if (rungNameExtended.IndexOf(",") == -1)
+                        {
+                            ArrayList coil = new ArrayList();
+                            coil.Add(MakeContact(rungNameExtended, 1, 1, false, false, true, "Coil", false));
+                            AndRungs(runglist, coil);
+                            AddRungs(rung, runglist);
+                            rung.Add(rungNameExtended);
+                        }
+                        else
+                        {
+
+                            ArrayList coil = new ArrayList();
+                            frag = rungNameExtended.IndexOf(",").ToString();
+                            coil.Add(MakeContact(rungNameExtended.Substring(rungNameExtended.LastIndexOf(",") + 1)
+                                , 1, 1, false, false, true, "Coil", false));
+                            AndRungs(runglist, coil);
+                            AddRungs(rung, runglist);
+                            rung.Add(rungNameExtended.Substring(rungNameExtended.LastIndexOf(",") + 1));
+                            rungNameExtended = rungNameExtended.Substring(0, rungNameExtended.LastIndexOf(","));
+                        }
+                        statusBar1.Text = "Forming Rung: " + RungNumber + " - " + rungName.ToString();
+                        interlocking.Add(TakeOutBrackets(rung));
+                    }
+                }
+            }
+            catch { MessageBox.Show("Problem parsing ML2 file, line: " + line.ToString() + ", " + rungnamedebug.ToString() + ", try compiling the ML2 for a diagnosis of errors", "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
+        }
+
+        private void ParseFEPRungs(ArrayList interlocking, string filename)
+        {
+            string line = "", rungnamedebug = "";
+            try
+            {
+                string code = ""; string frag = ""; int counter = 0; string lineofcode = "";
+                string rungName; int RungNumber; int coils = 0; string rungNameExtended = ""; bool dumpline = false;
+                string charlookahead = ""; string charlookahead2 = "";
+                bool endOfLadder = false; bool commentMode = false; bool commentLineMode = false;
+                SR = File.OpenText(filename);
+                while (((line = SR.ReadLine()) != null) && (endOfLadder != true))//Put logic into a single string
+                {
+                    commentLineMode = false;
+                    //if ((commentMode == false) && (commentLineMode == false))
+                    line = TranslateMLline(line); // Convert the and's, or's, to's to *'s +'s and ='s
+
+                    //if (line.IndexOf("GG-YY") != -1)
+                    //line = line;
+                    dumpline = false;
+                    lineofcode = "";
+                    for (int index = 0; index < line.Length; index++)
+                    {
+                        if (index < line.Length - 1)
+                        {
+                            charlookahead2 = line.Substring(index, 2);
+                            if (charlookahead2 == "/*") commentMode = true; // Find start of comments
+                            if (charlookahead2 == "//") commentLineMode = true;
+                        }
+                        if ((commentMode == true) || (commentLineMode == true))
+                        {
+                            if (line.IndexOf("*/") == -1)
+                            {
+                                dumpline = true; //In Comment mode and not end comment in the line
+                                index = line.Length;
+                            }
+                        }
+                        if (!dumpline)
+                        {
+                            charlookahead = line.Substring(index, 1);
+                            if ((charlookahead != " ") && (charlookahead != "\r\n") && (charlookahead != "\t"))
+                                //Remove carraige returns, spaces & tabs
+                                if (!commentMode)
+                                    lineofcode += charlookahead;
+                            if (index > 0)
+                                if (line.Substring(index - 1, 2) == "*/") commentMode = false;
+                        }
+                    }
+                    code += lineofcode;
+                    if (line.LastIndexOf("END LOGIC", sc) != -1)
+                        endOfLadder = true;
+                    statusBar1.Text = "File: " + FileName.Text + ", Reading Line: " + counter++.ToString();
+                }
+                SR.Close();
+                int logicBeginIndex = code.IndexOf("<EXP>", sc) + 5;//snip off anything before the first <EXP>
+                string logic = code.Substring(logicBeginIndex, code.Length - logicBeginIndex);
+                int logicEndIndex = logic.LastIndexOf("</EXP>", sc);//snip off anything after end logic
+                logic = logic.Substring(0, logicEndIndex);
+                logic = logic.Replace("<EQUATION>", "ASSIGN");
+                logic = logic.Replace("</EQUATION>", "=");
+                logic = logic.Replace("<EXP_RES_ADDR>", "");
+                logic = logic.Replace("</EXP_RES_ADDR>", ";");
+                logic = logic.Replace("<EXP>", "");
+                logic = logic.Replace("</EXP>", "");
+                string RungLogic = "";
+                RungNumber = 1;
+                while ((logic.IndexOf("ASSIGN", sc) != -1) || (logic.IndexOf("NV.ASSIGN", sc) != -1))
+                {
+                    if ((logic.IndexOf("ASSIGN", sc) < logic.IndexOf("NV.ASSIGN", sc)) || (logic.IndexOf("NV.ASSIGN", sc) == -1))
+                        RungLogic = logic.Substring(logic.IndexOf("ASSIGN", sc) + 6, logic.IndexOf(";") - (6 + logic.IndexOf("ASSIGN", sc)));
+                    else
+                        RungLogic = logic.Substring(logic.IndexOf("NV.ASSIGN", sc) + 9, logic.IndexOf(";") - (9 + logic.IndexOf("NV.ASSIGN", sc)));
+                    logicBeginIndex = logic.IndexOf(";") + 1;//snip off rung just scanned, until they are all scanned in
+                    logic = logic.Substring(logicBeginIndex, logic.Length - logicBeginIndex);
+                    rungName = RungLogic.Substring(RungLogic.IndexOf("=") + 1, RungLogic.Length - (1 + RungLogic.IndexOf("=")));
+
+                    while (rungName.LastIndexOf("{StartBracket}", sc) != -1)
+                        rungName = rungName.Substring(0, rungName.LastIndexOf("{StartBracket}", sc)) + "(" + rungName.Substring(rungName.LastIndexOf("{StartBracket}", sc) + 14);
+                    while (rungName.LastIndexOf("{EndBracket}", sc) != -1)
+                        rungName = rungName.Substring(0, rungName.LastIndexOf("{EndBracket}", sc)) + ")" + rungName.Substring(rungName.LastIndexOf("{EndBracket}", sc) + 12);
+
+                    RungLogic = RungLogic.Substring(0, RungLogic.IndexOf("="));
+
+                    coils = CountCommas(rungName);
+                    rungNameExtended = rungName;
+                    rungnamedebug = rungName;
+
+                    for (int i = 0; i < coils; i++)
+                    {
+                        ArrayList runglist = new ArrayList();
+                        //if (RungLogic.IndexOf("(GG-YY)*(br)w") != -1)
+                        // RungLogic = RungLogic;
 
                         RungLogic = ProcessBrackets(RungLogic);
 
@@ -7107,6 +7306,11 @@ namespace Logic_Navigator
                         frmAbout objfrmMChild = (frmAbout)this.ActiveMdiChild;
                         objfrmMChild.Close();
                     }
+                    if (this.ActiveMdiChild.Name == "frmMChild_Chess")
+                    {
+                        frmMChild_Chess objfrmMChild = (frmMChild_Chess)this.ActiveMdiChild;
+                        objfrmMChild.Close();
+                    }
                     if (this.ActiveMdiChild.Name == "frmMChild_Log")
                     {
                         frmMChild_Log objfrmMChild = (frmMChild_Log)this.ActiveMdiChild;
@@ -7700,6 +7904,16 @@ namespace Logic_Navigator
                 sColumns += "\r\n";
             }
             Clipboard.SetDataObject(sColumns.ToString(), true);
+        }
+
+        private void menu_Chess_Click(object sender, EventArgs e)
+        {
+            frmMChild_Chess objfrmMChild = new frmMChild_Chess(scaleFactor, 80);
+            //objfrmMChild.Size = new Size(700, 700);            
+            //objfrmMChild.Location = new System.Drawing.Point(1, 1);
+            objfrmMChild.Text = rungName;
+            objfrmMChild.MdiParent = this;
+            objfrmMChild.Show();
         }
 
         private void menuItem24_Click(object sender, EventArgs e)
@@ -10264,8 +10478,29 @@ namespace Logic_Navigator
                             GCSSVersionOld = ParseGCSSVersion();
                             ParseVersionRecord(versionRecOld, filenameString);
                             ParseINSRungs(interlockingTAL, filenameString);
-                            //ParseHousings(Housings_Old);
+                            //ParseHousings(Housings_New, timersTAL, "INS", filenameString);
                         }
+                        else if (filenameString.EndsWith(".ins", true, ci))
+                        {
+
+                            fileType = "INS";
+                            installationNameNew = ParseInstallationName();
+                            GCSSVersionNew = ParseGCSSVersion();
+                            ParseVersionRecord(versionRecNew, filenameString);
+                            ParseINSRungs(interlockingTAL, filenameString);
+                            ParseHousings(Housings_New, timersTAL, "INS", filenameString);
+                            //housing = true;
+                        }
+                        else if (filenameString.EndsWith(".wt2", true, ci))
+                        {
+                            fileType = "WT2";
+                            installationNameNew = ParseInstallationName();
+                            GCSSVersionNew = ParseGCSSVersion();
+                            ParseVersionRecord(versionRecNew, filenameString);
+                            ParseWT2Rungs(interlockingTAL, filenameString);
+                            ParseHousings(Housings_New, timersTAL, "WT2", filenameString);
+                        }
+                        /*
                         else if (filenameString.EndsWith(".ins", true, ci))
                         {
                             fileType = "INS";
@@ -10283,7 +10518,7 @@ namespace Logic_Navigator
                             ParseVersionRecord(versionRecOld, filenameString);
                             ParseWT2Rungs(interlockingTAL, filenameString);
                             //ParseHousings(Housings_Old, timersOld);
-                        }
+                        }*/
                         else if (filenameString.EndsWith(".ml2", true, ci))
                         {
                             fileType = "ML2";
@@ -10731,6 +10966,26 @@ namespace Logic_Navigator
             Indentations.Visible = true;
             spacesbetweencolumns.Visible = true;
             SpaceperGrouping.Visible = true;
+        }
+
+        private void menuItem66_Click_1(object sender, EventArgs e)
+        {
+            frmMChild_Chess objfrmMChild = new frmMChild_Chess(scaleFactor / 2, 40);
+            //objfrmMChild.Size = new Size(700, 700);            
+            //objfrmMChild.Location = new System.Drawing.Point(1, 1);
+            objfrmMChild.Text = rungName;
+            objfrmMChild.MdiParent = this;
+            objfrmMChild.Show();
+        }
+
+        private void menuItem67_Click(object sender, EventArgs e)
+        {
+            frmMChild_Chess objfrmMChild = new frmMChild_Chess(scaleFactor / 2, 60);
+            //objfrmMChild.Size = new Size(700, 700);            
+            //objfrmMChild.Location = new System.Drawing.Point(1, 1);
+            objfrmMChild.Text = rungName;
+            objfrmMChild.MdiParent = this;
+            objfrmMChild.Show();
         }
 
         private void saveProjectFileDialog_FileOk(object sender, CancelEventArgs e)
@@ -11542,7 +11797,46 @@ namespace Logic_Navigator
             objfrmMChild.Show();
         }
 
+        private void menuItem69_Click(object sender, EventArgs e)
+        {
+            frmMChild_Mandelbrot objfrmMChild = new frmMChild_Mandelbrot();
+            objfrmMChild.Text = "Mandelbrot";
+            objfrmMChild.MdiParent = this;
+            objfrmMChild.Show();
+        }
+
+        private void menuItem110_Click(object sender, EventArgs e)
+        {
+            frmMChild_GameOfLife objfrmMChild = new frmMChild_GameOfLife();
+            objfrmMChild.Text = "Game of Life";
+            objfrmMChild.MdiParent = this;
+            objfrmMChild.Show();
+        }
+
         private void TALFileName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RungGrid_Navigate(object sender, NavigateEventArgs ne)
+        {
+
+        }
+
+        private void menuItem113_Click(object sender, EventArgs e)
+        {
+            frmMChild_Prefixmap objfrmMChild = new frmMChild_Prefixmap();
+            objfrmMChild.Text = "MAP file Prefix Editor";
+            objfrmMChild.MdiParent = this;
+            objfrmMChild.Show();
+        }
+
+        private void menuItem116_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void openFileDialog2_FileOk(object sender, CancelEventArgs e)
         {
 
         }
