@@ -2678,7 +2678,7 @@ namespace Logic_Navigator
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.AutoScroll = true;
-            this.BackColor = System.Drawing.Color.Black;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1354, 749);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label19);
