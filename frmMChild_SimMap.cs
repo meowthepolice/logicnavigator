@@ -3563,108 +3563,110 @@ namespace Logic_Navigator
 
         private void frmMChild_SimMap_MouseMove(object sender, MouseEventArgs e)
         {
-            
-            try{
+
+            try
+            {
                 //debug
-                textBox17.Text = totalpan.X.ToString();
-                textBox18.Text = scaleFactor.ToString();
-                textBox19.Text = ClientSize.Width.ToString();
+                //textBox17.Text = totalpan.X.ToString();
+                //textBox18.Text = scaleFactor.ToString();
+                //textBox19.Text = ClientSize.Width.ToString();
 
-
-
-            Point eLocation = new Point(0, 0);
-            unscaledlocation = e.Location;
-            eLocation.X = (int) ((float) e.Location.X / scaleFactor);
-            eLocation.Y = (int) ((float) e.Location.Y / scaleFactor);            
-            toolStripTextBox3.Text = eLocation.ToString();
-            supressNewitem = false;
-            mouselocation = eLocation;
-            if ((leftMouseDown == true) && (!HandButton.Checked))
-            {
-                try{
-                End = eLocation;
-                if (highlighteditem != -1)
+                //paintCounter++;
+                //statusStrip1.Text = paintCounter.ToString();
+                Point eLocation = new Point(0, 0);
+                unscaledlocation = e.Location;
+                eLocation.X = (int)((float)e.Location.X / scaleFactor);
+                eLocation.Y = (int)((float)e.Location.Y / scaleFactor);
+                //toolStripTextBox3.Text = eLocation.ToString();
+                supressNewitem = false;
+                mouselocation = eLocation;
+                if (leftMouseDown && !HandButton.Checked)
                 {
-                    for (int i = 0; i < HighlightedItems.Count; i++)
+                    try
                     {
-                        try
+                        End = eLocation;
+                        if (highlighteditem != -1)
                         {
-                            if ((InterimOffsets.Count > i) && (Indications.Count > HighlightedItems[i]))
+                            for (int i = 0; i < HighlightedItems.Count; i++)
                             {
-                                Point EndLocation = new Point(0, 0);
-                                MapObj item = Indications[HighlightedItems[i]];
-                                Point delta = new Point(Start.X - End.X, Start.Y - End.Y);
-                                if (verticallock) delta = new Point(Start.X - End.X, 0);
-                                if (horizontallock) delta = new Point(0, Start.Y - End.Y);
-                                if ((onrightedge) || (!onleftedge && !onrightedge && !ontopedge && !onbottomedge))
-                                    item.EndLocation.X -= delta.X - InterimOffsets[i].X;
-                                if ((onbottomedge) || (!onleftedge && !onrightedge && !ontopedge && !onbottomedge))
-                                    item.EndLocation.Y -= delta.Y - InterimOffsets[i].Y;
-                                if ((onleftedge) || (!onleftedge && !onrightedge && !ontopedge && !onbottomedge))
-                                    item.StartLocation.X -= delta.X - InterimOffsets[i].X;
-                                if ((ontopedge) || (!onleftedge && !onrightedge && !ontopedge && !onbottomedge))
-                                    item.StartLocation.Y -= delta.Y - InterimOffsets[i].Y;
-                                Interim = delta;
-                                InterimOffsets[i] = delta;
-                                Indications[HighlightedItems[i]] = item;
-                                supressNewitem = true;
-                            }
+                                try
+                                {
+                                    if ((InterimOffsets.Count > i) && (Indications.Count > HighlightedItems[i]))
+                                    {
+                                        Point EndLocation = new Point(0, 0);
+                                        MapObj item = Indications[HighlightedItems[i]];
+                                        Point delta = new Point(Start.X - End.X, Start.Y - End.Y);
+                                        if (verticallock) delta = new Point(Start.X - End.X, 0);
+                                        if (horizontallock) delta = new Point(0, Start.Y - End.Y);
+                                        if ((onrightedge) || (!onleftedge && !onrightedge && !ontopedge && !onbottomedge))
+                                            item.EndLocation.X -= delta.X - InterimOffsets[i].X;
+                                        if ((onbottomedge) || (!onleftedge && !onrightedge && !ontopedge && !onbottomedge))
+                                            item.EndLocation.Y -= delta.Y - InterimOffsets[i].Y;
+                                        if ((onleftedge) || (!onleftedge && !onrightedge && !ontopedge && !onbottomedge))
+                                            item.StartLocation.X -= delta.X - InterimOffsets[i].X;
+                                        if ((ontopedge) || (!onleftedge && !onrightedge && !ontopedge && !onbottomedge))
+                                            item.StartLocation.Y -= delta.Y - InterimOffsets[i].Y;
+                                        Interim = delta;
+                                        InterimOffsets[i] = delta;
+                                        Indications[HighlightedItems[i]] = item;
+                                        supressNewitem = true;
+                                    }
 
+                                }
+                                catch { MessageBox.Show("Mouse Move, Highlighted Items failure", "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
+                            }
+                            {
+                                try
+                                {
+                                    if (Indications.Count > highlighteditem)
+                                    {
+                                        Point EndLocation = new Point(0, 0);
+                                        MapObj item = Indications[highlighteditem];
+                                        Point delta = new Point(Start.X - End.X, Start.Y - End.Y);
+                                        if (verticallock) delta = new Point(Start.X - End.X, 0);
+                                        if (horizontallock) delta = new Point(0, Start.Y - End.Y);
+                                        if ((onrightedge) || (!onleftedge && !onrightedge && !ontopedge && !onbottomedge))
+                                            item.EndLocation.X -= delta.X - Interim.X;
+                                        if ((onbottomedge) || (!onleftedge && !onrightedge && !ontopedge && !onbottomedge))
+                                            item.EndLocation.Y -= delta.Y - Interim.Y;
+                                        if ((onleftedge) || (!onleftedge && !onrightedge && !ontopedge && !onbottomedge))
+                                            item.StartLocation.X -= delta.X - Interim.X;
+                                        if ((ontopedge) || (!onleftedge && !onrightedge && !ontopedge && !onbottomedge))
+                                            item.StartLocation.Y -= delta.Y - Interim.Y;
+                                        Interim = delta;
+                                        Indications[highlighteditem] = item;
+                                        supressNewitem = true;
+                                    }
+                                }
+                                catch { MessageBox.Show("Mouse Move, leftMouseDown:" + leftMouseDown.ToString() + ", Movement ", "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
+                            }
                         }
-                        catch { MessageBox.Show("Mouse Move, Highlighted Items failure", "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
+                        if ((ArrowButton.Checked) && (highlighteditem == -1))
+                        {
+                            GetListOfItems();
+                            //EditProperties();
+                        }
+                        if ((ArrowButton.Checked) && (highlighteditem != -1))
+                        {
+                            //EditProperties();
+                        }
+                        textBox3.Text = HighlightedItems.Count.ToString();
+                        Invalidate();
+
                     }
+                    catch { MessageBox.Show("Mouse Move, edit Properties:" + leftMouseDown.ToString() + " ", "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
+                }
+
+                // Point mousehover = new Point(0, 0);
+                Point currentlocationmouse = new Point(0, 0);
+                currentlocationmouse = mouselocation;
+
+                if ((leftMouseDown && !Thumbtack.Checked && HandButton.Checked) || panInArrowMode)
+                {
+                    if (panInArrowMode)
+                        panMovement = true;
+                    try
                     {
-                        try
-                        {
-                            if (Indications.Count > highlighteditem)
-                            {
-                                Point EndLocation = new Point(0, 0);
-                                MapObj item = Indications[highlighteditem];
-                                Point delta = new Point(Start.X - End.X, Start.Y - End.Y);
-                                if (verticallock) delta = new Point(Start.X - End.X, 0);
-                                if (horizontallock) delta = new Point(0, Start.Y - End.Y);
-                                if ((onrightedge) || (!onleftedge && !onrightedge && !ontopedge && !onbottomedge))
-                                    item.EndLocation.X -= delta.X - Interim.X;
-                                if ((onbottomedge) || (!onleftedge && !onrightedge && !ontopedge && !onbottomedge))
-                                    item.EndLocation.Y -= delta.Y - Interim.Y;
-                                if ((onleftedge) || (!onleftedge && !onrightedge && !ontopedge && !onbottomedge))
-                                    item.StartLocation.X -= delta.X - Interim.X;
-                                if ((ontopedge) || (!onleftedge && !onrightedge && !ontopedge && !onbottomedge))
-                                    item.StartLocation.Y -= delta.Y - Interim.Y;
-                                Interim = delta;
-                                Indications[highlighteditem] = item;
-                                supressNewitem = true;
-                            }
-                        }
-                        catch { MessageBox.Show("Mouse Move, leftMouseDown:" + leftMouseDown.ToString() + ", Movement ", "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
-                    }
-                }
-                if ((ArrowButton.Checked) && (highlighteditem == -1))    
-                {         
-                    GetListOfItems();
-                    //EditProperties();
-                }
-                if ((ArrowButton.Checked) && (highlighteditem != -1))   
-                {
-                    //EditProperties();
-                }
-                textBox3.Text = HighlightedItems.Count.ToString();
-                Invalidate();    
-                
-                }
-                catch { MessageBox.Show("Mouse Move, edit Properties:" + leftMouseDown.ToString() + " ", "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
-            }
-
-           // Point mousehover = new Point(0, 0);
-            Point currentlocationmouse = new Point(0, 0);
-            currentlocationmouse = mouselocation;
-
-            if (((leftMouseDown == true) && !Thumbtack.Checked && (HandButton.Checked)) || panInArrowMode)
-            {
-                if (panInArrowMode)
-                    panMovement = true;
-                try
-                {
                         panSinceClick.X = Start.X - eLocation.X;
                         panSinceClick.Y = Start.Y - eLocation.Y;
                         totalpan.X = pan.X + panSinceClick.X;
@@ -3675,68 +3677,71 @@ namespace Logic_Navigator
                         textBox7.Text = Start.ToString();
                         textBox8.Text = eLocation.ToString();
 
-                    Invalidate();
-                }
-                catch { MessageBox.Show("Problem with moving of train", "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
-            }
-                
-            pointerLocation.X = (int)((float) (e.Location.X / scaleFactor) + totalpan.X);
-            pointerLocation.Y = (int)((float) (e.Location.Y / scaleFactor) + totalpan.Y);
-
-            if ((leftMouseDown != true) && !panInArrowMode)
-            {
-                try
-                {
-                    if (highlighteditem != -1) lasthighlighteditem = highlighteditem;
-                    highlighteditem = -1;
-                    for (int i = 0; i < Indications.Count; i++)
-                    {
-                        MapObj item = Indications[i];
-                        if (InBounds(item, pointerLocation))
-                        {                                
-                            highlighteditem = i;
-                            if (setupmode)
-                            {
-                                this.Cursor = Cursors.SizeAll;
-                                onleftedge = false;
-                                onrightedge = false;
-                                ontopedge = false;
-                                onbottomedge = false;
-                                oncentre = false;
-                                int NSgranularity = 5; int EWgranularity = 5;
-                                if (item.EndLocation.Y - item.StartLocation.Y < 13)
-                                    NSgranularity = ((int)(item.EndLocation.Y - item.StartLocation.Y)) / 5;
-                                if (item.EndLocation.X - item.StartLocation.X < 13)
-                                    EWgranularity = ((int)(item.EndLocation.X - item.StartLocation.X)) / 3;
-                                if (OnCentre(item, pointerLocation, NSgranularity)) oncentre = true;
-                                if (OnLeftEdge(item, pointerLocation, EWgranularity)) onleftedge = true;
-                                if (OnRightEdge(item, pointerLocation, EWgranularity)) onrightedge = true;
-                                if (OnTopEdge(item, pointerLocation, NSgranularity)) ontopedge = true;
-                                if (OnBottomEdge(item, pointerLocation, NSgranularity)) onbottomedge = true;
-                                if (oncentre) this.Cursor = Cursors.Hand;
-                                if ((onleftedge || onrightedge) && !(onbottomedge || ontopedge)) this.Cursor = Cursors.SizeWE;
-                                if ((ontopedge || onbottomedge) && !(onleftedge || onrightedge)) this.Cursor = Cursors.SizeNS;
-                                if (((onleftedge) && (ontopedge)) || ((onrightedge) && (onbottomedge))) this.Cursor = Cursors.SizeNWSE;
-                                if (((onleftedge) && (onbottomedge)) || ((onrightedge) && (ontopedge))) this.Cursor = Cursors.SizeNESW;
-                            }
-                            else
-                            {
-                                //if (item.Control != "")
-                                        this.Cursor = Cursors.Arrow;
-                                //if (item.Control == "") this.Cursor = Cursors.Hand;
-                            }
-                        }
-                        if (HighlightedItems.Count == 0)
-                            EditProperties();
                         Invalidate();
                     }
-                    if (highlighteditem == -1) this.Cursor = Cursors.Arrow;
+                    catch { MessageBox.Show("Problem with moving of train", "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
                 }
-                catch { MessageBox.Show("Mouse Move, leftMouseDown:" + leftMouseDown.ToString() + " ", "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
-            }
+
+                pointerLocation.X = (int)((float)(e.Location.X / scaleFactor) + totalpan.X);
+                pointerLocation.Y = (int)((float)(e.Location.Y / scaleFactor) + totalpan.Y);
+
+                if (!leftMouseDown && !panInArrowMode)
+                {
+                    try
+                    {
+                        if (highlighteditem != -1) lasthighlighteditem = highlighteditem;
+                        highlighteditem = -1;
+                        bool redraw = false;
+                        for (int i = 0; i < Indications.Count; i++)
+                        {
+                            MapObj item = Indications[i];
+                            if (InBounds(item, pointerLocation))
+                            {
+                                highlighteditem = i;
+                                if (setupmode)
+                                {
+                                    this.Cursor = Cursors.SizeAll;
+                                    onleftedge = false;
+                                    onrightedge = false;
+                                    ontopedge = false;
+                                    onbottomedge = false;
+                                    oncentre = false;
+                                    int NSgranularity = 5; int EWgranularity = 5;
+                                    if (item.EndLocation.Y - item.StartLocation.Y < 13)
+                                        NSgranularity = ((int)(item.EndLocation.Y - item.StartLocation.Y)) / 5;
+                                    if (item.EndLocation.X - item.StartLocation.X < 13)
+                                        EWgranularity = ((int)(item.EndLocation.X - item.StartLocation.X)) / 3;
+                                    if (OnCentre(item, pointerLocation, NSgranularity)) oncentre = true;
+                                    if (OnLeftEdge(item, pointerLocation, EWgranularity)) onleftedge = true;
+                                    if (OnRightEdge(item, pointerLocation, EWgranularity)) onrightedge = true;
+                                    if (OnTopEdge(item, pointerLocation, NSgranularity)) ontopedge = true;
+                                    if (OnBottomEdge(item, pointerLocation, NSgranularity)) onbottomedge = true;
+                                    if (oncentre) this.Cursor = Cursors.Hand;
+                                    if ((onleftedge || onrightedge) && !(onbottomedge || ontopedge)) this.Cursor = Cursors.SizeWE;
+                                    if ((ontopedge || onbottomedge) && !(onleftedge || onrightedge)) this.Cursor = Cursors.SizeNS;
+                                    if (((onleftedge) && (ontopedge)) || ((onrightedge) && (onbottomedge))) this.Cursor = Cursors.SizeNWSE;
+                                    if (((onleftedge) && (onbottomedge)) || ((onrightedge) && (ontopedge))) this.Cursor = Cursors.SizeNESW;
+                                }
+                                else
+                                {
+                                    //if (item.Control != "")
+                                    this.Cursor = Cursors.Arrow;
+                                    //if (item.Control == "") this.Cursor = Cursors.Hand;
+                                }
+                                redraw = true;
+                            }
+                            if (HighlightedItems.Count == 0)
+                                if (setupmode)
+                                    EditProperties();
+                        }
+                        if(redraw) Invalidate();
+                        if (highlighteditem == -1) this.Cursor = Cursors.Arrow;
+                    }
+                    catch { MessageBox.Show("Mouse Move, leftMouseDown:" + leftMouseDown.ToString() + " ", "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
+                }
             }
             catch { MessageBox.Show("Mouse Move" + leftMouseDown.ToString() + " ", "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
-            textBox2.Text = supressNewitem.ToString();                    
+            //textBox2.Text = supressNewitem.ToString();                    
         }
 
         private void GetListOfItems()

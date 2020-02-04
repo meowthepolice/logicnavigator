@@ -498,6 +498,7 @@ namespace Logic_Navigator
         private MenuItem menuItem118;
         private MenuItem menuItem119;
         private MenuItem menuItem120;
+        private MenuItem menuItem121;
         private System.Windows.Forms.MenuItem menuItem6;
 
         public frmMDIMain()
@@ -616,6 +617,10 @@ namespace Logic_Navigator
             this.menuItem46 = new System.Windows.Forms.MenuItem();
             this.menuItem45 = new System.Windows.Forms.MenuItem();
             this.menuItem47 = new System.Windows.Forms.MenuItem();
+            this.menuItem117 = new System.Windows.Forms.MenuItem();
+            this.menuItem118 = new System.Windows.Forms.MenuItem();
+            this.menuItem119 = new System.Windows.Forms.MenuItem();
+            this.menuItem120 = new System.Windows.Forms.MenuItem();
             this.menuItem87 = new System.Windows.Forms.MenuItem();
             this.menuItem88 = new System.Windows.Forms.MenuItem();
             this.menuItem89 = new System.Windows.Forms.MenuItem();
@@ -774,10 +779,7 @@ namespace Logic_Navigator
             this.prefixmain = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.menuItem117 = new System.Windows.Forms.MenuItem();
-            this.menuItem118 = new System.Windows.Forms.MenuItem();
-            this.menuItem119 = new System.Windows.Forms.MenuItem();
-            this.menuItem120 = new System.Windows.Forms.MenuItem();
+            this.menuItem121 = new System.Windows.Forms.MenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.RungGrid)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -1345,6 +1347,34 @@ namespace Logic_Navigator
             this.menuItem47.Shortcut = System.Windows.Forms.Shortcut.F4;
             this.menuItem47.Text = "Instantaneous";
             this.menuItem47.Click += new System.EventHandler(this.menuItem47_Click);
+            // 
+            // menuItem117
+            // 
+            this.menuItem117.Index = 19;
+            this.menuItem117.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem121,
+            this.menuItem118,
+            this.menuItem119,
+            this.menuItem120});
+            this.menuItem117.Text = "Cycle Time";
+            // 
+            // menuItem118
+            // 
+            this.menuItem118.Index = 1;
+            this.menuItem118.Text = "250ms <";
+            this.menuItem118.Click += new System.EventHandler(this.menuItem118_Click);
+            // 
+            // menuItem119
+            // 
+            this.menuItem119.Index = 2;
+            this.menuItem119.Text = "500ms";
+            this.menuItem119.Click += new System.EventHandler(this.menuItem119_Click);
+            // 
+            // menuItem120
+            // 
+            this.menuItem120.Index = 3;
+            this.menuItem120.Text = "1000ms";
+            this.menuItem120.Click += new System.EventHandler(this.menuItem120_Click);
             // 
             // menuItem87
             // 
@@ -2054,7 +2084,7 @@ namespace Logic_Navigator
             // 
             // Simulationtimer
             // 
-            this.Simulationtimer.Interval = 300;
+            this.Simulationtimer.Interval = 125;
             this.Simulationtimer.Tick += new System.EventHandler(this.Simulationtimer_Tick);
             // 
             // saveSt8FileDialog
@@ -2623,32 +2653,11 @@ namespace Logic_Navigator
             this.button1.TabIndex = 24;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // menuItem117
+            // menuItem121
             // 
-            this.menuItem117.Index = 19;
-            this.menuItem117.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.menuItem118,
-            this.menuItem119,
-            this.menuItem120});
-            this.menuItem117.Text = "Cycle Time";
-            // 
-            // menuItem118
-            // 
-            this.menuItem118.Index = 0;
-            this.menuItem118.Text = "250ms <";
-            this.menuItem118.Click += new System.EventHandler(this.menuItem118_Click);
-            // 
-            // menuItem119
-            // 
-            this.menuItem119.Index = 1;
-            this.menuItem119.Text = "500ms";
-            this.menuItem119.Click += new System.EventHandler(this.menuItem119_Click);
-            // 
-            // menuItem120
-            // 
-            this.menuItem120.Index = 2;
-            this.menuItem120.Text = "1000ms";
-            this.menuItem120.Click += new System.EventHandler(this.menuItem120_Click);
+            this.menuItem121.Index = 0;
+            this.menuItem121.Text = "125ms";
+            this.menuItem121.Click += new System.EventHandler(this.menuItem121_Click);
             // 
             // frmMDIMain
             // 
@@ -8600,7 +8609,7 @@ namespace Logic_Navigator
 
         private void Simulationtimer_Tick(object sender, EventArgs e)
         {
-            ticker += 250;
+            ticker += 125;
             if (ticker % cycletimespeed == 0)
             {
                 if (ticker == 1000) ticker = 0;
@@ -12218,6 +12227,7 @@ namespace Logic_Navigator
 
         private void menuItem118_Click(object sender, EventArgs e)
         {
+            menuItem121.Text = "125ms";
             menuItem118.Text = "250ms <";
             menuItem119.Text = "500ms";
             menuItem120.Text = "1000ms";
@@ -12226,6 +12236,7 @@ namespace Logic_Navigator
 
         private void menuItem119_Click(object sender, EventArgs e)
         {
+            menuItem121.Text = "125ms";
             menuItem118.Text = "250ms";
             menuItem119.Text = "500ms <";
             menuItem120.Text = "1000ms";
@@ -12234,10 +12245,20 @@ namespace Logic_Navigator
 
         private void menuItem120_Click(object sender, EventArgs e)
         {
+            menuItem121.Text = "125ms";
             menuItem118.Text = "250ms";
             menuItem119.Text = "500ms";
             menuItem120.Text = "1000ms <";
             cycletimespeed = 1000;
+        }
+
+        private void menuItem121_Click(object sender, EventArgs e)
+        {
+            menuItem121.Text = "125ms <";
+            menuItem118.Text = "250ms";
+            menuItem119.Text = "500ms";
+            menuItem120.Text = "1000ms";
+            cycletimespeed = 125;
         }
     }
 }
