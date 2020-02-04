@@ -2958,30 +2958,30 @@
   <data name="toolStripButton64.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHwSURBVFhH7Ze9S8NAGMYrVcRWq4P4JwguQhcXF/8dVxEc
-        XARxclJcnNy7ipulQmt7SjSXpNKpi4uIhX6I0I98+L7NXTnTJP0gyaA+8IPL27t7nvQuX7FpJUlWQtaM
-        W0XVSbVqLbNyNELzZ9XIKmXLQqiqP8hyfYX9HK7QXBHMIw3hZc7BEKEtR/HVXPAz52AICBp8CPpipgul
-        luFmKgJ9TFnr7bBhwYrStyQhtRQhZgqugDNuSjXjitdzufdF1j1cyYpxKgS4ZOXo9KsDzAMbdtNbsqIf
-        4obrbzoIw8p+WgcSdtNbaH4DdIFZLPgpk7HiGcuKQ3PGrviqDtwByf6Ri7i5BZjAHBCkvgCc2zWEaB52
-        gKEQTnPOCXAssAeMq11AHIvgsorzD0Jcs8IoesA4a436ANzmcIIhYlmh4MckAWqA2xxOHoH+35BjBZEL
-        4FzgCBhXB4A4FsETEOdH88Hj2xki7E34w5xLDBFmAFdzLh5CB0beiCZUE/A158Lb5Zbd9BbV9P18sdkh
-        pNWmZQMvs1FKAym7GYD+H8d/L8CT2tkkpNHOFxsGUig1TR4A3wl4nWqNrqx1t9mw4FSpmEv4ys1NPdF0
-        TZJaq2xYsMIvH98QYE7p5xrrHo7wy8c1RBTmXEMhojTnGoQA8/upzWOxb8skY9zN0RqSAAAAAElFTkSu
-        QmCC
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHxSURBVFhH7Ze9S8NAGMYjVcRWq4P4JwguQhcXF/8dVxEc
+        XARxclJcnNy7ipultrRySjSXpNKpi4uIpa2K0I98+L7NXTnbJP0gyaA+8IPL27t7nvQuX9KkkmU7rujm
+        taoZpFKxF1k5GqH5o2Zm1JJtI1Qz7hSlvsR+DldorgrmkYbwMudgiNCW4/bZmvMz52AICBp8CPpkpfLF
+        hulmKgJ9LEXvbLFhwYrSlwQh1SQhVhKugBNuSnXzgtez2dd51j1cKap5LAQ4Z+Xo9KsDzAJrTtNbimrs
+        44brbjoIw8p+WgXiTtNbaH4FtIFpLPgpnbZjaduOQXPKqfiqDtwAie6Ri7i5DVjADBCkvgCc2zWEaB52
+        gIEQ/eacI+BQYAcYVduAOBbBZRXn74W4ZIVhdIBR1hr1BrjN0Q+GkDJCwY9xAlQBtzn6uQe6f0OWFUTO
+        gFOBA2BU7QHiWARPQJwfzXuP7/4QYW/CH+ZcYogwA7iac/EQBjD0RjSm3gFfcy68XW44TW9R3djNFeot
+        QhpNWjLxMhumFJB0mgHo/3H89wI8aK11QmrNXKFmIvli3eIB8J2A16leayt6e5MNC07lsrWAr9zc1BPd
+        0GX5Y5kNC1b45eMbAswp/Vxh3cMRfvm4hojCnGsgRJTmXL0QYF6c2FySvgEPf2OU0Iy1DwAAAABJRU5E
+        rkJggg==
 </value>
   </data>
   <data name="toolStripButton63.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHaSURBVFhH7ZY9S8NAGMcjClLfB/EbCE4uDoKTX8fNRXBw
-        qTjpWAQnv4S4qREaW5U0lxehUOjiJiL2ZSg2bz5Pe09pzyS2Nsmg/uEHuedy9/+Tu1wijaFp4AK4AWax
-        kKbQ/BLwObdAaiFE81RDhJkTiYb4zpxILMQa0AY8jmhMdQfYBBLRJDDFOQLI/JTXELwnFR0CFCCHhbT1
-        SwMUnr1MyWxv8GaUdgHclEgWC1EyTW+9XPbmeTNYqurPGKZ7rRQbriy/zPFyLGKs3tJN54Gx9yVeGhSZ
-        G0++j8hhN/5Q+ULNxXkxRLXqL/JyV6J5J4CcTIAvIdBcE8wRTbdzzHBPeljOQWfAEGKGszcwFlCKda9/
-        /l4IZrlX/R1hwL7wfN8f6pDB9Q6aQwRDSJrp3Ad1iiQRwLAcS8LHgEnETl13zzXDPiNKpn0Mr/wE94gU
-        PNVs/1hEXAI0v9ObK90BsOPFEEluQjTXyZwkhkjqNQw0J9Fy4Horymv0qTWi8oX6R6Q5qVLxFhizt3kz
-        SjvAG2cfC1HSrPaWqjaWeTMW/X+O/16AVaAGtDg2QAHwmupNYJj/iZGVAWSATMN4BAY/tzEK//ejQqB5
-        rAdYkMJCpGJOEkOkak6iEGOYS9InKaVlfDq67hMAAAAASUVORK5CYII=
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHZSURBVFhH7ZY9S8NAGMcjClLfB/EbCE4uDoKTX8fNRXBw
+        qTjpWAQnv4S4qbElFZU2r0Kh4OImoi12KDYv5/O095T2TM7WJhnUP/xo77nc/f/kLpcoI2gSOAOugGks
+        pCk0PwcY5xpILYRonmqIKHMi0RDfmROJhVgBWkDAEY2p7gHrQCIaByY4BwCZH/Magtekon2AAuSwkLZ+
+        aYCbpyBTtltrvCnTNoCbEsliQSbbDlYrlWCWN8NVKrEpy/YvC8W6r6rPM7wciwyj1jRt7w5+F3ipX2Ru
+        PTCGqFEX/lB57c3HeTHE4yOb5+WORPN2ADWZAF9CoLkumCO66eYMyz/q4nh77QEDyLC8nb6xQKFYC3rn
+        74YwHP+ityMK2BcBY2ygQwbXO2wOEQyh6LZ3G9YpkkQAy/EcBW8DJhE7TdM/1S33hCjb7iE88mPcQyq4
+        q9nesYi4BGheNBtLnQGw48UQSW5CNDfJnCSGSOoxDDUn0XLgemvai/zUGlJ5rfYhNSdVq8GcYbibvCnT
+        FvDK2cWCTLrT2iiV3hd5Mxb9v47/XoBloA40OS5AAfA/1RvAIN8TQysDqACZRnEP9L9uYxR+78tCoHms
+        B1iYokKkYk4SQ6RqTqIQI5gryifyfGU0Wxom4wAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="toolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -6772,22 +6772,10 @@ eg. "~13HR" will trigger when the function 13HR is low.</value>
   <metadata name="YCoordinate.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="PointNumber.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="XCoordinate.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="YCoordinate.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="AngleBox.ToolTip" xml:space="preserve">
     <value>Enter the rotation angle in degrees of the graphic. (ie. 0-360 degrees). Starts at the 3 0'clock position and sweeps anticlockwise. 
 0 degrees equates to the 3 o'clock position, 90 degrees equates to 12 0'clock, 180 degrees equates to 9 o'clock, 270 degrees equates to 6 o'clock.</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>429, 18</value>
-  </metadata>
   <metadata name="toolStrip2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>529, 18</value>
   </metadata>

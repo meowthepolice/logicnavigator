@@ -71,7 +71,7 @@ namespace Logic_Navigator
         private ArrayList S2PTimersTiming = new ArrayList();
         private ArrayList S2DTimersTiming = new ArrayList();
         private float simspeed = 1.0F;
-        private bool sound = false;        
+        private bool sound = false;
         private SoundPlayer MyUpSoundPlayer = new SoundPlayer();
         private SoundPlayer MyDownSoundPlayer = new SoundPlayer();
         private SoundPlayer MyTimerStartUpSoundPlayer = new SoundPlayer();
@@ -189,9 +189,9 @@ namespace Logic_Navigator
         public List<int> CoilIsTimer = new List<int>();
         public List<bool> Coilstates = new List<bool>();
         public Contact globalcontact = new Contact();
-        public bool[,] voltagematrix = new bool[64,64];
+        public bool[,] voltagematrix = new bool[64, 64];
         ArrayList voltagematrixes = new ArrayList();
-
+        private string ncdcomment = "";
 
 
 
@@ -475,6 +475,7 @@ namespace Logic_Navigator
         private TextBox prefixmain;
         private MenuItem menuItem112;
         private MenuItem menuItem113;
+        private MenuItem menuItem115;
         private System.Windows.Forms.MenuItem menuItem6;
 
         public frmMDIMain()
@@ -568,6 +569,7 @@ namespace Logic_Navigator
             this.menuItem65 = new System.Windows.Forms.MenuItem();
             this.menuItem112 = new System.Windows.Forms.MenuItem();
             this.menuItem113 = new System.Windows.Forms.MenuItem();
+            this.menuItem115 = new System.Windows.Forms.MenuItem();
             this.menuItem35 = new System.Windows.Forms.MenuItem();
             this.menuItem53 = new System.Windows.Forms.MenuItem();
             this.menuItem38 = new System.Windows.Forms.MenuItem();
@@ -976,7 +978,8 @@ namespace Logic_Navigator
             this.menuItem81,
             this.menuItem114,
             this.menuItem116,
-            this.menuItem112});
+            this.menuItem112,
+            this.menuItem115});
             this.Tools.Text = "&Tools";
             // 
             // menuItem2
@@ -1125,6 +1128,12 @@ namespace Logic_Navigator
             this.menuItem113.Index = 0;
             this.menuItem113.Text = "Append Prefix to MAP";
             this.menuItem113.Click += new System.EventHandler(this.menuItem113_Click);
+            // 
+            // menuItem115
+            // 
+            this.menuItem115.Index = 13;
+            this.menuItem115.Text = "Logic Visualiser (under construction)";
+            this.menuItem115.Click += new System.EventHandler(this.menuItem115_Click);
             // 
             // menuItem35
             // 
@@ -1321,13 +1330,13 @@ namespace Logic_Navigator
             // menuItem88
             // 
             this.menuItem88.Index = 0;
-            this.menuItem88.Text = "Westrace <";
+            this.menuItem88.Text = "Do not allow reverse paths (PLC) <";
             this.menuItem88.Click += new System.EventHandler(this.menuItem88_Click);
             // 
             // menuItem89
             // 
             this.menuItem89.Index = 1;
-            this.menuItem89.Text = "Relay";
+            this.menuItem89.Text = "Allow reverse paths";
             this.menuItem89.Click += new System.EventHandler(this.menuItem89_Click);
             // 
             // menuItem55
@@ -1663,9 +1672,9 @@ namespace Logic_Navigator
             // 
             // statusBar1
             // 
-            this.statusBar1.Location = new System.Drawing.Point(144, 530);
+            this.statusBar1.Location = new System.Drawing.Point(144, 531);
             this.statusBar1.Name = "statusBar1";
-            this.statusBar1.Size = new System.Drawing.Size(1122, 22);
+            this.statusBar1.Size = new System.Drawing.Size(1122, 21);
             this.statusBar1.TabIndex = 3;
             this.statusBar1.Text = "Logic Navigator";
             // 
@@ -1686,7 +1695,7 @@ namespace Logic_Navigator
             this.treeView.Location = new System.Drawing.Point(0, 88);
             this.treeView.Name = "treeView";
             this.treeView.ShowRootLines = false;
-            this.treeView.Size = new System.Drawing.Size(144, 442);
+            this.treeView.Size = new System.Drawing.Size(144, 443);
             this.treeView.TabIndex = 11;
             this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);
             // 
@@ -1750,7 +1759,7 @@ namespace Logic_Navigator
             this.RungGrid.Name = "RungGrid";
             this.RungGrid.PreferredColumnWidth = 30;
             this.RungGrid.RowHeadersVisible = false;
-            this.RungGrid.Size = new System.Drawing.Size(144, 442);
+            this.RungGrid.Size = new System.Drawing.Size(144, 443);
             this.RungGrid.TabIndex = 22;
             this.RungGrid.Visible = false;
             this.RungGrid.Navigate += new System.Windows.Forms.NavigateEventHandler(this.RungGrid_Navigate);
@@ -2342,7 +2351,7 @@ namespace Logic_Navigator
             this.NewFileText.ForeColor = System.Drawing.Color.Red;
             this.NewFileText.Location = new System.Drawing.Point(1183, 36);
             this.NewFileText.Name = "NewFileText";
-            this.NewFileText.Size = new System.Drawing.Size(81, 28);
+            this.NewFileText.Size = new System.Drawing.Size(211, 28);
             this.NewFileText.TabIndex = 80;
             this.NewFileText.Text = "New File Name";
             this.NewFileText.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -2357,7 +2366,7 @@ namespace Logic_Navigator
             this.OldFileText.ForeColor = System.Drawing.Color.Blue;
             this.OldFileText.Location = new System.Drawing.Point(1183, -1);
             this.OldFileText.Name = "OldFileText";
-            this.OldFileText.Size = new System.Drawing.Size(81, 34);
+            this.OldFileText.Size = new System.Drawing.Size(211, 34);
             this.OldFileText.TabIndex = 81;
             this.OldFileText.Text = "Old File Name";
             this.OldFileText.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -2405,9 +2414,10 @@ namespace Logic_Navigator
             // statusStrip1
             // 
             this.statusStrip1.BackColor = System.Drawing.Color.Red;
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(144, 676);
+            this.statusStrip1.Location = new System.Drawing.Point(144, 508);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1122, 22);
             this.statusStrip1.TabIndex = 89;
@@ -2753,7 +2763,7 @@ namespace Logic_Navigator
             RungGrid.SelectionBackColor = Color.Blue;
 
             wipevoltages();
-            
+
             /////////////////Process Commandline////////////////
             string[] args = Environment.GetCommandLineArgs();
             int argnumber = 1;
@@ -2764,7 +2774,7 @@ namespace Logic_Navigator
                 if (argnumber == 3) Arg3.Text = arg;
                 argnumber++;
             }
-            if (string.Compare(Arg2.Text, "") != 0)            
+            if (string.Compare(Arg2.Text, "") != 0)
             {
                 if (Arg2.TextLength > 4)
                 {
@@ -2925,7 +2935,10 @@ namespace Logic_Navigator
                         }
                         if ((int)rungNumber != -1)
                             if (!RungsSame(rungPointer, (ArrayList)interlockingNew[rungNumber - 1])) //Same Name, but differing contacts
+                            {
                                 newNode.ForeColor = Color.Lime;
+                                //RungsSame(rungPointer, (ArrayList)interlockingNew[rungNumber - 1]);
+                            }
                         if ((int)rungNumber != -1) //Same name, same contacts, but diffent rung numbers
                             if (rungNumber != (int)rungPointer[0])
                                 if (RungsSame(rungPointer, (ArrayList)interlockingNew[rungNumber - 1]))
@@ -3011,6 +3024,7 @@ namespace Logic_Navigator
                     fileType = "NCD";
                     installationNameOld = ParseInstallationName();
                     GCSSVersionOld = ParseGCSSVersion();
+                    ParseCommentField();
                     ParseVersionRecord(versionRecOld, filenameString);
                     ParseINSRungs(interlockingOld, filenameString);
                     ParseHousings(Housings_Old, timersOld, "NCD", filenameString);
@@ -3169,8 +3183,9 @@ namespace Logic_Navigator
                     fileType = "NCD";
                     installationNameNew = ParseInstallationName();
                     GCSSVersionNew = ParseGCSSVersion();
-                    ParseVersionRecord(versionRecNew,filenameString);
-                    ParseINSRungs(interlockingNew,filenameString);
+                    ParseVersionRecord(versionRecNew, filenameString);
+                    ParseCommentField();
+                    ParseINSRungs(interlockingNew, filenameString);
                     ParseHousings(Housings_New, timersNew, "NCD", filenameString);
                     //ParseNCDtimers(timersNew);
                 }
@@ -3179,9 +3194,9 @@ namespace Logic_Navigator
                     fileType = "INS";
                     installationNameNew = ParseInstallationName();
                     GCSSVersionNew = ParseGCSSVersion();
-                    ParseVersionRecord(versionRecNew,filenameString);
-                    ParseINSRungs(interlockingNew,filenameString);
-                    ParseHousings(Housings_New, timersNew, "INS",filenameString);
+                    ParseVersionRecord(versionRecNew, filenameString);
+                    ParseINSRungs(interlockingNew, filenameString);
+                    ParseHousings(Housings_New, timersNew, "INS", filenameString);
                     housing = true;
                 }
                 else if (filenameString.EndsWith(".wt2", true, ci))
@@ -3218,6 +3233,7 @@ namespace Logic_Navigator
                     installationNameNew = ParseGN2InstallationName();
                     GCSSVersionNew = "";
                     //ParseVersionRecord(versionRecOld);
+                    ParseML2Timers(timersNew, filenameString);
                     ParseML2Rungs(interlockingNew, filenameString);
                     //ParseHousings(Housings_Old);
                 }
@@ -3279,6 +3295,7 @@ namespace Logic_Navigator
             }
             catch { MessageBox.Show("Error opening new file", "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
         }
+
 
         private void Openst8File(string filenameString)
         {
@@ -3342,11 +3359,11 @@ namespace Logic_Navigator
             ShowRungPane();
             for (int i = 1; i < 19; i++)
                 this.toolBar1.Buttons[i].Visible = true;
-            if(housing) this.toolBar1.Buttons[10].Visible = true;
+            if (housing) this.toolBar1.Buttons[10].Visible = true;
             else this.toolBar1.Buttons[10].Visible = false;
             this.toolBar1.Buttons[7].Visible = false;
             this.toolBar1.Buttons[0].Visible = false;
-            
+
         }
 
         private void HideMenu()
@@ -3408,15 +3425,15 @@ namespace Logic_Navigator
                 return false;
             if (timerOldnumber == -1)
                 return false;
-            ML2Timer timerOldElement = (ML2Timer) timersOld[timerOldnumber];
-            ML2Timer timerNewElement = (ML2Timer) timersNew[timerNewnumber];
+            ML2Timer timerOldElement = (ML2Timer)timersOld[timerOldnumber];
+            ML2Timer timerNewElement = (ML2Timer)timersNew[timerNewnumber];
             if ((timerOldElement.clearTime != timerNewElement.clearTime) ||
                 (timerOldElement.setTime != timerNewElement.setTime))
                 return false;
             else return true;
         }
 
-        private void ParseMLKRungs(ArrayList interlocking,string filenameString)
+        private void ParseMLKRungs(ArrayList interlocking, string filenameString)
         {
             string line; string code = ""; string frag = ""; int counter = 0; string lineofcode = "";
             string rungName; int RungNumber; int coils = 0; string rungNameExtended = ""; bool dumpline = false;
@@ -3529,8 +3546,7 @@ namespace Logic_Navigator
                     commentLineMode = false;
                     if (counter == 700)
                         dumpline = false;
-                    //if ((commentMode == false) && (commentLineMode == false))
-                        line = TranslateMLline(line);
+                    line = TranslateMLline(line);
                     dumpline = false;
                     lineofcode = ""; timerstring = "";
                     for (int index = 0; index < line.Length; index++)
@@ -3569,6 +3585,10 @@ namespace Logic_Navigator
                             endOfLadder = true;
                         if (lineofcode.LastIndexOf("BEGIN", sc) != -1)
                             endOfLadder = true;
+                        if (lineofcode.LastIndexOf("CONSTANTS", sc) != -1)
+                            endOfLadder = true; 
+                        if (lineofcode.LastIndexOf("CONFIGURATION", sc) != -1)
+                            endOfLadder = true;
                     }
                     if (timerstring.IndexOf(" TIMER ", sc) != -1)
                         startOfTimers = true;
@@ -3600,6 +3620,9 @@ namespace Logic_Navigator
                     }
                     Addtimer(timers, timerlist, setTime, settimeunit, clearTime, cleartimeunit);
                     timer = timer.Substring(timer.IndexOf(";") + 1);
+                    if (timerlist == "28.1M.U1PR.G.C")
+                        timer = timer;
+
                 }
             }
             catch { MessageBox.Show("Problem parsing ML2 timers, line:" + line.ToString() + ", try compiling the ML2 for a diagnosis of errors", "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
@@ -3612,7 +3635,7 @@ namespace Logic_Navigator
             try
             {
                 string code = ""; string lineofcode = ""; string token = "";
-                bool endOfLadder = false;  bool commentMode = false; bool commentLineMode = false;
+                bool endOfLadder = false; bool commentMode = false; bool commentLineMode = false;
                 int timerstart, timerend = 0;
                 string timerstartstring = "";//, timestring = "";
                 int minutes = 0, seconds = 0, hours = 0;
@@ -3651,7 +3674,7 @@ namespace Logic_Navigator
 
                 SR.Close();
                 string timer = code;
-                
+
                 while (timer.IndexOf("TIMEDELAY=") != -1)
                 {
                     timerstart = timer.IndexOf("TIMEDELAY=");
@@ -3678,7 +3701,7 @@ namespace Logic_Navigator
                             //Four different ways of expressing minutes!
                             minutefound = false;
                             if ((timestring.IndexOf("MINUTES,") != -1) && !minutefound)
-                            { 
+                            {
                                 minutes = Convert.ToInt32(timestring.Substring(10, timestring.IndexOf("MINUTES") - 10));
                                 seconds = Convert.ToInt32(timestring.Substring(timestring.IndexOf("MINUTES") + 8,
                                     timestring.IndexOf("SECOND") - (timestring.IndexOf("MINUTES") + 8)));
@@ -3686,7 +3709,7 @@ namespace Logic_Navigator
                                 minutefound = true;
                             }
                             if ((timestring.IndexOf("MINUTE,") != -1) && !minutefound)
-                            { 
+                            {
                                 minutes = Convert.ToInt32(timestring.Substring(10, timestring.IndexOf("MINUTE") - 10));
                                 seconds = Convert.ToInt32(timestring.Substring(timestring.IndexOf("MINUTE") + 7,
                                     timestring.IndexOf("SECOND") - (timestring.IndexOf("MINUTE") + 7)));
@@ -3715,10 +3738,10 @@ namespace Logic_Navigator
                             seconds = Convert.ToInt32(timestring.Substring(10, timestring.IndexOf("SECOND") - 10));
                         }
                     }
-                    if(timeunit == "MIN")
+                    if (timeunit == "MIN")
                         setTime = Convert.ToInt32(minutes);
                     else setTime = Convert.ToInt32(seconds);
-                    
+
                     settimeunit = timeunit;
                     string timerlist = timestring.Substring(timestring.IndexOf("BOOL") + 4);
 
@@ -3726,8 +3749,10 @@ namespace Logic_Navigator
                     timer = timer.Substring(timer.IndexOf("TIMEDELAY") + 1);
                 }
             }
-            catch {
-                MessageBox.Show("Problem parsing VTL timers, line:" + timestring.ToString() + ", try compiling the VTL for a diagnosis of errors", "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
+            catch
+            {
+                MessageBox.Show("Problem parsing VTL timers, line:" + timestring.ToString() + ", try compiling the VTL for a diagnosis of errors", "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void ParseTXTTimers(ArrayList timers, string filename)
@@ -3943,10 +3968,10 @@ namespace Logic_Navigator
                 {
                     commentLineMode = false;
                     //if ((commentMode == false) && (commentLineMode == false))
-                        line = TranslateMLline(line); // Convert the and's, or's, to's to *'s +'s and ='s
+                    line = TranslateMLline(line); // Convert the and's, or's, to's to *'s +'s and ='s
 
                     //if (line.IndexOf("GG-YY") != -1)
-                        //line = line;
+                    //line = line;
                     dumpline = false;
                     lineofcode = "";
                     for (int index = 0; index < line.Length; index++)
@@ -3988,8 +4013,10 @@ namespace Logic_Navigator
                 logic = logic.Substring(0, logicEndIndex);
                 string RungLogic = "";
                 RungNumber = 1;
+                int linecount = 0;
                 while ((logic.IndexOf("ASSIGN", sc) != -1) || (logic.IndexOf("NV.ASSIGN", sc) != -1))
                 {
+                    linecount++;
                     if ((logic.IndexOf("ASSIGN", sc) < logic.IndexOf("NV.ASSIGN", sc)) || (logic.IndexOf("NV.ASSIGN", sc) == -1))
                         RungLogic = logic.Substring(logic.IndexOf("ASSIGN", sc) + 6, logic.IndexOf(";") - (6 + logic.IndexOf("ASSIGN", sc)));
                     else
@@ -3998,13 +4025,13 @@ namespace Logic_Navigator
                     logic = logic.Substring(logicBeginIndex, logic.Length - logicBeginIndex);
                     rungName = RungLogic.Substring(RungLogic.IndexOf("=") + 1, RungLogic.Length - (1 + RungLogic.IndexOf("=")));
 
-                    while(rungName.LastIndexOf("{StartBracket}", sc) != -1)
+                    while (rungName.LastIndexOf("{StartBracket}", sc) != -1)
                         rungName = rungName.Substring(0, rungName.LastIndexOf("{StartBracket}", sc)) + "(" + rungName.Substring(rungName.LastIndexOf("{StartBracket}", sc) + 14);
-                    while(rungName.LastIndexOf("{EndBracket}", sc) != -1)
-                        rungName = rungName.Substring(0, rungName.LastIndexOf("{EndBracket}", sc)) + ")" + rungName.Substring(rungName.LastIndexOf("{EndBracket}", sc) + 12);  
+                    while (rungName.LastIndexOf("{EndBracket}", sc) != -1)
+                        rungName = rungName.Substring(0, rungName.LastIndexOf("{EndBracket}", sc)) + ")" + rungName.Substring(rungName.LastIndexOf("{EndBracket}", sc) + 12);
 
                     RungLogic = RungLogic.Substring(0, RungLogic.IndexOf("="));
-                    
+
                     coils = CountCommas(rungName);
                     rungNameExtended = rungName;
                     rungnamedebug = rungName;
@@ -4012,11 +4039,7 @@ namespace Logic_Navigator
                     for (int i = 0; i < coils; i++)
                     {
                         ArrayList runglist = new ArrayList();
-                        //if (RungLogic.IndexOf("(GG-YY)*(br)w") != -1)
-                           // RungLogic = RungLogic;
-
                         RungLogic = ProcessBrackets(RungLogic);
-
                         ParseML2Rung(runglist, RungLogic, i);
                         ArrayList rung = new ArrayList();
                         rung.Add(RungNumber); RungNumber++;
@@ -4305,9 +4328,9 @@ namespace Logic_Navigator
                 line = line.Substring(0, endapostrophe) + line.Substring(endapostrophe + 1);
                 endapostrophe--;
                 string testline = line.Substring(startapostrophe, 1 + endapostrophe - startapostrophe);
-                if(endapostrophe != -1)
+                if (endapostrophe != -1)
                 {
-                    
+
                     while ((line.Substring(startapostrophe, 1 + endapostrophe - startapostrophe).IndexOf("(", sc) != -1))
                     {
                         int startbracket = line.Substring(startapostrophe, 1 + endapostrophe - startapostrophe).IndexOf("(");
@@ -4335,24 +4358,24 @@ namespace Logic_Navigator
         {
             ArrayList duplicate = new ArrayList();
             duplicate.Add(original[0]);
-            for (int i = 1; i < original.Count-1; i++)
+            for (int i = 1; i < original.Count - 1; i++)
             {
-                Contact newcontact = (Contact) original[i];
+                Contact newcontact = (Contact)original[i];
                 string oldname = newcontact.name;
                 while (oldname.LastIndexOf("{StartBracket}", sc) != -1)
                     oldname = oldname.Substring(0, oldname.LastIndexOf("{StartBracket}", sc)) + "(" + oldname.Substring(oldname.LastIndexOf("{StartBracket}", sc) + 14);
                 while (oldname.LastIndexOf("{EndBracket}", sc) != -1)
-                    oldname = oldname.Substring(0, oldname.LastIndexOf("{EndBracket}", sc)) + ")" + oldname.Substring(oldname.LastIndexOf("{EndBracket}", sc) + 12);  
+                    oldname = oldname.Substring(0, oldname.LastIndexOf("{EndBracket}", sc)) + ")" + oldname.Substring(oldname.LastIndexOf("{EndBracket}", sc) + 12);
                 newcontact.name = oldname;
-                duplicate.Add(newcontact);                
+                duplicate.Add(newcontact);
             }
-            duplicate.Add(original[original.Count-1]);
+            duplicate.Add(original[original.Count - 1]);
             return (duplicate);
         }
 
 
 
-        private string TranslateMLline(string lineread)
+        public string TranslateMLline(string lineread)
         {
 
 
@@ -4362,7 +4385,7 @@ namespace Logic_Navigator
             while (line.LastIndexOf("\t", sc) != -1) //Replace the tabs with spaces
                 line = line.Substring(0, line.LastIndexOf("\t", sc)) + " " +
                     line.Substring(line.LastIndexOf("\t", sc) + 1);
-            
+
             while (line.LastIndexOf("//", sc) != -1) //Pad the comment with spaces
                 line = line.Substring(0, line.LastIndexOf("//", sc)) + "{PH}" +
                     line.Substring(line.LastIndexOf("//", sc) + 2);
@@ -4382,12 +4405,12 @@ namespace Logic_Navigator
                     line.Substring(line.LastIndexOf("*/", sc) + 2);
             while (line.LastIndexOf("{PH}", sc) != -1) //Pad the comment with spaces
                 line = line.Substring(0, line.LastIndexOf("{PH}", sc)) + " */ " +
-                    line.Substring(line.LastIndexOf("{PH}", sc) + 4);            
+                    line.Substring(line.LastIndexOf("{PH}", sc) + 4);
             //while ((line.IndexOf(")", sc) != -1) || (line.IndexOf("(", sc) != -1))
             //{
             //    int endbracket = line.IndexOf(")", sc); 
             //    int startbracket = -1;
-                
+
             //    if(endbracket != -1) startbracket = line.Substring(0, endbracket).LastIndexOf("(",sc);                               
             //    else startbracket = line.LastIndexOf("(", sc);
             //    if ((endbracket != -1) || (startbracket != -1))
@@ -4425,7 +4448,7 @@ namespace Logic_Navigator
             //                line = line.Substring(0, endbracket) + "{RealEndBracket}" + line.Substring(endbracket + 1);
             //                if (startbracket != -1)                            
             //                    line = line.Substring(0, startbracket) + "{RealStartBracket}" + line.Substring(startbracket + 1);
-                            
+
             //            }
             //        }
             //        else
@@ -4469,7 +4492,7 @@ namespace Logic_Navigator
             while (line.LastIndexOf("{RealEndBracket}", sc) != -1) //Pad the comment with spaces
                 line = line.Substring(0, line.LastIndexOf("{RealEndBracket}", sc)) + " ) " +
                     line.Substring(line.LastIndexOf("{RealEndBracket}", sc) + 16);
-            
+
             line.Replace("STATUS", "Status");
             return (line);
         }
@@ -4493,7 +4516,7 @@ namespace Logic_Navigator
             string rungName; int RungNumber; int coils = 0; string rungNameExtended = ""; string lineofcode;
             int nextApp = 0; int nextTime = 0; int nextBool = 0; int endRung = 0; int locBool = 0;
             bool endOfLadder = false; bool commentMode = true; bool commentLineMode = false;
-            
+
             SR = File.OpenText(filenameString);
             while (((line = SR.ReadLine()) != null) && (endOfLadder != true))//Put logic into a single string
             {
@@ -4604,7 +4627,7 @@ namespace Logic_Navigator
             string rungName; int RungNumber; int coils = 0; string rungNameExtended = ""; string lineofcode;
             int nextApp = 0; int nextTime = 0; int nextBool = 0; int endRung = 0; int locBool = 0;
             bool endOfLadder = false; bool commentMode = false; bool commentLineMode = false;
-            
+
             SR = File.OpenText(filenameString);
             while (((line = SR.ReadLine()) != null) && (endOfLadder != true))//Put logic into a single string
             {
@@ -4663,7 +4686,7 @@ namespace Logic_Navigator
                 for (int i = 0; i < coils; i++)
                 {
                     ArrayList runglist = new ArrayList();
-                    ParseML2Rung(runglist, RungLogic,i);
+                    ParseML2Rung(runglist, RungLogic, i);
                     ArrayList rung = new ArrayList();
                     rung.Add(RungNumber); RungNumber++;
                     if (rungNameExtended.IndexOf(",") == -1)
@@ -4737,9 +4760,9 @@ namespace Logic_Navigator
                 if (c == '(') countst++;
                 if (c == ')') countend++;
             }
-            if(countst != countend) MessageBox.Show( "Error reading rung number: "
-                    + (linenum + 1).ToString() + ", brackets are unmatched, there are " + countst.ToString() + " start brackets but "
-                    + countend.ToString() + " end brackets. \r\n" + rung, "Brackets Unmatched", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (countst != countend) MessageBox.Show("Error reading rung number: "
+                     + (linenum + 1).ToString() + ", brackets are unmatched, there are " + countst.ToString() + " start brackets but "
+                     + countend.ToString() + " end brackets. \r\n" + rung, "Brackets Unmatched", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private Contact MakeContact(string name, int x, int y, bool toplink, bool bottomLink, bool leftlink, string typeCell, bool normallyClosed)
@@ -4825,7 +4848,7 @@ namespace Logic_Navigator
             if (endpoint == 0) outputstring = RungLogic.Substring(startpoint);
             else outputstring = RungLogic.Substring(startpoint, endpoint - startpoint);
             //                  if (outputstring.IndexOf("GG-YY") != -1)
-                //outputstring = outputstring;
+            //outputstring = outputstring;
             return outputstring;
         }
 
@@ -4905,7 +4928,7 @@ namespace Logic_Navigator
                    (element == '_') ||
                    (element == '/') ||
                    (element == '~') ||
-                    //(element == '*') ||
+                   //(element == '*') ||
                    (element == '.'))
                     token += element.ToString();
                 else
@@ -5108,7 +5131,7 @@ namespace Logic_Navigator
         private void ParseTXTRungs(ArrayList interlocking, ArrayList timers, string filename)
         {
             string line = "", previousline = "", secondpreviousline = "", timername = ""; string contacts = ""; int sizeOfRung = 10; int ycoord = 1;
-            string contactline1 = ""; string contactline2 = ""; string contactline3 = ""; string contactline4 = ""; 
+            string contactline1 = ""; string contactline2 = ""; string contactline3 = ""; string contactline4 = "";
             int counter = 0;
             Boolean timer = true; int totalrungs = 0;
             string rungName = ""; int RungNumber = 0;
@@ -5120,11 +5143,11 @@ namespace Logic_Navigator
                 while (((line = SR.ReadLine()) != null) && (endOfLadder != true))
                 {
                     counter++;
-                    rungName = "";         
+                    rungName = "";
                     if ((line.LastIndexOf("Rung") != -1) && (line.LastIndexOf("End of Rungs") == -1))
                     {
                         ArrayList rung = new ArrayList();
-                        
+
                         RungNumber = int.Parse(line.Substring(line.IndexOf("Rung") + 5,
                             (line.IndexOf("of") - line.IndexOf("Rung") - 6)));
                         totalrungs = RungNumber;
@@ -5133,7 +5156,7 @@ namespace Logic_Navigator
                         while ((endOfRung != true) && (endOfLadder != true))
                         {
                             contacts = SR.ReadLine();
-                            if ((contacts.Length == 0) || (contacts.IndexOf("Pvalue") != -1)) endOfRung = true;                            
+                            if ((contacts.Length == 0) || (contacts.IndexOf("Pvalue") != -1)) endOfRung = true;
                             else
                             {
                                 contactline1 = contacts;
@@ -5141,7 +5164,7 @@ namespace Logic_Navigator
                                 contactline3 = SR.ReadLine();
                                 contactline4 = SR.ReadLine();
                                 counter += 3;
-                                sizeOfRung = 0;                               
+                                sizeOfRung = 0;
                                 if (contactline2.Length > 79)
                                 {
                                     for (int i = 0; i < 8; i++)
@@ -5150,7 +5173,7 @@ namespace Logic_Navigator
                                             sizeOfRung = i + 2;
                                         if ((contactline2.Substring(i * 8 + 0, 1) == "+")
                                             || (contactline2.Substring(i * 8 + 0, 1) == "|"))
-                                            if(sizeOfRung < i + 1) sizeOfRung = i + 1;
+                                            if (sizeOfRung < i + 1) sizeOfRung = i + 1;
                                     }
                                 }
                                 else
@@ -5166,7 +5189,7 @@ namespace Logic_Navigator
                                     if (contactline1.Substring(i * 8 + 4, 3) == "END")
                                         contact.typeOfCell = "End Contact";
                                     contact.name = contactline1.Substring(i * 8 + 1, 7).TrimEnd() +
-                                                   contactline3.Substring(i * 8 + 1, 7).TrimEnd();                                   
+                                                   contactline3.Substring(i * 8 + 1, 7).TrimEnd();
                                     if ((contact.typeOfCell == null) && (contact.name != "")) contact.typeOfCell = "Contact";
                                     if ((sizeOfRung == i + 1) && (ycoord == 1))
                                     {
@@ -5177,8 +5200,6 @@ namespace Logic_Navigator
                                         rungName = contactline1.Substring(73, 7).TrimEnd() + contactline3.Substring(73, 7).TrimEnd();
                                         if (timer) rungName = rungName + "_UP";
                                         contact.name = rungName;
-                                        if (contact.name == "722N1PR1")
-                                            topofrung = true; 
                                     }
                                     if (contactline2.Substring(i * 8 + 4, 1) == "/")
                                         contact.NormallyClosed = true;
@@ -5211,7 +5232,7 @@ namespace Logic_Navigator
                     if (previousline.IndexOf("(TS)") != -1)
                         timername = secondpreviousline.Substring(73, 7).TrimEnd() + line.Substring(73, 7).TrimEnd();
                     secondpreviousline = previousline; previousline = line;
-                    if(line.IndexOf("Pvalue") != -1)
+                    if (line.IndexOf("Pvalue") != -1)
                     {
                         ArrayList rung = new ArrayList();
                         totalrungs++;
@@ -5220,8 +5241,8 @@ namespace Logic_Navigator
                         topofrung = true;
                         while ((endOfRung != true) && (endOfLadder != true))
                         {
-                            contacts = line;                            
-                            if(topofrung) contactline1 = contacts;
+                            contacts = line;
+                            if (topofrung) contactline1 = contacts;
                             else contactline1 = SR.ReadLine();
                             topofrung = false;
                             contactline2 = SR.ReadLine();
@@ -5229,10 +5250,10 @@ namespace Logic_Navigator
                             contactline4 = SR.ReadLine();
                             counter += 3;
                             if ((contactline1.Length == 0) || (contactline2.Length == 0) || (contactline3.Length == 0))
-                                endOfRung = true;   
+                                endOfRung = true;
                             else
                             {
-                                sizeOfRung = 0;                             
+                                sizeOfRung = 0;
                                 if (contactline2.Length > 79)
                                 {
                                     for (int i = 0; i < 8; i++)
@@ -5378,6 +5399,160 @@ namespace Logic_Navigator
             }
         }
 
+        private string ParseCommentField()
+        {
+            string subnet = "";
+            string line; bool endOfInst = false;
+            SR = File.OpenText(FileName.Text);
+            while (((line = SR.ReadLine()) != null) && (endOfInst != true))
+            {
+                if (line.LastIndexOf("COMMENTS") != -1)
+                {
+                    endOfInst = true;
+                    string temp_store = SR.ReadLine();
+                    if (ParseSubnet(temp_store))
+                    {
+                        if (ParseDefGate(temp_store))
+                        {
+                            ncdcomment = "Pass";
+                        }
+                    }
+                }
+            }
+            return ("");
+        }
+
+        private bool ParseSubnet(string subnet_line)
+        {
+            try
+            {
+                string subnet = "";
+                if (subnet_line.LastIndexOf("SUBNET") != -1)
+                {
+                    int start_location = subnet_line.LastIndexOf("SUBNET MASK");
+                    if (start_location == -1)
+                    {
+                        MessageBox.Show("Subnet mask start text not defined correctly.");
+                        return false;
+                    }
+                    // Subnet is being attempted to be set.
+                    if (start_location > subnet_line.IndexOf('"') + 1)
+                    {
+                        MessageBox.Show("Subnet mask not configured per manual.");
+                        return false;
+                    }
+                    ncdcomment = subnet_line[start_location].ToString();
+                    if (subnet_line.Length - start_location > (14 + 8))
+                    {
+                        if (subnet_line[start_location + 11] == " "[0] && subnet_line[start_location + 12] == "="[0] && subnet_line[start_location + 13] == " "[0])
+                        {
+                            // Next step
+                            subnet = subnet_line.Substring(start_location + 14, 8);
+                            if (OnlyHexInString(subnet))
+                            {
+                                if (subnet_line.Length - start_location > (23))
+                                {
+                                    if (subnet_line[start_location + 23] != "D"[0])
+                                    { // Not necessarily a bad thing, but we should warn the user somehow..
+                                      // This is just a message box but this might get annoying as not all stations will have a default gateway.
+                                      // Any ideas?
+                                        MessageBox.Show("No default gateway configured.");
+                                    }
+                                }
+                                return true;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error in Subnet Mask Hex.");
+                                return false;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Subnet Mask comment line not configured correctly.");
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        ncdcomment = "Subnet Fail";
+                        return false;
+                    }
+                }
+                else
+                {
+                    ncdcomment = "Subnet not set";
+                    return false;
+                }
+            }
+            catch { MessageBox.Show("Subnet Loading Error"); return false; }
+        }
+
+        private bool ParseDefGate(string subnet_line)
+        {
+            try
+            {
+                string ip = "";
+                if (subnet_line.LastIndexOf("DEF GATE") != -1)
+                {
+                    int start_location = subnet_line.LastIndexOf("DEF GATE");
+                    // Subnet is being attempted to be set.
+                    ncdcomment = subnet_line[start_location].ToString();
+                    if (subnet_line[start_location + 8] == " "[0] && subnet_line[start_location + 9] == "="[0] && subnet_line[start_location + 10] == " "[0])
+                    {
+                        // Next step
+                        ip = subnet_line.Substring(start_location + 11);
+                        ip = ip.Substring(0, ip.Length - 1);
+                        if (IsValidIP(ip))
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error in Default Gateway Configuration.");
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        ncdcomment = "IP Fail";
+                        return false;
+                    }
+                }
+                else
+                {
+                    ncdcomment = "IP not set";
+                    return false;
+                }
+            }
+            catch { MessageBox.Show("Default Gateway Loading Error"); return false; }
+        }
+
+        // Taken from https://stackoverflow.com/a/32702160
+        public bool IsValidIP(string Ip)
+        {
+            var Pattern = new string[]
+            {
+            "^",                                            // Start of string
+            @"([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\.",    // Between 000 and 255 and "."
+            @"([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\.",
+            @"([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\.",
+            @"([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])",      // Same as before, no period
+            "$",                                            // End of string
+            };
+
+            return Regex.IsMatch(Ip, string.Join(string.Empty, Pattern));
+        }
+
+        // Taken from https://stackoverflow.com/a/223857 to check only hexadecimal characters are in a string
+        // Used to parse comments field for correct subnet mask configuration
+        public bool OnlyHexInString(string test)
+        {
+            // For C-style hex notation (0xFF) you can use @"\A\b(0[xX])?[0-9a-fA-F]+\b\Z"
+            return System.Text.RegularExpressions.Regex.IsMatch(test, @"\A\b[0-9a-fA-F]+\b\Z");
+        }
+
+
         private void ParseINSRungs(ArrayList interlocking, string filenameString)
         {
             string line = ""; string contacts = ""; int counter = 0;
@@ -5505,7 +5680,7 @@ namespace Logic_Navigator
                         }
                 }
                 endOfInputs = false;
-                if((fileType == "INS") || (fileType == "WT2"))
+                if ((fileType == "INS") || (fileType == "WT2"))
                 {
                     while (((input = SR.ReadLine()) != null) && (!endOfInputs))
                     {
@@ -5962,8 +6137,8 @@ namespace Logic_Navigator
                                     (input.LastIndexOf("SHORT") - 2) - (input.LastIndexOf("TRIGGER LONG ") + 14));
                             else
                                 userTimer.triggerName = input.Split(((char)34))[1];// (char) 34 = "
-                                //userTimer.triggerName = input.Substring(input.LastIndexOf("TRIGGER ") + 9,
-                                  //  input.Length - (10 + input.LastIndexOf("TRIGGER ")));
+                                                                                   //userTimer.triggerName = input.Substring(input.LastIndexOf("TRIGGER ") + 9,
+                                                                                   //  input.Length - (10 + input.LastIndexOf("TRIGGER ")));
 
                             if ((input = SR.ReadLine()) != null)
                             {
@@ -6251,8 +6426,8 @@ namespace Logic_Navigator
                             Housings.Add(housing);
                         }
                     }*/
-                            }
-                            SR.Close();
+                }
+                SR.Close();
 
             }
             catch
@@ -6263,7 +6438,7 @@ namespace Logic_Navigator
             }
 
         }
-        
+
         private void ScanVLM6(ArrayList Module, ArrayList Timers)
         {
             //ScanNetworkPorts(Module);
@@ -6771,7 +6946,7 @@ namespace Logic_Navigator
         private int GetSlotNumber(string line)
         {
             return int.Parse(line.Substring(line.LastIndexOf("SLOT") + 5, 2));
-        }        
+        }
 
         private string ParseGCSSVersion()
         {
@@ -6789,7 +6964,7 @@ namespace Logic_Navigator
             SR.Close();
             return (GCSSVersion);
         }
-        
+
         private string ParseML2InstallationName(string filename)
         {
             string installationName = "";
@@ -6919,14 +7094,14 @@ namespace Logic_Navigator
         private void checkVersionRecords(ArrayList versRec)
         {
             for (int i = 1; i < versRec.Count; i++)
-                {
-                    VersionRecord VPtrprev = (VersionRecord)versRec[i-1];
-                    VersionRecord VPtr = (VersionRecord)versRec[i];
-                    if(VPtr.date_time > VPtrprev.date_time)
-                        MessageBox.Show("Version Records are not in Date order: "
-                            + "v" + VPtr.majorVer + "." + VPtr.minorVer + ", " +
-                            VPtr.date_time, "Version Records Warning" , MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
+            {
+                VersionRecord VPtrprev = (VersionRecord)versRec[i - 1];
+                VersionRecord VPtr = (VersionRecord)versRec[i];
+                if (VPtr.date_time > VPtrprev.date_time)
+                    MessageBox.Show("Version Records are not in Date order: "
+                        + "v" + VPtr.majorVer + "." + VPtr.minorVer + ", " +
+                        VPtr.date_time, "Version Records Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
 
 
 
@@ -6944,13 +7119,13 @@ namespace Logic_Navigator
                 {
                     VersionRecord VPtr = (VersionRecord)versRec[j];
                     if (DateTime.Compare((DateTime)sortedlist[versRec.Count - i - 1], VPtr.date_time) == 0)
-                    
+
                         outVersRec.Add(VPtr);
                 }
 
 
         }
-        
+
         public string GetRungName(string treeViewString)
         {
             return treeViewString.Substring(treeViewString.LastIndexOf(":") + 2);
@@ -6959,13 +7134,24 @@ namespace Logic_Navigator
         private void treeView_AfterSelect(object sender, System.Windows.Forms.TreeViewEventArgs e)
         {
             rungName = GetRungName(treeView.Nodes[treeView.SelectedNode.Index].ToString());
-            if (!reloading) ShowRungWindow();
+            //try
+            {
+                if (!reloading) ShowRungWindow();
+            }
+            /*catch
+            {
+                MessageBox.Show("Search" , "Logic Navigator failure: " + rungName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }*/
         }
 
         private void ShowRungWindow()
         {
-            int newIndex = findRung(interlockingNew, rungName);
-            int oldIndex = findRung(interlockingOld, rungName);
+            int newIndex = 0;
+            int oldIndex = 0;
+            try { newIndex = findRung(interlockingNew, rungName); }
+            catch { MessageBox.Show(rungName, "Logic Navigator failure: findrung, new", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
+            try { oldIndex = findRung(interlockingOld, rungName); }
+            catch { MessageBox.Show(rungName, "Logic Navigator failure: findrung, old ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
             if (newIndex == -1)
             {
                 frmMChild objfrmMChild = new frmMChild(interlockingOld, interlockingNew, timersOld, timersNew, oldIndex - 1,
@@ -7038,9 +7224,9 @@ namespace Logic_Navigator
             {
                 //MessageBox.Show("Search" , "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-        
 
-         }
+
+        }
 
         private void menuItem8_Click(object sender, System.EventArgs e) ///Version History
         {
@@ -7160,10 +7346,10 @@ namespace Logic_Navigator
                     statusInfo = "Old"; //newNode.ForeColor = Color.Blue;
                 if ((int)rungNumber == -1)
                     points.Rows.Add(new object[]{(int) i, rungPointer[0].ToString(), "-",
-													(string) rungPointer[rungPointer.Count-1], statusInfo.ToString()});
+                                                    (string) rungPointer[rungPointer.Count-1], statusInfo.ToString()});
                 if ((int)rungNumber != -1)
                     points.Rows.Add(new object[]{(int) i, rungPointer[0].ToString(), rungNumber.ToString(),
-													(string) rungPointer[rungPointer.Count-1], statusInfo.ToString()});
+                                                    (string) rungPointer[rungPointer.Count-1], statusInfo.ToString()});
             }
             for (int i = 0; i < interlockingNew.Count; i++)
             {
@@ -7321,6 +7507,11 @@ namespace Logic_Navigator
                         frmMChild_SimMap objfrmMChild = (frmMChild_SimMap)this.ActiveMdiChild;
                         objfrmMChild.Close();
                     }
+                    if (this.ActiveMdiChild.Name == "frmMChild_Visualiser")
+                    {
+                        frmMChild_Visualiser objfrmMChild = (frmMChild_Visualiser)this.ActiveMdiChild;
+                        objfrmMChild.Close();
+                    }
                     else
                     {
                         frmSChild objfrmSChild = (frmSChild)this.ActiveMdiChild;
@@ -7401,8 +7592,8 @@ namespace Logic_Navigator
                 ZoomInRungs();
             if (string.Compare(e.Button.Text, "Zoom Out") == 0)
                 ZoomOutRungs();
-           // if (string.Compare(e.Button.Text, "Housings") == 0)
-             //   ViewHousings();
+            // if (string.Compare(e.Button.Text, "Housings") == 0)
+            //   ViewHousings();
             if (string.Compare(e.Button.Text, "Tile") == 0)
             {
                 this.LayoutMdi(MdiLayout.TileHorizontal);
@@ -7410,12 +7601,12 @@ namespace Logic_Navigator
             }
             else
                 if (string.Compare(e.Button.Text, "Maximise") == 0)
-                {
-                    e.Button.Text = "Tile"; toolbarState = "Maximise";
-                    if (this.MdiChildren.Length < 1) statusBar1.Text = "No rungs open";
-                    else { this.ActiveMdiChild.WindowState = FormWindowState.Maximized; statusBar1.Text = ""; }
+            {
+                e.Button.Text = "Tile"; toolbarState = "Maximise";
+                if (this.MdiChildren.Length < 1) statusBar1.Text = "No rungs open";
+                else { this.ActiveMdiChild.WindowState = FormWindowState.Maximized; statusBar1.Text = ""; }
 
-                }
+            }
         }
 
         private void ZoomOutRungs()
@@ -7434,7 +7625,7 @@ namespace Logic_Navigator
                 {
                     frmMChild_SimMap objfrmMChild = (frmMChild_SimMap)this.ActiveMdiChild;
                     //objfrmMChild.scaleFactor = objfrmMChild.scaleFactor / 1.25F;
-                    objfrmMChild.applyzoom(0.8f,-1,-1);
+                    objfrmMChild.applyzoom(0.8f, -1, -1);
                     objfrmMChild.Invalidate();
                 }
                 statusBar1.Text = "";
@@ -7457,7 +7648,7 @@ namespace Logic_Navigator
                 {
                     frmMChild_SimMap objfrmMChild = (frmMChild_SimMap)this.ActiveMdiChild;
                     //objfrmMChild.scaleFactor = objfrmMChild.scaleFactor * 1.25F;
-                    objfrmMChild.applyzoom(1.25f,-1,-1);
+                    objfrmMChild.applyzoom(1.25f, -1, -1);
                     objfrmMChild.Invalidate();
                 }
                 statusBar1.Text = "";
@@ -7598,10 +7789,10 @@ namespace Logic_Navigator
                 if (string.Compare(filetype, "Old") == 0) WriteString(myStream, "GCSS Version: " + GCSSVersionOld);
                 WriteString(myStream, CRLF);
                 WriteString(myStream, CRLF);
-                              
+
                 for (int i = 0; i < interlockingSave.Count; i++)
                 {
-                    ArrayList rungNewPointer = (ArrayList) interlockingSave[i];
+                    ArrayList rungNewPointer = (ArrayList)interlockingSave[i];
                     int length = GetRungLength(rungNewPointer);
                     int height = GetRungHeight(rungNewPointer);
 
@@ -7647,8 +7838,8 @@ namespace Logic_Navigator
                                                 WriteString(myStream, "-( ) ");
                                                 for (int k = 0; k < timersSave.Count; k++)
                                                 {
-                                                    ML2Timer timer = (ML2Timer) timersSave[k];
-                                                    if (timer.timerName == contactNamestring)                                                     
+                                                    ML2Timer timer = (ML2Timer)timersSave[k];
+                                                    if (timer.timerName == contactNamestring)
                                                         WriteString(myStream, " Slow to Pick: " + timer.setTime + ", Slow to Drop: " + timer.clearTime);
                                                 }
                                             }
@@ -7697,7 +7888,7 @@ namespace Logic_Navigator
             if (filename == "")
             {
                 string saveNewFile = NewFileName.Text.ToString();
-                if (saveNewFile.Length < 5) saveNewFile = "Logic State.st8";         
+                if (saveNewFile.Length < 5) saveNewFile = "Logic State.st8";
                 saveSt8FileDialog.FileName = saveNewFile.Substring(0, saveNewFile.Length - 4) + ".st8";
                 if (saveSt8FileDialog.ShowDialog() == DialogResult.OK)
                     if ((myStream = saveSt8FileDialog.OpenFile()) != null)
@@ -7735,7 +7926,7 @@ namespace Logic_Navigator
                 }
                 WriteString(myStream, "~~END of ST8 File~~~~~~~~~");
                 myStream.Close();
-            }            
+            }
         }
 
         private void OpenLogicStateFile()
@@ -7787,7 +7978,7 @@ namespace Logic_Navigator
                 for (int j = 0; j < versRec.Count; j++)
                 {
                     VersionRecord VPtr = (VersionRecord)versRec[j];
-                    if ((int) sortedlist[versRec.Count - i - 1] == VPtr.majorVer * 10000 + VPtr.minorVer)
+                    if ((int)sortedlist[versRec.Count - i - 1] == VPtr.majorVer * 10000 + VPtr.minorVer)
                         outVersRec.Add(VPtr);
                 }
             return outVersRec;
@@ -7974,8 +8165,8 @@ namespace Logic_Navigator
             PrepareSimulationRungs();
             PrepareCoilPositions();
             PrepareTimerAnalysis();
-           // if (!backgroundWorker1.IsBusy)
-             //   backgroundWorker1.RunWorkerAsync();
+            // if (!backgroundWorker1.IsBusy)
+            //   backgroundWorker1.RunWorkerAsync();
             menuItem35.Text = "Simulator - Running";
             SimMode = true;
             SetSimModeinWindows();
@@ -8089,8 +8280,8 @@ namespace Logic_Navigator
             {
                 ArrayList rung = (ArrayList)interlockingTAL[i];
                 ArrayList rungp = new ArrayList();
-                rungp.Add((int) rung[0] + size);
-                for (int c = 1; c < rung.Count-1; c++)
+                rungp.Add((int)rung[0] + size);
+                for (int c = 1; c < rung.Count - 1; c++)
                 {
                     Contact talr = (Contact)rung[c];
                     Contact ncont = new Contact();
@@ -8314,7 +8505,7 @@ namespace Logic_Navigator
             {
                 for (int j = 0; j < 64; j++)
                 {
-                    if(voltagematrix[i, j])
+                    if (voltagematrix[i, j])
                         voltagestring += "0";
                     else
                         voltagestring += "-";
@@ -8400,7 +8591,7 @@ namespace Logic_Navigator
                     }
                     if (inputToggle != "")
                     {
-                        if(inputToggle.Length > 9)
+                        if (inputToggle.Length > 9)
                             if (inputToggle.Substring(0, 9) == "{DOWN} - ")
                             {
                                 forcedown = true;
@@ -8413,11 +8604,11 @@ namespace Logic_Navigator
                                 inputToggle = inputToggle.Substring(7);
                             }
                         madeit = true;
-                        if(inputToggle.LastIndexOf(";") == -1) inputToggle = inputToggle + ";";
+                        if (inputToggle.LastIndexOf(";") == -1) inputToggle = inputToggle + ";";
                         togglelist = inputToggle.Substring(0, inputToggle.Length - 1);
                         while (togglelist != "")
                         {
-                            if(togglelist.LastIndexOf(";") != -1)
+                            if (togglelist.LastIndexOf(";") != -1)
                                 togglechunk = togglelist.Substring(togglelist.LastIndexOf(";") + 1);
                             else togglechunk = togglelist;
                             if (InSimInputs(togglechunk))
@@ -8438,18 +8629,21 @@ namespace Logic_Navigator
                                 transferSimInputstoSimInputsForm();
                                 freezeRungStates = false;
                             }
-                            if(togglelist.LastIndexOf(";") != -1)
+                            if (togglelist.LastIndexOf(";") != -1)
                                 togglelist = togglelist.Substring(0, togglelist.LastIndexOf(";"));
                             else togglelist = "";
                         }
                     }
-                    
+
                 }
 
                 scanSimInputs();// Copy SimInputs from SimInputs Form to Array
             }
-            catch { MessageBox.Show("Error Scanning inputs for simulation, " + inputToggle + ", " + madeit.ToString() + ", " 
-                + forceup.ToString() + ", " + forcedown.ToString() + ", " + inlist.ToString(), "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
+            catch
+            {
+                MessageBox.Show("Error Scanning inputs for simulation, " + inputToggle + ", " + madeit.ToString() + ", "
+            + forceup.ToString() + ", " + forcedown.ToString() + ", " + inlist.ToString(), "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void ScanSimSpeed()
@@ -8463,12 +8657,12 @@ namespace Logic_Navigator
                     {
                         frmMChild_SimMap objfrmMChild = (frmMChild_SimMap)this.MdiChildren[i];
                         string command = objfrmMChild.simspeedcommand;
-                       // if (command == "NormalSpeed") simspeed = 1;
+                        // if (command == "NormalSpeed") simspeed = 1;
                         if (command.IndexOf("Speed:") != -1)
                             simspeed = float.Parse(command.Substring(6));
                         //if (command == "Faster") simspeed = simspeed * 2;
-                       // if (command == "Slower") simspeed = simspeed / 2;
-                       // if (command == "WarpSpeed") simspeed = 10000;
+                        // if (command == "Slower") simspeed = simspeed / 2;
+                        // if (command == "WarpSpeed") simspeed = 10000;
                         if (command == "SaveLogicState")
                             SaveLogicStateFile(CurrentState.Text);
                         if (command == "LoadLogicState")
@@ -8486,7 +8680,7 @@ namespace Logic_Navigator
             }
             catch { MessageBox.Show("Error Scanning inputs for simulation", "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
         }
-        
+
         private bool InSimInputs(string name)
         {
             for (int i = 0; i < Inputnames.Count; i++)
@@ -8602,7 +8796,7 @@ namespace Logic_Navigator
                                                 //PlayUpSound();
                                                 //ReadCoil(Coilnames[r].ToString(), "High");
                                                 //if (Coilnames[r].ToString() == null)
-                                                 //   test = 0;
+                                                //   test = 0;
                                                 SoundQueue.Add(Coilnames[r].ToString() + "High");
                                                 //SoundQueue.Add("High");
                                                 playstuff = true;
@@ -8898,7 +9092,7 @@ namespace Logic_Navigator
         }
 
         private bool EvaluateRungList(List<Contact> rung, int coilindex)
-        {            
+        {
             Point Coil = new Point();
             Coil = CoilContactrefs[coilindex];
             int contactindex = FindArrayIndexList(rung, Coil.X, Coil.Y);
@@ -8948,17 +9142,17 @@ namespace Logic_Navigator
                             &&
                             (
                                 (
-                    //!inList(contact.name, HighRungs) && // 
+                                    //!inList(contact.name, HighRungs) && // 
                                     !contactstate &&
-                    //!inList(contact.name, SimInputs) &&
+                                    //!inList(contact.name, SimInputs) &&
                                     contact.NormallyClosed //Backcontact
                                 )
                                 ||
                                 (
                                     (
                                         contactstate //||
-                    //inList(contact.name, HighRungs) ||
-                    //inList(contact.name, SimInputs)
+                                                     //inList(contact.name, HighRungs) ||
+                                                     //inList(contact.name, SimInputs)
                                     )
                                     &&
                                     !contact.NormallyClosed //Front Contact
@@ -8969,18 +9163,18 @@ namespace Logic_Navigator
                 {
                     voltagehere = voltagematrix[currentX, currentY];
                     voltagematrix[currentX, currentY] = true;
-                    if (currentY == 1) 
+                    if (currentY == 1)
                         return true; //Made it to the Positive Rail
-                    if (voltagehere) 
+                    if (voltagehere)
                         return false; //Voltage here already, look no further                       
                     if (contact.leftLink) //See if there is any voltage from the cell to the left
-                        if (CrawlList(rung, currentX, currentY - 1, currentX, currentY, prevX, prevY, contact.leftLinkindex)) 
+                        if (CrawlList(rung, currentX, currentY - 1, currentX, currentY, prevX, prevY, contact.leftLinkindex))
                             voltagefeeds++;
                     if (contact.bottomLink) //See if there is any voltage from the cell below
-                        if (CrawlList(rung, currentX + 1, currentY, currentX, currentY, prevX, prevY, contact.bottomLinkindex)) 
+                        if (CrawlList(rung, currentX + 1, currentY, currentX, currentY, prevX, prevY, contact.bottomLinkindex))
                             voltagefeeds++;
                     if (contact.topLink) //See if there is any voltage from the cell above
-                        if (CrawlList(rung, currentX - 1, currentY, currentX, currentY, prevX, prevY, contact.topLinkindex)) 
+                        if (CrawlList(rung, currentX - 1, currentY, currentX, currentY, prevX, prevY, contact.topLinkindex))
                             voltagefeeds++;
                     if (calcmethod == RELAYCALC)
                     {
@@ -9208,7 +9402,7 @@ namespace Logic_Navigator
             SimInputs.Clear();
             HighRungs.Clear();
             Changes.Clear();
-            Openst8File(CurrentState.Text);            
+            Openst8File(CurrentState.Text);
             transferSimInputstoSimInputsForm();
             freezeRungStates = false;
         }
@@ -9636,74 +9830,74 @@ namespace Logic_Navigator
                 //WriteString(myStream, "Logic Navigator Map File:");
                 WriteString(myStream, "<?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022?>" + CRLF);
                 // <? xml version = "1.0" encoding = "UTF-8" ?>
-                
+
                 WriteString(myStream, "<map_file>" + CRLF);
                 //
                 //WriteString(myStream, "~~~~~~~~~~~~~");
                 //
                 //WriteString(myStream, "The purpose of this file is to store the current layout of the map window so that it can be reopened later.");
                 //
-                
-                WriteString(myStream, "\t<window_properties>" + CRLF);                
-                WriteString(myStream, "\t\t<name>" + name + "</name>" + CRLF);                
-                WriteString(myStream, "\t\t<top>" + top + "</top>" + CRLF);                
-                WriteString(myStream, "\t\t<left>" + left + "</left>" + CRLF);                
-                WriteString(myStream, "\t\t<height>" + height + "</height>" + CRLF);                
-                WriteString(myStream, "\t\t<width>" + width + "</width>" + CRLF);                
-                WriteString(myStream, "\t</window_properties>" + CRLF);                
+
+                WriteString(myStream, "\t<window_properties>" + CRLF);
+                WriteString(myStream, "\t\t<name>" + name + "</name>" + CRLF);
+                WriteString(myStream, "\t\t<top>" + top + "</top>" + CRLF);
+                WriteString(myStream, "\t\t<left>" + left + "</left>" + CRLF);
+                WriteString(myStream, "\t\t<height>" + height + "</height>" + CRLF);
+                WriteString(myStream, "\t\t<width>" + width + "</width>" + CRLF);
+                WriteString(myStream, "\t</window_properties>" + CRLF);
                 WriteString(myStream, "\t<objects>" + CRLF);
                 for (int i = 0; i < mapObjects.Count; i++)
                 {
-                    MapObj item = mapObjects[i];                    
-                    WriteString(myStream, "\t\t<object>" + CRLF); 
-                                       
-                    WriteString(myStream, "\t\t\t<type>" + item.TypeofObj + "</type>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t<name>" + item.Name + "</name>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t<text>" + item.Textsize + "</text>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t<textsize>" + item.Text + "</textsize>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t<control>" + item.Control + "</control>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t<highcolour>" + item.HighColour.ToArgb() + "</highcolour>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t<lowcolour>" + item.LowColour.ToArgb() + "</lowcolour>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t<rotation_angle>" + item.RotationAngle + "</rotation_angle>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t<shape>" + item.Shape + "</shape>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t<transparent>" + item.Transparent.ToString() + "</transparent>" + CRLF);                    
-                    
-                    WriteString(myStream, "\t\t\t<indications>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t\t<indication>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t\t\t<name>" + item.Indication1 + "</name>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t\t\t<colour>" + item.IndColour1.ToArgb() + "</colour>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t\t</indication>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t\t<indication>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t\t\t<name>" + item.Indication2 + "</name>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t\t\t<colour>" + item.IndColour2.ToArgb() + "</colour>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t\t</indication>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t\t<indication>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t\t\t<name>" + item.Indication3 + "</name>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t\t\t<colour>" + item.IndColour3.ToArgb() + "</colour>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t\t</indication>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t\t<indication>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t\t\t<name>" + item.Indication4 + "</name>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t\t\t<colour>" + item.IndColour4.ToArgb() + "</colour>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t\t</indication>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t</indications>" + CRLF);                    
+                    MapObj item = mapObjects[i];
+                    WriteString(myStream, "\t\t<object>" + CRLF);
 
-                    WriteString(myStream, "\t\t\t<start>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t\t<coordinate>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t\t\t<x>" + item.StartLocation.X + "</x>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t\t\t<y>" + item.StartLocation.Y + "</y>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t\t</coordinate>" + CRLF);                    
+                    WriteString(myStream, "\t\t\t<type>" + item.TypeofObj + "</type>" + CRLF);
+                    WriteString(myStream, "\t\t\t<name>" + item.Name + "</name>" + CRLF);
+                    WriteString(myStream, "\t\t\t<text>" + item.Textsize + "</text>" + CRLF);
+                    WriteString(myStream, "\t\t\t<textsize>" + item.Text + "</textsize>" + CRLF);
+                    WriteString(myStream, "\t\t\t<control>" + item.Control + "</control>" + CRLF);
+                    WriteString(myStream, "\t\t\t<highcolour>" + item.HighColour.ToArgb() + "</highcolour>" + CRLF);
+                    WriteString(myStream, "\t\t\t<lowcolour>" + item.LowColour.ToArgb() + "</lowcolour>" + CRLF);
+                    WriteString(myStream, "\t\t\t<rotation_angle>" + item.RotationAngle + "</rotation_angle>" + CRLF);
+                    WriteString(myStream, "\t\t\t<shape>" + item.Shape + "</shape>" + CRLF);
+                    WriteString(myStream, "\t\t\t<transparent>" + item.Transparent.ToString() + "</transparent>" + CRLF);
+
+                    WriteString(myStream, "\t\t\t<indications>" + CRLF);
+                    WriteString(myStream, "\t\t\t\t<indication>" + CRLF);
+                    WriteString(myStream, "\t\t\t\t\t<name>" + item.Indication1 + "</name>" + CRLF);
+                    WriteString(myStream, "\t\t\t\t\t<colour>" + item.IndColour1.ToArgb() + "</colour>" + CRLF);
+                    WriteString(myStream, "\t\t\t\t</indication>" + CRLF);
+                    WriteString(myStream, "\t\t\t\t<indication>" + CRLF);
+                    WriteString(myStream, "\t\t\t\t\t<name>" + item.Indication2 + "</name>" + CRLF);
+                    WriteString(myStream, "\t\t\t\t\t<colour>" + item.IndColour2.ToArgb() + "</colour>" + CRLF);
+                    WriteString(myStream, "\t\t\t\t</indication>" + CRLF);
+                    WriteString(myStream, "\t\t\t\t<indication>" + CRLF);
+                    WriteString(myStream, "\t\t\t\t\t<name>" + item.Indication3 + "</name>" + CRLF);
+                    WriteString(myStream, "\t\t\t\t\t<colour>" + item.IndColour3.ToArgb() + "</colour>" + CRLF);
+                    WriteString(myStream, "\t\t\t\t</indication>" + CRLF);
+                    WriteString(myStream, "\t\t\t\t<indication>" + CRLF);
+                    WriteString(myStream, "\t\t\t\t\t<name>" + item.Indication4 + "</name>" + CRLF);
+                    WriteString(myStream, "\t\t\t\t\t<colour>" + item.IndColour4.ToArgb() + "</colour>" + CRLF);
+                    WriteString(myStream, "\t\t\t\t</indication>" + CRLF);
+                    WriteString(myStream, "\t\t\t</indications>" + CRLF);
+
+                    WriteString(myStream, "\t\t\t<start>" + CRLF);
+                    WriteString(myStream, "\t\t\t\t<coordinate>" + CRLF);
+                    WriteString(myStream, "\t\t\t\t\t<x>" + item.StartLocation.X + "</x>" + CRLF);
+                    WriteString(myStream, "\t\t\t\t\t<y>" + item.StartLocation.Y + "</y>" + CRLF);
+                    WriteString(myStream, "\t\t\t\t</coordinate>" + CRLF);
                     WriteString(myStream, "\t\t\t</start>" + CRLF);
-                                        
-                    WriteString(myStream, "\t\t\t<end>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t\t<coordinate>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t\t\t<x>" + item.EndLocation.X + "</x>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t\t\t<y>" + item.EndLocation.Y + "</y>" + CRLF);                    
-                    WriteString(myStream, "\t\t\t\t</coordinate>" + CRLF);                    
+
+                    WriteString(myStream, "\t\t\t<end>" + CRLF);
+                    WriteString(myStream, "\t\t\t\t<coordinate>" + CRLF);
+                    WriteString(myStream, "\t\t\t\t\t<x>" + item.EndLocation.X + "</x>" + CRLF);
+                    WriteString(myStream, "\t\t\t\t\t<y>" + item.EndLocation.Y + "</y>" + CRLF);
+                    WriteString(myStream, "\t\t\t\t</coordinate>" + CRLF);
                     WriteString(myStream, "\t\t\t</end>" + CRLF);
-                    
+
                     WriteString(myStream, "\t\t</object>" + CRLF);
                 }
-                WriteString(myStream, "\t</objects>" + CRLF);                
+                WriteString(myStream, "\t</objects>" + CRLF);
                 WriteString(myStream, "</map_file>");
                 myStream.Close();
             }
@@ -9750,61 +9944,61 @@ namespace Logic_Navigator
                 WriteString(myStream, "Window: Name: " + name + ", Top: " + top + ", Left: " + left + ", Height: " + height + ", Width: " + width);
                 WriteString(myStream, CRLF);
                 WriteString(myStream, CRLF);
-                    for (int i = 0; i < mapObjects.Count; i++)
-                    {
-                        MapObj item = mapObjects[i];
-                        WriteString(myStream, CRLF);
-                        WriteString(myStream, "Object:");
-                        WriteString(myStream, CRLF);
-                        WriteString(myStream, "~~~~~~~~~~~~~");
-                        WriteString(myStream, CRLF);
-                        WriteString(myStream, "TypeofObj:" + item.TypeofObj);
-                        WriteString(myStream, CRLF);
-                        WriteString(myStream, "Name:" + item.Name);
-                        WriteString(myStream, CRLF);
-                        WriteString(myStream, "Text:" + item.Text);
-                        WriteString(myStream, CRLF);
-                        WriteString(myStream, "Textsize:" + item.Textsize);
-                        WriteString(myStream, CRLF);
-                        WriteString(myStream, "Indication1:" + item.Indication1);
-                        WriteString(myStream, CRLF);
-                        WriteString(myStream, "Indication2:" + item.Indication2);
-                        WriteString(myStream, CRLF);
-                        WriteString(myStream, "Indication3:" + item.Indication3);
-                        WriteString(myStream, CRLF);
-                        WriteString(myStream, "Indication4:" + item.Indication4);
-                        WriteString(myStream, CRLF);
-                        WriteString(myStream, "StartLocation: X:" + item.StartLocation.X + ", Y:" + +item.StartLocation.Y);
-                        WriteString(myStream, CRLF);
-                        WriteString(myStream, "EndLocation: X:" + item.EndLocation.X + ", Y:" + +item.EndLocation.Y);
-                        WriteString(myStream, CRLF);
-                        WriteString(myStream, "RotationAngle: " + item.RotationAngle.ToString());
-                        WriteString(myStream, CRLF);
-                        WriteString(myStream, "Shape: " + item.Shape);
-                        WriteString(myStream, CRLF);
-                        WriteString(myStream, "HighColour: " + item.HighColour.ToArgb());
-                        WriteString(myStream, CRLF);
-                        WriteString(myStream, "IndColour1: " + item.IndColour1.ToArgb());
-                        WriteString(myStream, CRLF);
-                        WriteString(myStream, "IndColour2: " + item.IndColour2.ToArgb());
-                        WriteString(myStream, CRLF);
-                        WriteString(myStream, "IndColour3: " + item.IndColour3.ToArgb());
-                        WriteString(myStream, CRLF);
-                        WriteString(myStream, "IndColour4: " + item.IndColour4.ToArgb());
-                        WriteString(myStream, CRLF);
-                        WriteString(myStream, "ControlName: " + item.Control);
-                        WriteString(myStream, CRLF);
-                        WriteString(myStream, "LowColour: " + item.LowColour.ToArgb());
-                        WriteString(myStream, CRLF);
-                        WriteString(myStream, "Transparent: " + item.Transparent.ToString());
-                        WriteString(myStream, CRLF);
-                        WriteString(myStream, "IsTrack: " + item.IsTrack.ToString());
-                        WriteString(myStream, CRLF); ;
-                    }
-                    WriteString(myStream, "~~END of MAP File~~~~~~~~~");
-                    myStream.Close();
-            }                
-           return fileNameChosen;
+                for (int i = 0; i < mapObjects.Count; i++)
+                {
+                    MapObj item = mapObjects[i];
+                    WriteString(myStream, CRLF);
+                    WriteString(myStream, "Object:");
+                    WriteString(myStream, CRLF);
+                    WriteString(myStream, "~~~~~~~~~~~~~");
+                    WriteString(myStream, CRLF);
+                    WriteString(myStream, "TypeofObj:" + item.TypeofObj);
+                    WriteString(myStream, CRLF);
+                    WriteString(myStream, "Name:" + item.Name);
+                    WriteString(myStream, CRLF);
+                    WriteString(myStream, "Text:" + item.Text);
+                    WriteString(myStream, CRLF);
+                    WriteString(myStream, "Textsize:" + item.Textsize);
+                    WriteString(myStream, CRLF);
+                    WriteString(myStream, "Indication1:" + item.Indication1);
+                    WriteString(myStream, CRLF);
+                    WriteString(myStream, "Indication2:" + item.Indication2);
+                    WriteString(myStream, CRLF);
+                    WriteString(myStream, "Indication3:" + item.Indication3);
+                    WriteString(myStream, CRLF);
+                    WriteString(myStream, "Indication4:" + item.Indication4);
+                    WriteString(myStream, CRLF);
+                    WriteString(myStream, "StartLocation: X:" + item.StartLocation.X + ", Y:" + +item.StartLocation.Y);
+                    WriteString(myStream, CRLF);
+                    WriteString(myStream, "EndLocation: X:" + item.EndLocation.X + ", Y:" + +item.EndLocation.Y);
+                    WriteString(myStream, CRLF);
+                    WriteString(myStream, "RotationAngle: " + item.RotationAngle.ToString());
+                    WriteString(myStream, CRLF);
+                    WriteString(myStream, "Shape: " + item.Shape);
+                    WriteString(myStream, CRLF);
+                    WriteString(myStream, "HighColour: " + item.HighColour.ToArgb());
+                    WriteString(myStream, CRLF);
+                    WriteString(myStream, "IndColour1: " + item.IndColour1.ToArgb());
+                    WriteString(myStream, CRLF);
+                    WriteString(myStream, "IndColour2: " + item.IndColour2.ToArgb());
+                    WriteString(myStream, CRLF);
+                    WriteString(myStream, "IndColour3: " + item.IndColour3.ToArgb());
+                    WriteString(myStream, CRLF);
+                    WriteString(myStream, "IndColour4: " + item.IndColour4.ToArgb());
+                    WriteString(myStream, CRLF);
+                    WriteString(myStream, "ControlName: " + item.Control);
+                    WriteString(myStream, CRLF);
+                    WriteString(myStream, "LowColour: " + item.LowColour.ToArgb());
+                    WriteString(myStream, CRLF);
+                    WriteString(myStream, "Transparent: " + item.Transparent.ToString());
+                    WriteString(myStream, CRLF);
+                    WriteString(myStream, "IsTrack: " + item.IsTrack.ToString());
+                    WriteString(myStream, CRLF); ;
+                }
+                WriteString(myStream, "~~END of MAP File~~~~~~~~~");
+                myStream.Close();
+            }
+            return fileNameChosen;
         }
 
         private void SaveLayoutFile(string filename)
@@ -10106,35 +10300,35 @@ namespace Logic_Navigator
             if (openFileDialog3.ShowDialog() == DialogResult.OK)
             {
                 OpenMapFile(openFileDialog3.FileName);
-                if(CurrentMap1.Text == ProjectDirectory.Text)
-                   CurrentMap1.Text = openFileDialog3.FileName;
+                if (CurrentMap1.Text == ProjectDirectory.Text)
+                    CurrentMap1.Text = openFileDialog3.FileName;
                 else
                     if (CurrentMap2.Text == ProjectDirectory.Text)
-                        CurrentMap2.Text = openFileDialog3.FileName;
-                    else
+                    CurrentMap2.Text = openFileDialog3.FileName;
+                else
                         if (CurrentMap3.Text == ProjectDirectory.Text)
-                            CurrentMap3.Text = openFileDialog3.FileName;
-                        else
+                    CurrentMap3.Text = openFileDialog3.FileName;
+                else
                             if (CurrentMap4.Text == ProjectDirectory.Text)
-                                CurrentMap4.Text = openFileDialog3.FileName;
-                            else
+                    CurrentMap4.Text = openFileDialog3.FileName;
+                else
                                 if (CurrentMap5.Text == ProjectDirectory.Text)
-                                    CurrentMap5.Text = openFileDialog3.FileName;
-                                else
+                    CurrentMap5.Text = openFileDialog3.FileName;
+                else
                                     if (CurrentMap6.Text == ProjectDirectory.Text)
-                                        CurrentMap6.Text = openFileDialog3.FileName;
-                                    else
+                    CurrentMap6.Text = openFileDialog3.FileName;
+                else
                                         if (CurrentMap7.Text == ProjectDirectory.Text)
-                                            CurrentMap7.Text = openFileDialog3.FileName;
-                                        else
+                    CurrentMap7.Text = openFileDialog3.FileName;
+                else
                                             if (CurrentMap8.Text == ProjectDirectory.Text)
-                                                CurrentMap8.Text = openFileDialog3.FileName;
-                                            else
+                    CurrentMap8.Text = openFileDialog3.FileName;
+                else
                                                 if (CurrentMap9.Text == ProjectDirectory.Text)
-                                                    CurrentMap9.Text = openFileDialog3.FileName;
-                                                else
+                    CurrentMap9.Text = openFileDialog3.FileName;
+                else
                                                     if (CurrentMap10.Text == ProjectDirectory.Text)
-                                                        CurrentMap10.Text = openFileDialog3.FileName;
+                    CurrentMap10.Text = openFileDialog3.FileName;
             }
         }
 
@@ -10145,7 +10339,7 @@ namespace Logic_Navigator
                 if (filenameString.EndsWith(".map", true, ci))
                 {
                     fileType = "map";
-                    ParseMap(filenameString,0,0);
+                    ParseMap(filenameString, 0, 0);
                 }
             }
             catch { MessageBox.Show("Error opening map file", "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
@@ -10162,7 +10356,7 @@ namespace Logic_Navigator
 
             mapObjects.Clear();
             SR1 = File.OpenText(filenameString);
-            
+
             while (((line = SR1.ReadLine()) != null) && (endofMAPfile != true))//Put logic into a single string
             {
                 if (line.LastIndexOf("~~END of MAP File~~~~~~~~~") != -1)
@@ -10211,7 +10405,7 @@ namespace Logic_Navigator
                         item.EndLocation.Y = Int32.Parse(line.Substring(line.LastIndexOf(", Y:") + 4));
                         line = SR1.ReadLine();
                         item.RotationAngle = Int32.Parse(line.Substring(line.LastIndexOf("RotationAngle:") + 14));
-                        line = SR1.ReadLine();                        
+                        line = SR1.ReadLine();
                         item.Shape = line.Substring(line.LastIndexOf("Shape:") + 7);
                         line = SR1.ReadLine();
                         item.HighColour = Color.FromArgb(Int32.Parse(line.Substring(line.LastIndexOf("HighColour: ") + 12)));
@@ -10243,7 +10437,7 @@ namespace Logic_Navigator
                 }
             }
 
-            frmMChild_SimMap objfrmMChild = new frmMChild_SimMap(interlockingOld, interlockingNew, timersOld, 
+            frmMChild_SimMap objfrmMChild = new frmMChild_SimMap(interlockingOld, interlockingNew, timersOld,
                 timersNew, drawFont, HighColor, LowColor, ProjectDirectory.Text + "\\Images\\", this);
             objfrmMChild.Text = filenameString;
 
@@ -10257,7 +10451,7 @@ namespace Logic_Navigator
             objfrmMChild.Height = height;
             objfrmMChild.StartPosition = FormStartPosition.Manual;
             objfrmMChild.Location = new Point(left, top);
-            
+
             objfrmMChild.Show();
 
             SR1.Close();
@@ -10302,7 +10496,7 @@ namespace Logic_Navigator
             for (int i = 0; i < interlockingNew.Count; i++)
             {
                 ArrayList rungPointer = (ArrayList)interlockingNew[i];
-                name1 = (string) rungPointer[rungPointer.Count - 1];
+                name1 = (string)rungPointer[rungPointer.Count - 1];
                 for (int j = 0; j < interlockingNew.Count; j++)
                 {
                     ArrayList rungPointer1 = (ArrayList)interlockingNew[j];
@@ -10312,8 +10506,8 @@ namespace Logic_Navigator
                 if (counter != 1) warningmessage += ",  " + name1 + ": " + i.ToString() + ": assigned " + counter.ToString() + " times";
                 counter = 0;
             }
-            if(warningmessage != "")
-                MessageBox.Show(premessage + warningmessage , "Logic Navigator warning", MessageBoxButtons.OK, MessageBoxIcon.Information);             
+            if (warningmessage != "")
+                MessageBox.Show(premessage + warningmessage, "Logic Navigator warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
 
@@ -10327,6 +10521,7 @@ namespace Logic_Navigator
                     fileType = "NCD";
                     installationNameOld = ParseInstallationName();
                     GCSSVersionOld = ParseGCSSVersion();
+                    ParseCommentField();
                     ParseVersionRecord(versionRecOld, filenameString);
                     ParseINSRungs(interlockingTAL, filenameString);
                     //ParseHousings(Housings_Old);
@@ -10405,7 +10600,7 @@ namespace Logic_Navigator
                     GCSSVersionOld = "";
                     //ParseTXTTimers(timersTAL, filenameString);
                     ParseTXTRungs(interlockingTAL, timersNew, filenameString);
-                }                
+                }
                 Close_All_Rungs();
                 if (interlockingNew.Count != 0)
                 {
@@ -10416,7 +10611,7 @@ namespace Logic_Navigator
                 }
                 OpenNewFile("");
                 ConcatenateTAL("");
-                ConcatenateTALtimers("");                
+                ConcatenateTALtimers("");
                 duplicates = checkforduplicates(interlockingNew);
                 statusStrip1.Visible = false;
                 statusStrip1.Text = "Okay";
@@ -10476,6 +10671,7 @@ namespace Logic_Navigator
                             fileType = "NCD";
                             installationNameOld = ParseInstallationName();
                             GCSSVersionOld = ParseGCSSVersion();
+                            ParseCommentField();
                             ParseVersionRecord(versionRecOld, filenameString);
                             ParseINSRungs(interlockingTAL, filenameString);
                             //ParseHousings(Housings_New, timersTAL, "INS", filenameString);
@@ -10590,9 +10786,9 @@ namespace Logic_Navigator
                 }
                 OpenNewFile();*/
 
-//                ConcatenateTAL();
-  //              ConcatenateTALtimers();                    
-                
+                //                ConcatenateTAL();
+                //              ConcatenateTALtimers();                    
+
                 duplicates = checkforduplicates(interlockingNew);
                 statusStrip1.Visible = false;
                 statusStrip1.Text = "Okay";
@@ -10616,14 +10812,14 @@ namespace Logic_Navigator
         private string checkforduplicates(ArrayList interlocking)
         {
             string left = "";
-            for (int i = 0; i < interlocking.Count; i ++)
+            for (int i = 0; i < interlocking.Count; i++)
             {
                 ArrayList rungPointer = (ArrayList)interlocking[i];
-                left = (string) rungPointer[rungPointer.Count - 1];
+                left = (string)rungPointer[rungPointer.Count - 1];
                 for (int j = i + 1; j < interlocking.Count; j++)
-                {                    
+                {
                     ArrayList rungPointer1 = (ArrayList)interlocking[j];
-                    if (left == (string) rungPointer1[rungPointer1.Count - 1]) 
+                    if (left == (string)rungPointer1[rungPointer1.Count - 1])
                         return (left);
                 }
             }
@@ -10659,7 +10855,6 @@ namespace Logic_Navigator
         private void menuItem56_Click(object sender, EventArgs e)
         {
             ExclusionList.Add("FLASH");
-            ExclusionList.Add("14RR");
         }
 
         private void process1_Exited(object sender, EventArgs e)
@@ -10683,7 +10878,7 @@ namespace Logic_Navigator
                             queuemarker++;
                         }
                         //else
-                           // test = 1;
+                        // test = 1;
                     }
                 }
             } while (true);
@@ -10692,13 +10887,13 @@ namespace Logic_Navigator
         private void menuItem50_Click_3(object sender, EventArgs e)
         {
             string mapname = "";
-            for(int mapnumber = 100; mapnumber > 0; mapnumber--)
+            for (int mapnumber = 100; mapnumber > 0; mapnumber--)
             {
                 bool maphit = false;
                 for (int i = 0; i < this.MdiChildren.Length; i++)
                     if (this.MdiChildren[i].Text == "Map" + mapnumber.ToString() + ".map")
-                        maphit = true;                
-                if(maphit == false) 
+                        maphit = true;
+                if (maphit == false)
                 {
                     mapname = "Map" + mapnumber.ToString() + ".map";
                 }
@@ -10736,8 +10931,8 @@ namespace Logic_Navigator
         }
 
         private void menuItem56_Click_3(object sender, EventArgs e)
-        {             
-            SaveMap(CurrentMap1.Text,false/*not XML*/);
+        {
+            SaveMap(CurrentMap1.Text, false/*not XML*/);
         }
 
         public void SaveMap(string filename, bool XML)
@@ -10781,9 +10976,9 @@ namespace Logic_Navigator
                 for (int i = 0; i < this.MdiChildren.Length; i++)
                 {
                     if (this.MdiChildren[i].Name == "frmMChild_SimMap")
-                    {                        
+                    {
                         frmMChild_SimMap frmMChild_SimMap = (frmMChild_SimMap)this.MdiChildren[i];
-                        if(frmMChild_SimMap.Text == filename)
+                        if (frmMChild_SimMap.Text == filename)
                         {
                             found = true;
                             for (int j = 0; j < frmMChild_SimMap.Indications.Count; j++)
@@ -10795,11 +10990,11 @@ namespace Logic_Navigator
                             width = frmMChild_SimMap.Width;
                             left = frmMChild_SimMap.Left;
                             top = frmMChild_SimMap.Top;
-                            name = frmMChild_SimMap.Text;    
+                            name = frmMChild_SimMap.Text;
                         }
                     }
                 }
-                if (found) SaveMapFile(filename, name, height, width, left, top);                
+                if (found) SaveMapFile(filename, name, height, width, left, top);
             }
             if (!found) //CurrentMap1.Text = SaveMapFile(filename, name, height, width, left, top);
                 MessageBox.Show("Please select a map form first, then choose the save menu", "Directions");
@@ -11007,16 +11202,16 @@ namespace Logic_Navigator
             {
                 if (openProjectFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    
-                    string directory = openProjectFileDialog.FileName; 
-                    if(directory.LastIndexOf("\\") != -1)
+
+                    string directory = openProjectFileDialog.FileName;
+                    if (directory.LastIndexOf("\\") != -1)
                         directory = directory.Substring(0, directory.LastIndexOf("\\"));
                     ProjectDirectory.Text = directory;
                     openprjFile(openProjectFileDialog.FileName);
                 }
             }
             else
-            {                
+            {
                 string directory = projectfilename;
                 if (directory.LastIndexOf("\\") != -1)
                     directory = directory.Substring(0, directory.LastIndexOf("\\"));
@@ -11038,7 +11233,7 @@ namespace Logic_Navigator
         {
             string line = "";
             bool endofPRJfile = false;
-            
+
             Close_All_Rungs();
             ExclusionList.Clear();
 
@@ -11050,24 +11245,24 @@ namespace Logic_Navigator
                 else
                 {
                     if (line.LastIndexOf("Main Data Filename") != -1)
-                    {                        
+                    {
                         line = SR.ReadLine();
                         line = SR.ReadLine();
                         FileName.Text = ""; prefixmain.Text = "";
                         FileName.Text = ProjectDirectory.Text + "\\" + line;
                         OldFileName.Text = ProjectDirectory.Text + "\\" + line;
                         line = SR.ReadLine();
-                        if(line != "")
+                        if (line != "")
                             if (line.Substring(0, 2) != "//")
                                 if (line.IndexOf("Prefix:") != -1)
-                                    prefixmain.Text = line.Substring(7);                        
+                                    prefixmain.Text = line.Substring(7);
                     }
                     if (line.LastIndexOf("Turn Around Logic Data Filename") != -1)
-                    {                        
+                    {
                         line = SR.ReadLine();
                         line = SR.ReadLine();
                         int TALnumber = 2;
-                        TALFileName.Text = "";  prefixt1.Text = ""; 
+                        TALFileName.Text = ""; prefixt1.Text = "";
                         TAL2FileName.Text = ""; prefixt2.Text = "";
                         TAL3FileName.Text = ""; prefixt3.Text = "";
                         TAL4FileName.Text = ""; prefixt4.Text = "";
@@ -11094,19 +11289,19 @@ namespace Logic_Navigator
                         }
                     }
                     if (line.LastIndexOf("Current Layout File") != -1)
-                    {                        
+                    {
                         line = SR.ReadLine();
                         line = SR.ReadLine();
                         CurrentLayout.Text = ProjectDirectory.Text + "\\" + line;
                     }
                     if (line.LastIndexOf("Current Logic State File") != -1)
-                    {                        
+                    {
                         line = SR.ReadLine();
                         line = SR.ReadLine();
                         CurrentState.Text = ProjectDirectory.Text + "\\" + line;
                     }
                     if (line.LastIndexOf("Map Files:") != -1)
-                    {                        
+                    {
                         line = SR.ReadLine();
                         line = SR.ReadLine();
                         try
@@ -11185,7 +11380,7 @@ namespace Logic_Navigator
                                 CurrentMap10.Text = ProjectDirectory.Text + "\\" + line.Substring(8);
                                 */
                         }
-                            catch { }
+                        catch { }
                     }
                 }
             }
@@ -11195,7 +11390,7 @@ namespace Logic_Navigator
         private void OpenFiles()
         {
             OpenOldFile();
-            OpenNewFile(""); 
+            OpenNewFile("");
             interlockingTAL.Clear();
             //interlockingOld.Clear();
             //interlockingNew.Clear();
@@ -11209,13 +11404,13 @@ namespace Logic_Navigator
             Openst8File(CurrentState.Text);
             transferSimInputstoSimInputsForm();
 
-            if(OpenLytFile(CurrentLayout.Text) == 0)
+            if (OpenLytFile(CurrentLayout.Text) == 0)
 
-            
-            if (CurrentMap1.Text != "")
-                OpenMapFile(CurrentMap1.Text);
+
+                if (CurrentMap1.Text != "")
+                    OpenMapFile(CurrentMap1.Text);
             if (CurrentMap2.Text != "")
-                OpenMapFile(CurrentMap2.Text); 
+                OpenMapFile(CurrentMap2.Text);
             if (CurrentMap3.Text != "")
                 OpenMapFile(CurrentMap3.Text);
             if (CurrentMap4.Text != "")
@@ -11232,7 +11427,7 @@ namespace Logic_Navigator
                 OpenMapFile(CurrentMap9.Text);
             if (CurrentMap10.Text != "")
                 OpenMapFile(CurrentMap10.Text);
-            HideRungPane();  
+            HideRungPane();
         }
 
         private void menuItem72_Click(object sender, EventArgs e)
@@ -11246,9 +11441,9 @@ namespace Logic_Navigator
             string CRLF = "\r\n";
             bool dialog = false;
             string directory = "";
-            string saveNewFile = NewFileName.Text.ToString();            
-            if (saveNewFile.Length < 5) saveNewFile = "Project.prj";           
-            saveProjectFileDialog.FileName = saveNewFile.Substring(0, saveNewFile.Length - 4) + ".prj";                
+            string saveNewFile = NewFileName.Text.ToString();
+            if (saveNewFile.Length < 5) saveNewFile = "Project.prj";
+            saveProjectFileDialog.FileName = saveNewFile.Substring(0, saveNewFile.Length - 4) + ".prj";
 
 
             if (saveProjectFileDialog.ShowDialog() == DialogResult.OK)
@@ -11263,7 +11458,7 @@ namespace Logic_Navigator
             {
                 //if (directory.LastIndexOf("\\") != -1)
                 //    directory = directory.Substring(directory.LastIndexOf("\\"));
-                
+
                 WriteString(myStream, "Logic Navigator Project File:");
                 WriteString(myStream, CRLF);
                 WriteString(myStream, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -11354,23 +11549,23 @@ namespace Logic_Navigator
 
         private void menuItem76_Click(object sender, EventArgs e)
         {
-            if(ProjectDirectory.Visible) ProjectDirectory.Visible = false;
+            if (ProjectDirectory.Visible) ProjectDirectory.Visible = false;
             else ProjectDirectory.Visible = true;
-            if(CurrentLayout.Visible) CurrentLayout.Visible = false;
+            if (CurrentLayout.Visible) CurrentLayout.Visible = false;
             else CurrentLayout.Visible = true;
-            if(CurrentState.Visible) CurrentState.Visible = false;
+            if (CurrentState.Visible) CurrentState.Visible = false;
             else CurrentState.Visible = true;
-            if(CurrentTALFile.Visible) CurrentTALFile.Visible = false;
+            if (CurrentTALFile.Visible) CurrentTALFile.Visible = false;
             else CurrentTALFile.Visible = true;
-            if(CurrentMap1.Visible) CurrentMap1.Visible = false;
-            else CurrentMap1.Visible = true;                        
-            if(CurrentMap2.Visible) CurrentMap2.Visible = false;
-            else CurrentMap2.Visible = true;            
-            if(CurrentMap3.Visible) CurrentMap3.Visible = false;
-            else CurrentMap3.Visible = true;            
-            if(CurrentMap4.Visible) CurrentMap4.Visible = false;
+            if (CurrentMap1.Visible) CurrentMap1.Visible = false;
+            else CurrentMap1.Visible = true;
+            if (CurrentMap2.Visible) CurrentMap2.Visible = false;
+            else CurrentMap2.Visible = true;
+            if (CurrentMap3.Visible) CurrentMap3.Visible = false;
+            else CurrentMap3.Visible = true;
+            if (CurrentMap4.Visible) CurrentMap4.Visible = false;
             else CurrentMap4.Visible = true;
-            if(CurrentMap5.Visible) CurrentMap5.Visible = false;
+            if (CurrentMap5.Visible) CurrentMap5.Visible = false;
             else CurrentMap5.Visible = true;
             if (CurrentMap6.Visible) CurrentMap6.Visible = false;
             else CurrentMap6.Visible = true;
@@ -11384,19 +11579,19 @@ namespace Logic_Navigator
             else CurrentMap10.Visible = true;
             if (label11.Visible) label11.Visible = false;
             else label11.Visible = true;
-            if(label7.Visible) label7.Visible = false;
+            if (label7.Visible) label7.Visible = false;
             else label7.Visible = true;
-            if(label9.Visible) label9.Visible = false;
+            if (label9.Visible) label9.Visible = false;
             else label9.Visible = true;
-            if(label10.Visible) label10.Visible = false;
+            if (label10.Visible) label10.Visible = false;
             else label10.Visible = true;
-            if(label8.Visible) label8.Visible = false;
+            if (label8.Visible) label8.Visible = false;
             else label8.Visible = true;
             if (ImageDirectory.Visible) ImageDirectory.Visible = false;
             else ImageDirectory.Visible = true;
             if (label12.Visible) label12.Visible = false;
             else label12.Visible = true;
-            
+
 
 
         }
@@ -11456,20 +11651,20 @@ namespace Logic_Navigator
         private void menuItem88_Click(object sender, EventArgs e)
         {
             calcmethod = WESTRACECALC;
-            menuItem88.Text = "Westrace <";
-            menuItem89.Text = "Relay";
+            menuItem88.Text = "Do not allow reverse paths (PLC) <";// "Westrace <";
+            menuItem89.Text = "Allow reverse paths";//"Relay";
         }
 
         private void menuItem89_Click(object sender, EventArgs e)
         {
             calcmethod = RELAYCALC;
-            menuItem88.Text = "Westrace";
-            menuItem89.Text = "Relay <";
+            menuItem88.Text = "Do not allow reverse paths (PLC)";//"Westrace";
+            menuItem89.Text = "Allow reverse paths <";//"Relay <";
         }
 
         private void frmMDIMain_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char) Keys.Delete)
+            if (e.KeyChar == (char)Keys.Delete)
             {
                 //inputToggle = (char)Keys.Delete;
             }
@@ -11477,7 +11672,7 @@ namespace Logic_Navigator
 
         private void menuItem91_Click(object sender, EventArgs e)
         {
-            
+
             this.FormBorderStyle = FormBorderStyle.Sizable;
         }
 
@@ -11646,7 +11841,7 @@ namespace Logic_Navigator
         private void menuItem103_Click(object sender, EventArgs e)
         {
             frmWeb objfrmWeb = new frmWeb("https://logicnavigator.weebly.com");
-            objfrmWeb.ShowDialog();        
+            objfrmWeb.ShowDialog();
         }
 
         private void menuItem104_Click(object sender, EventArgs e)
@@ -11685,7 +11880,7 @@ namespace Logic_Navigator
         }
 
         private void menuItem105_Click(object sender, EventArgs e)
-        {            
+        {
             frmWeb objfrmWeb = new frmWeb("http://logicnavigator.weebly.com/feedback.html");
             objfrmWeb.ShowDialog();
         }
@@ -11734,7 +11929,7 @@ namespace Logic_Navigator
                 }
                 catch
                 {
-                    if(serialworking)
+                    if (serialworking)
                         MessageBox.Show(serialPort1.PortName + " is closed",
                             "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     serialworking = false;
@@ -11839,6 +12034,24 @@ namespace Logic_Navigator
         private void openFileDialog2_FileOk(object sender, CancelEventArgs e)
         {
 
+        }
+
+        private void menuItem115_Click(object sender, EventArgs e)
+        {
+            toolBar1.Visible = false;
+            splitter3.Visible = false;
+            OldFileText.Visible = false;
+            NewFileText.Visible = false;
+            //toolBar1.Size.Height = 0;
+
+
+            frmMChild_Visualiser objfrmMChild_Visualiser = new frmMChild_Visualiser(interlockingOld, interlockingNew, timersOld, timersNew, 2,
+    2, scaleFactor, "All New", drawFont, "", gridlines, showTimers, HighColor, LowColor);
+            objfrmMChild_Visualiser.Size = new Size(300, 300);// objfrmMChild_Visualiser.RecommendedWidthofWindow(newIndex - 1), objfrmMChild_Visualiser.RecommendedHeightofWindow(newIndex - 1));
+            objfrmMChild_Visualiser.Location = new System.Drawing.Point(1, 1);
+            objfrmMChild_Visualiser.Text = rungName;
+            objfrmMChild_Visualiser.MdiParent = this;
+            objfrmMChild_Visualiser.Show();
         }
     }
 }

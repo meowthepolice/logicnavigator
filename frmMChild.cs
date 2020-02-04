@@ -550,15 +550,19 @@ namespace Logic_Navigator
 
         public int getHeight(ArrayList interlocking, int rungNumber)
         {
-            int maxHeight = -1;
-            ArrayList rungPointer = (ArrayList)interlocking[rungNumber];
-            for (int j = 1; j < rungPointer.Count - 1; j++)
+            if (interlocking.Count > rungNumber)
             {
-                Contact contactPointer = (Contact)rungPointer[j];
-                if (maxHeight < contactPointer.x)
-                    maxHeight = contactPointer.x;
+                int maxHeight = -1;
+                ArrayList rungPointer = (ArrayList)interlocking[rungNumber];
+                for (int j = 1; j < rungPointer.Count - 1; j++)
+                {
+                    Contact contactPointer = (Contact)rungPointer[j];
+                    if (maxHeight < contactPointer.x)
+                        maxHeight = contactPointer.x;
+                }
+                return maxHeight;
             }
-            return maxHeight;
+            return -1;
         }
 
 
@@ -586,14 +590,18 @@ namespace Logic_Navigator
         public int getWidth(ArrayList interlocking, int rungNumber)
         {
             int maxWidth = -1;
-            ArrayList rungPointer = (ArrayList)interlocking[rungNumber];
-            for (int j = 1; j < rungPointer.Count - 1; j++)
+            if (interlocking.Count > rungNumber)
             {
-                Contact contactPointer = (Contact)rungPointer[j];
-                if (maxWidth < contactPointer.y)
-                    maxWidth = contactPointer.y;
+                ArrayList rungPointer = (ArrayList)interlocking[rungNumber];
+                for (int j = 1; j < rungPointer.Count - 1; j++)
+                {
+                    Contact contactPointer = (Contact)rungPointer[j];
+                    if (maxWidth < contactPointer.y)
+                        maxWidth = contactPointer.y;
+                }
+                return maxWidth;
             }
-            return maxWidth;
+            return -1;
         }
 
         public int RecommendedWidthofWindow(int RungNumber)

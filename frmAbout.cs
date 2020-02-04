@@ -101,8 +101,8 @@ namespace Logic_Navigator
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(369, 29);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Software written by Ken Karrasch (Developer) and Dylan Willis (Debugging and some" +
-    " coding), Brisbane, Queensland, Australia.";
+            this.label2.Text = "Software written by Ken Karrasch (Developer) and Dylan Willis (Housing view debug" +
+    "ging, NCD file ip configuration error checking)";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
@@ -169,7 +169,7 @@ namespace Logic_Navigator
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(80, 24);
             this.label7.TabIndex = 13;
-            this.label7.Text = "(Build 0.0602)";
+            this.label7.Text = "(Build 0.0606)";
             this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label10
@@ -202,7 +202,7 @@ namespace Logic_Navigator
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(392, 24);
             this.label13.TabIndex = 17;
-            this.label13.Text = "Contact: 0438 751 993 or 0451 795 757, or logicnavigator@gmail.com";
+            this.label13.Text = "Contact: 0438 751 993, or logicnavigator@gmail.com";
             // 
             // label14
             // 
