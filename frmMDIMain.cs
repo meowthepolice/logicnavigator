@@ -9137,7 +9137,8 @@ namespace Logic_Navigator
             globalcounter = 0; searchdepth = 0; rungsevaluated = 0;
             bool evalnexttime = false;
             runglisting = "";
-            workload = 0;            
+            workload = 0;
+            float parsetime = 0;
             for (int r = 0; r < sim.Count; r++)
             {
                 rungtitle = Coilnames[r];
@@ -9173,8 +9174,10 @@ namespace Logic_Navigator
                                         timing.timername = rungtitle;
                                         timing.timerstarttime = DateTime.Now;
                                         timing.timeElapsed = 0;
-                                        timing.totaltime = (int)(((float)Gettime(timerindex, "Set")) / 1000);
-                                        if (timing.totaltime == 0)
+                                        parsetime = Gettime(timerindex, "Set");
+                                        timing.totaltime = (int)(((float)parsetime) / 1000);
+                                        //if (timing.totaltime == 0)
+                                        if(parsetime == 0)
                                         {
                                             if (!Coilstates[r])
                                                 findChangesinCoils(r); //If there is a change of state, then work out what other rungs are affected
@@ -9193,7 +9196,8 @@ namespace Logic_Navigator
                                         int diffmsec = (int)(((float)(difference.TotalMilliseconds)) * simspeed);
                                         timerElement.timeElapsed = (int)(((float)diffmsec) / 1000);
                                         UpdateS2PTimersTiming(timerElement);
-                                        if (diffmsec > Gettime(timerindex, "Set")) //timer completed
+                                        parsetime = Gettime(timerindex, "Set");
+                                        if (diffmsec > parsetime)//Gettime(timerindex, "Set")) //timer completed
                                         {
                                             if (Coilstates[r] != true)
                                                 if (!InExclusionList(Coilnames[r]))
@@ -9204,7 +9208,10 @@ namespace Logic_Navigator
                                                 //playstuff = true;
                                             }
                                             if (!Coilstates[r])
+                                            {
                                                 findChangesinCoils(r); //If there is a change of state, then work out what other rungs are affected
+                                                evalnexttime = true; //#####
+                                            }
                                             Coilstates[r] = true;//Coil has picked because because the Coil Voltage has been applied for the required time
                                             //evalnexttime = true; //#####
                                         }
@@ -9223,7 +9230,10 @@ namespace Logic_Navigator
                                         }
                                     }
                                     if (!Coilstates[r])
+                                    {
                                         findChangesinCoils(r); //If there is a change of state, then work out what other rungs are affected
+                                        evalnexttime = true;
+                                    }
                                     Coilstates[r] = true;
                                 }
                             }
@@ -9253,8 +9263,11 @@ namespace Logic_Navigator
                                     timing.timername = rungtitle;
                                     timing.timerstarttime = DateTime.Now;
                                     timing.timeElapsed = 0;
-                                    timing.totaltime = (int)(((float)Gettime(timerindex, "Clear")) / 1000);
-                                    if (timing.totaltime == 0)
+                                    parsetime = Gettime(timerindex, "Clear");
+                                    timing.totaltime = (int)(((float)parsetime) / 1000);
+                                    if (parsetime == 0)//timing.totaltime == 0)
+                                    //timing.totaltime = (int)(((float)Gettime(timerindex, "Clear")) / 1000);
+                                    //if (timing.totaltime == 0)
                                     {
                                         if (Coilstates[r])
                                             findChangesinCoils(r); //If there is a change of state, then work out what other rungs are affected
@@ -9273,7 +9286,8 @@ namespace Logic_Navigator
                                     int diffmsec = (int)(((float)(difference.TotalMilliseconds)) * simspeed);
                                     timerElement.timeElapsed = (int)(((float)diffmsec) / 1000);
                                     UpdateS2DTimersTiming(timerElement);
-                                    if (diffmsec > Gettime(timerindex, "Clear")) //3 secs
+                                    parsetime = Gettime(timerindex, "Clear");
+                                    if (diffmsec > parsetime)//Gettime(timerindex, "Clear")) //3 secs
                                     {
                                         if (Coilstates[r] != false)
                                             if (!InExclusionList(Coilnames[r]))
@@ -9286,7 +9300,10 @@ namespace Logic_Navigator
                                                 }
                                             }
                                         if (Coilstates[r])
+                                        {
                                             findChangesinCoils(r); //If there is a change of state, then work out what other rungs are affected
+                                            evalnexttime = true; //#####
+                                        }
                                         Coilstates[r] = false;
                                         //evalnexttime = true; //#####
                                     }
@@ -9305,7 +9322,10 @@ namespace Logic_Navigator
                                         }
                                     }
                                 if (Coilstates[r])
+                                {
                                     findChangesinCoils(r); //If there is a change of state, then work out what other rungs are affected
+                                    evalnexttime = true;
+                                }
                                 Coilstates[r] = false;
                             }
                             timerremoveindex = inTimerList(rungtitle, S2PTimersTiming); // remove the timer from list now that it has it is not timing
