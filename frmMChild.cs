@@ -312,6 +312,7 @@ namespace Logic_Navigator
             this.Rungs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.Rungs.HideSelection = false;
             this.Rungs.Location = new System.Drawing.Point(880, 16);
             this.Rungs.Name = "Rungs";
             this.Rungs.Size = new System.Drawing.Size(88, 0);
@@ -377,6 +378,7 @@ namespace Logic_Navigator
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmMChild_Paint);
             this.DoubleClick += new System.EventHandler(this.frmMChild_DoubleClick);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMChild_KeyDown);
+            this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.frmMChild_MouseDoubleClick);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmMChild_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.frmMChild_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.frmMChild_MouseUp);
@@ -1629,6 +1631,30 @@ namespace Logic_Navigator
                 contactHighlight = ""; Invalidate();
             }
 
+            if ((e.Button == MouseButtons.Right) && (e.Clicks == 2))
+            {
+
+                string rungName = "";
+                if (CellName != "") rungName = CellName;
+                if (linkSelected != 0) rungName = linkName;
+                if (rungName != "")
+                {
+                    inputToggle = "{FORCE HIGH} - " + rungName;
+                }
+            }
+
+            if ((e.Button == MouseButtons.Right) && (e.Clicks == 1))
+            {
+
+                string rungName = "";
+                if (CellName != "") rungName = CellName;
+                if (linkSelected != 0) rungName = linkName;
+                if (rungName != "")
+                {
+                    inputToggle = "{FORCE LOW} - " + rungName;
+                }
+            }
+
             if (e.Button == MouseButtons.Middle)
             {
                 
@@ -2125,6 +2151,33 @@ namespace Logic_Navigator
                 }
             }
             e.Handled = true;
+        }
+
+        private void frmMChild_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if ((e.Button == MouseButtons.Right) && (e.Clicks == 1))
+            {
+                int oldIndex = -1;
+                int newIndex = -1;
+                string rungName = "";
+                if (CellName != "") rungName = CellName;
+                if (linkSelected != 0) rungName = linkName;
+                if (rungName != "")
+                {
+                    for (int i = 0; i < trueInterlockingOldPointer.Count; i++)
+                    {
+                        ArrayList rungPointer = (ArrayList)trueInterlockingOldPointer[i];
+                        if ((string)rungPointer[rungPointer.Count - 1] == rungName) oldIndex = i;
+                    }
+                    for (int j = 0; j < trueInterlockingNewPointer.Count; j++)
+                    {
+                        ArrayList rungPointer = (ArrayList)trueInterlockingNewPointer[j];
+                        if ((string)rungPointer[rungPointer.Count - 1] == rungName) newIndex = j;
+                    }
+                    rungNameTransition = rungName;
+                    inputToggle = "{FORCE HIGH} - " + rungName;
+                }
+            }
         }
 
         private void ShowRungWindow(string rungname)

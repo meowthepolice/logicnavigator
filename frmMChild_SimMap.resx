@@ -112,15 +112,15 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="SimMode.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAMwAAADMCAYAAAA/IkzyAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -2958,30 +2958,30 @@
   <data name="toolStripButton64.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHvSURBVFhH7Ze9S8NAGMYjVcRWq4P4JwguQhcXF/8dVxEc
-        XARxclJcnNy7ipsltqBEieaSVDp1cRFpSlER+pEP3ze5K2eapB8kGdQHfnB9e3fP094luQiTSpadrKJb
-        16pmSvW6s0jL6QjNnzSrpFYdByGaea8orSX6dbJCc5UzTzVEmDkDQyS2HHcv9lyUOQNDQND4Q5BnuyBW
-        mlaQKQ/0sRW9t0WHxStCXnOSZOQlyc7DFXDCTIluXbC6KL7N0+7JSlGtYy7AOS2np18dYBZY85rhUlRz
-        Hzecu+kgDC1HaRXIes1wofkV0AWmsRClYtHJFB0nA80prxKpFnAD5NxPAWLmDmADM0Cc+gJw7sAQvHnS
-        AQZC+M0ZR8Ahxw4wqrYBfiyCy8rP3w9xSQvD6AGjrDWqAQTN4QdDCCWuEMU4AQwgaA4/D4D7N4i0wHMG
-        nHIcAKNqD+DHIvgD+PnRvP/49odIehP+MGfiQyQZINCciYUwgaE3ojH1DkSaM+HtcsNrhovo5q5YNjqS
-        1GyTqoWX2TAVgLzXjEH/j+O/F+BR66zDua8tlhuWS8WwWQD3XEDrRG90Fb27SYfFp1rNXsAjNzMNRTd1
-        Wf5YpsPiFb75RIYAc0I+V2j3ZIRvPoEh0jBnGgiRpjlTPwSY305sLgjfiTJjLo8kyYYAAAAASUVORK5C
-        YII=
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHwSURBVFhH7Zc/S8NAGMYrVcRWq4P4EQQXoYuLi1/HVQQH
+        F0GcnBQXJ/eu4mabdlCiRHNJKp26uIhtoKgItk1yvm9zV840Sf+QZFAf+MH1Te6ep7lLLklNKkWhGdWw
+        rzXdkut1usjKyQjNH3W7qFUpRYhu3alqa4kdjldorgnmiYYIMudgiNim4/bZmQsz52AICBp9CPLk5KWK
+        afuZipQqpqMa3S3WLVoR8pKVZTMny04O7oATbkoM+4LXJel1np0er1TNPhYCnLNycvrVAWaBNbcZLFWz
+        9nHB9RYdhGHlMK0CGbcZLDS/AjrANBbCVCjQdIHSNDSn3EqoWkAZyPZ++YibU8ABZoAo9Qng2L4hRPO4
+        AwyE8JpzjoBDgR1gVG0DYl8Ep1Ucvx/ikhWG0QVGmWtUE/AbwwuGSBWFQhjjBDABvzG83AO9yyCxgsgZ
+        cCpwAIyqPUDsi+AfEMdH8/727Q0R9yL8Yc4lhogzgK85Fw9hAUMfRGPqDQg158LH5YbbDBYxrF2p3GzD
+        NvxFqjbeZsOUB3JuMwL9b8d/L8CD3l7HBSeVGzZSqjQdHgDfCXidGI2OanQ2WbfoVKs5C/jKzU0DMSxD
+        Ud6XWbdohV8+oSHAnJCPFXZ6PMIvH98QSZhzDYRI0pyrHwLMbyY2T6W+AcwHYxEN5vRcAAAAAElFTkSu
+        QmCC
 </value>
   </data>
   <data name="toolStripButton63.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHZSURBVFhH7ZY9S8NAGMcjClLfB/EbCE4uDoKTX8fNRXBw
-        qTjpWAQnv4S4qWdLFZU0r0Kh4OImbVHsUGxezudp7yntmcTWJhnUP/xo77nc/f/kLpcoI2gSOAOugGks
-        pCk0Pwe44BpILYRsnmqIMHMi0RDfmROJhVgBWoAvkI2p7gLrQCIaByYEBwCZH4sagtekon2AAuSwkLZ+
-        aYDbZz9TslprohmlbQA3JZLFQpQsy18tl/1Z0QyWqvIp0/IuWaHuMfYyI8qxSNdfm4bl3sPvgij1i8zN
-        R84RFnbhD8XyVQ/nxRBPT3xelDuSzdsBWDIBvoRAc00yRzTDyemmd9TFdvfaAwaQbro7fWMBVqj5vfN3
-        Q+i2d9HbEQbsC59zPtAhg+sdNIcMhlA0y70L6pRJIoBpu7aCtwGTyJ2G4Z1qpnNClCznEB75MeERKbir
-        2d6xiLwEaH5jNJY6A2DHyyGS3IRobpA5SQ6R1GMYaE6i5cD1Lhar0afWkGL52kekOalS8ed03dkUzSht
-        AXXBLhaipNmtDVV9XxTNWPT/Ov57AZaBN6ApcAAKgP+p3gAG+Z4YWhmAAWQaxgPQ/7qNUfi9HxUCzWM9
-        wIIUFiIVc5IcIlVzEoUYwVxRPgETfGTW4FQogQAAAABJRU5ErkJggg==
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHZSURBVFhH7Za7SgNBFIZXFCTeC/ENBCsbC8HK17GzESxs
+        IlZaBsHKlxA7zSQQRWXdqxAIpLHTRBRTBLM3z0nmhGTcHROzu4X6w0cyZ3bm/9mZnV1lBE0CZ0AemMZC
+        mkLzcyDgFIDUQojmqYaIMicSDfGdOZFYiBWgBfgc0ZjqLrAOJKJxYIJzAJD5Ma8heE0q2gcoQA4LaeuX
+        Brh+9DP3VmuNN2XaBnBTIlksyGRZ/mq57M/yZrhUNZgyLe+SFeseY08zvByLdP21aVjuLfwu8FK/yNx8
+        CAKERV34Q7HCs4fzYohqNZjn5Y5E83YAlkyALyHQXBPMEc1wcrrpHXWx3b32gAGkm+5O31ggX6z5vfN3
+        Q+i2d9HbEUW+WPeDIBjokMH1DptDBEMomuXehHWKJBHAtF1bwduAScROw/BONdM5Ie4t5xAe+THuIRXc
+        1WzvWERcAjS/MhpLnQGw48UQSW5CNDfInCSGSOoxDDUn0XLgepdKNfmpNaRYofYhNSdVKv6crjubvCnT
+        FvDC2cWCTJrd2lDV90XejEX/r+O/F2AZeAOaHAegAPif6g1gkO+JoZUBGECmUdwB/a/bGIXf+7IQaB7r
+        ARamqBCpmJPEEKmakyjECOaK8glBzWS7q1Xw4gAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="toolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -6443,7 +6443,7 @@
         TgDQASA1MVpwzwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>429, 18</value>
   </metadata>
   <data name="Indication1.ToolTip" xml:space="preserve">
@@ -6451,10 +6451,10 @@
   Place a tilde (~) in front of the function name to invert logic.  If multiple graphics are selected at the same time, either a "?" is if the items are different, or if they are the same the name will show.
 eg. "~13HR" will trigger when the function 13HR is low.</value>
   </data>
-  <metadata name="colorDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="colorDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>122, 17</value>
   </metadata>
-  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>243, 17</value>
   </metadata>
   <data name="cutToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -6763,20 +6763,20 @@ eg. "~13HR" will trigger when the function 13HR is low.</value>
         tAAAAAAAAAP/2Q==
 </value>
   </data>
-  <metadata name="PointNumber.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="PointNumber.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="XCoordinate.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="XCoordinate.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="YCoordinate.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="YCoordinate.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="AngleBox.ToolTip" xml:space="preserve">
     <value>Enter the rotation angle in degrees of the graphic. (ie. 0-360 degrees). Starts at the 3 0'clock position and sweeps anticlockwise. 
 0 degrees equates to the 3 o'clock position, 90 degrees equates to 12 0'clock, 180 degrees equates to 9 o'clock, 270 degrees equates to 6 o'clock.</value>
   </data>
-  <metadata name="toolStrip2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="toolStrip2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>529, 18</value>
   </metadata>
   <data name="Properties.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -11458,16 +11458,16 @@ eg. "~13HR" will trigger when the function 13HR is low.</value>
         k0VUM3K1FNIAAAAASUVORK5CYII=
 </value>
   </data>
-  <metadata name="contextMenuStrip2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="contextMenuStrip2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1045, 17</value>
   </metadata>
-  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>786, 18</value>
   </metadata>
-  <metadata name="contextMenuStrip3.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="contextMenuStrip3.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>902, 18</value>
   </metadata>
-  <metadata name="toolStrip3.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="toolStrip3.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1162, 18</value>
   </metadata>
   <data name="toolStripButton30.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -15399,7 +15399,7 @@ eg. "~13HR" will trigger when the function 13HR is low.</value>
         k0VUM3K1FNIAAAAASUVORK5CYII=
 </value>
   </data>
-  <metadata name="toolStrip4.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="toolStrip4.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>637, 21</value>
   </metadata>
   <data name="toolStripButton59.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

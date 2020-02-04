@@ -72,7 +72,7 @@ namespace Logic_Navigator
         private ArrayList S2DTimersTiming = new ArrayList();
         private float simspeed = 1.0F;
         private bool sound = false;
-        private SoundPlayer MyUpSoundPlayer = new SoundPlayer();
+        /*private SoundPlayer MyUpSoundPlayer = new SoundPlayer();
         private SoundPlayer MyDownSoundPlayer = new SoundPlayer();
         private SoundPlayer MyTimerStartUpSoundPlayer = new SoundPlayer();
         private SoundPlayer MyTimerStartDownSoundPlayer = new SoundPlayer();
@@ -134,13 +134,13 @@ namespace Logic_Navigator
         private SoundPlayer SoundY = new SoundPlayer();
         private SoundPlayer SoundZ = new SoundPlayer();
         private SoundPlayer SoundHigh = new SoundPlayer();
-        private SoundPlayer SoundLow = new SoundPlayer();
+        private SoundPlayer SoundLow = new SoundPlayer();*/
 
         public List<string> SoundQueue = new List<string>();
         int queuemarker = 0;
 
 
-        private bool playstuff = false;
+        //private bool playstuff = false;
 
 
         public bool showEvaluationSequence = false;
@@ -232,6 +232,8 @@ namespace Logic_Navigator
 
         public List<Point> CoilContactrefs = new List<Point>();
         
+        public List<String> forceLow = new List<String>();
+        public List<String> forceHigh = new List<String>();
         public List<List<int>> depbookCoils = new List<List<int>>();
         public List<List<int>> depbookInputs = new List<List<int>>();
 
@@ -449,7 +451,6 @@ namespace Logic_Navigator
         private MenuItem menuItem97;
         private ToolBarButton OpenProject;
         private StatusStrip statusStrip1;
-        private ToolStripStatusLabel toolStripStatusLabel1;
         private ToolBarButton Open;
         private ToolBarButton ProjectSave;
         private MenuItem menuItem100;
@@ -499,6 +500,7 @@ namespace Logic_Navigator
         private MenuItem menuItem119;
         private MenuItem menuItem120;
         private MenuItem menuItem121;
+        private ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.MenuItem menuItem6;
 
         public frmMDIMain()
@@ -618,6 +620,7 @@ namespace Logic_Navigator
             this.menuItem45 = new System.Windows.Forms.MenuItem();
             this.menuItem47 = new System.Windows.Forms.MenuItem();
             this.menuItem117 = new System.Windows.Forms.MenuItem();
+            this.menuItem121 = new System.Windows.Forms.MenuItem();
             this.menuItem118 = new System.Windows.Forms.MenuItem();
             this.menuItem119 = new System.Windows.Forms.MenuItem();
             this.menuItem120 = new System.Windows.Forms.MenuItem();
@@ -758,7 +761,6 @@ namespace Logic_Navigator
             this.VoltageMatrixText = new System.Windows.Forms.TextBox();
             this.result = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.CurrentMap9 = new System.Windows.Forms.TextBox();
             this.CurrentMap7 = new System.Windows.Forms.TextBox();
             this.CurrentMap8 = new System.Windows.Forms.TextBox();
@@ -779,7 +781,7 @@ namespace Logic_Navigator
             this.prefixmain = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.menuItem121 = new System.Windows.Forms.MenuItem();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.RungGrid)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -1358,6 +1360,12 @@ namespace Logic_Navigator
             this.menuItem120});
             this.menuItem117.Text = "Cycle Time";
             // 
+            // menuItem121
+            // 
+            this.menuItem121.Index = 0;
+            this.menuItem121.Text = "125ms";
+            this.menuItem121.Click += new System.EventHandler(this.menuItem121_Click);
+            // 
             // menuItem118
             // 
             this.menuItem118.Index = 1;
@@ -1737,6 +1745,7 @@ namespace Logic_Navigator
             // 
             // Rungs
             // 
+            this.Rungs.HideSelection = false;
             this.Rungs.Location = new System.Drawing.Point(150, 176);
             this.Rungs.Name = "Rungs";
             this.Rungs.Size = new System.Drawing.Size(112, 72);
@@ -2434,7 +2443,7 @@ namespace Logic_Navigator
             // label12
             // 
             this.label12.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(149, 522);
+            this.label12.Location = new System.Drawing.Point(147, 522);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(113, 16);
             this.label12.TabIndex = 84;
@@ -2474,18 +2483,13 @@ namespace Logic_Navigator
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(144, 508);
+            this.statusStrip1.Location = new System.Drawing.Point(144, 509);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1122, 22);
             this.statusStrip1.TabIndex = 89;
             this.statusStrip1.Text = "statusStrip1";
             this.statusStrip1.Visible = false;
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(34, 17);
-            this.toolStripStatusLabel1.Text = "Okay";
+            this.statusStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip1_ItemClicked);
             // 
             // CurrentMap9
             // 
@@ -2653,11 +2657,11 @@ namespace Logic_Navigator
             this.button1.TabIndex = 24;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // menuItem121
+            // toolStripStatusLabel1
             // 
-            this.menuItem121.Index = 0;
-            this.menuItem121.Text = "125ms";
-            this.menuItem121.Click += new System.EventHandler(this.menuItem121_Click);
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(34, 17);
+            this.toolStripStatusLabel1.Text = "Okay";
             // 
             // frmMDIMain
             // 
@@ -2857,7 +2861,7 @@ namespace Logic_Navigator
             //MyDownSoundPlayer = new SoundPlayer(@"C:\Users\Ken\Documents\Visual Studio 2012\Projects\Sounds\revdn3.wav");
             //MyTimerStartUpSoundPlayer = new SoundPlayer(@"C:\Users\Ken\Documents\Visual Studio 2012\Projects\Sounds\click.wav");
             //MyTimerStartDownSoundPlayer = new SoundPlayer(@"C:\Users\Ken\Documents\Visual Studio 2012\Projects\Sounds\f-2.wav");
-
+            /*
             MyUpSoundPlayer = new SoundPlayer(@"revup3.wav");
             MyDownSoundPlayer = new SoundPlayer(@"revdn3.wav");
             MyTimerStartUpSoundPlayer = new SoundPlayer(@"click.wav");
@@ -2922,7 +2926,7 @@ namespace Logic_Navigator
             SoundZ = new SoundPlayer(@"Natasha\z.wav");
             SoundHigh = new SoundPlayer(@"Natasha\high.wav");
             SoundLow = new SoundPlayer(@"Natasha\low.wav");
-
+            */
         }
 
 
@@ -8255,6 +8259,12 @@ namespace Logic_Navigator
             }
         }
 
+        private void EvaluateAll()
+        {
+            for (int t = 0; t < siminterlocking.Count; t++)
+                evaluationlist[t] = true;
+        }
+
         private void PrepareDependencyListCoils()
         {
             depbookCoils.Clear();
@@ -8649,10 +8659,36 @@ namespace Logic_Navigator
                     TimeSpan scantime = EndScan - BeginScan;
                     TimeSpan broadcasttime = EndBroadcast - BeginBroadcast;
 
+                    if ((forceHigh.Count > 0) || (forceLow.Count > 0))
+                    {
+                        statusStrip1.Visible = true;
+                        toolStripStatusLabel1.Text = "REMINDER: False feeds/pin pulls are currently applied, coils forced high [";
+                        for (int m = 0; m < forceHigh.Count; m++)
+                        {
+                            toolStripStatusLabel1.Text += forceHigh[m] + ", ";
+                            if (m < forceLow.Count - 1)
+                                toolStripStatusLabel1.Text += ", ";
+                        }
+                        toolStripStatusLabel1.Text += "], coils forced low [";
+                        for (int m = 0; m < forceLow.Count; m++)
+                        {
+                            toolStripStatusLabel1.Text += forceLow[m];
+                            if (m < forceLow.Count - 1)
+                                toolStripStatusLabel1.Text += ", ";
+                        }
+                        toolStripStatusLabel1.Text += "], To remove false feed right click on the coil (or contact), To remove coil suppression double right click on the coil (or contact), ";
+                        statusStrip1.BackColor = Color.Yellow;
+                    }
+                    else
+                    {
+                        statusStrip1.Visible = false;
+                        toolStripStatusLabel1.Text = "";
+                    }
                     statusBar1.Text = "Cycle time: " + (waittime.TotalMilliseconds).ToString() + " msecs; "
                          + "Evaluation time: " + (evaltime.TotalMilliseconds).ToString() + " msecs; "
                          + "Scan time: " + (scantime.TotalMilliseconds).ToString() + " msecs; "
                          + "Broadcast time: " + (broadcasttime.TotalMilliseconds).ToString() + " msecs";
+
                 }
                 catch { MessageBox.Show("Error with Simulation, " + debuginfo1, "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
             }
@@ -8750,6 +8786,12 @@ namespace Logic_Navigator
                         inputToggle = objfrmMChild.inputToggle;
                         objfrmMChild.inputToggle = "";
                     }
+                    if (this.MdiChildren[i].Name == "frmMChild_SimOutputs")
+                    {
+                        frmMChild_SimOutputs objfrmMChild = (frmMChild_SimOutputs)this.MdiChildren[i];
+                        inputToggle = objfrmMChild.inputToggle;
+                        objfrmMChild.inputToggle = "";
+                    }
                     if (this.MdiChildren[i].Name == "frmMChild_SimMap")
                     {
                         frmMChild_SimMap objfrmMChild = (frmMChild_SimMap)this.MdiChildren[i];
@@ -8758,6 +8800,54 @@ namespace Logic_Navigator
                     }
                     if (inputToggle != "")
                     {
+                        if (inputToggle.Length > 15)
+                            if (inputToggle.Substring(0, 15) == "{FORCE HIGH} - ")
+                            {
+                                bool inforcelist = false;
+                                string forceinput = inputToggle.Substring(15);
+                                for (int lst = 0; lst < forceHigh.Count; lst++)
+                                    if (forceinput == forceHigh[lst])
+                                        inforcelist = true;
+                                if (!inforcelist)
+                                {
+                                    forceHigh.Add(forceinput);
+                                    inputToggle = ";";
+                                }
+                                else
+                                {
+                                    for (int lst = 0; lst < forceHigh.Count; lst++)
+                                        if (forceinput == forceHigh[lst])
+                                        {
+                                            forceHigh.RemoveAt(lst);
+                                            break;
+                                        }
+                                }
+                                EvaluateAll();
+                            }
+                        if (inputToggle.Length > 14)
+                            if (inputToggle.Substring(0, 14) == "{FORCE LOW} - ")
+                            {
+                                bool inforcelist = false;
+                                string forceinput = inputToggle.Substring(14);
+                                for (int lst = 0; lst < forceLow.Count; lst++)
+                                    if (forceinput == forceLow[lst])
+                                        inforcelist = true;
+                                if (!inforcelist)
+                                {
+                                    forceLow.Add(forceinput);
+                                    inputToggle = ";";
+                                }
+                                else
+                                {
+                                    for (int lst = 0; lst < forceLow.Count; lst++)
+                                        if (forceinput == forceLow[lst])
+                                        {
+                                            forceLow.RemoveAt(lst);
+                                            break;
+                                        }
+                                }
+                                EvaluateAll();
+                            }
                         if (inputToggle.Length > 9)
                             if (inputToggle.Substring(0, 9) == "{DOWN} - ")
                             {
@@ -8815,23 +8905,16 @@ namespace Logic_Navigator
 
         private void findChangesinInputs()
         {
-            for(int i = 0; i < Inputstates.Count; i++)
-            {
-                if(Inputstates[i] != InputstatesPrev[i])
-                {
+            for(int i = 0; i < Inputstates.Count; i++)            
+                if(Inputstates[i] != InputstatesPrev[i])                
                     for (int j = 0; j < depbookInputs[i].Count; j++)
-                        evaluationlist[depbookInputs[i][j]] = true;
-                }
-            }
-            int debg = 0;
+                        evaluationlist[depbookInputs[i][j]] = true;     
         }
 
         private void findChangesinCoils(int coil)
         {
             for (int j = 0; j < depbookCoils[coil].Count; j++)
-                evaluationlist[depbookCoils[coil][j]] = true;
-            
-            int debg = 0;
+                evaluationlist[depbookCoils[coil][j]] = true;            
         }
 
         private void ScanSimSpeed()
@@ -8916,7 +8999,7 @@ namespace Logic_Navigator
                 evalnexttime = false;
                 if (evaluationlist[r])
                 {
-                    if (EvaluateRungList(rung, r))
+                    if ((EvaluateRungList(rung, r) || inforcehighlist(rung, r)) && !inforcelowlist(rung, r))
                     { // Add to the list of High Rungs
                         try
                         {
@@ -8961,7 +9044,7 @@ namespace Logic_Navigator
                                             if (sound)
                                             {
                                                 SoundQueue.Add(Coilnames[r].ToString() + "High");
-                                                playstuff = true;
+                                                //playstuff = true;
                                             }
                                             if (!Coilstates[r])
                                                 findChangesinCoils(r); //If there is a change of state, then work out what other rungs are affected
@@ -8978,7 +9061,7 @@ namespace Logic_Navigator
                                         if (sound)
                                         {
                                             SoundQueue.Add(Coilnames[r].ToString() + "High");
-                                            playstuff = true;
+                                            //playstuff = true;
                                         }
                                     }
                                     if (!Coilstates[r])
@@ -9038,7 +9121,7 @@ namespace Logic_Navigator
                                                 if (sound)
                                                 {
                                                     SoundQueue.Add(Coilnames[r].ToString() + "Low");
-                                                    playstuff = true;
+                                                    //playstuff = true;
                                                 }
                                             }
                                         if (Coilstates[r])
@@ -9056,7 +9139,7 @@ namespace Logic_Navigator
                                         if (sound)
                                         {
                                             SoundQueue.Add(Coilnames[r].ToString() + "Low");
-                                            playstuff = true;
+                                            //playstuff = true;
                                         }
                                     }
                                 if (Coilstates[r])
@@ -9260,6 +9343,28 @@ namespace Logic_Navigator
                     return i;
             }
             return -1;
+        }
+
+        private bool inforcelowlist(List<Contact> rung, int coilindex)
+        {
+            if (forceLow.Count > 0)
+                for (int i = 0; i < rung.Count; i++)
+                    if (rung[i].typeOfCell == "Coil")
+                        for (int j = 0; j < forceLow.Count; j++)
+                            if (rung[i].name == forceLow[j])
+                                return (true);
+            return (false);
+        }
+
+        private bool inforcehighlist(List<Contact> rung, int coilindex)
+        {
+            if(forceHigh.Count > 0)      
+                for(int i = 0; i < rung.Count; i++)                                     
+                    if (rung[i].typeOfCell == "Coil")
+                        for(int j = 0; j < forceHigh.Count; j++)                        
+                            if (rung[i].name == forceHigh[j])
+                                return (true);                                
+            return (false);
         }
 
         private bool EvaluateRungList(List<Contact> rung, int coilindex)
@@ -9651,7 +9756,7 @@ namespace Logic_Navigator
         {
             try
             {
-                MyTimerStartUpSoundPlayer.Play();
+                ///MyTimerStartUpSoundPlayer.Play();
             }
             catch (Exception MyError)
             {
@@ -9663,7 +9768,7 @@ namespace Logic_Navigator
         {
             try
             {
-                MyTimerStartDownSoundPlayer.Play();
+                //MyTimerStartDownSoundPlayer.Play();
             }
             catch (Exception MyError)
             {
@@ -9675,7 +9780,7 @@ namespace Logic_Navigator
         {
             try
             {
-                MyUpSoundPlayer.Play();
+                //MyUpSoundPlayer.Play();
             }
             catch (Exception MyError)
             {
@@ -9687,7 +9792,7 @@ namespace Logic_Navigator
         {
             try
             {
-                MyDownSoundPlayer.Play();
+                //MyDownSoundPlayer.Play();
             }
             catch (Exception MyError)
             {
@@ -9697,10 +9802,10 @@ namespace Logic_Navigator
 
         private void ReadCoil(string name)
         {
-            PlayNextToken(name);
+            //PlayNextToken(name);
         }
 
-        private bool PlayNextToken(string name)
+        /*private bool PlayNextToken(string name)
         {
             if (name == "") return (false);
 
@@ -9773,7 +9878,7 @@ namespace Logic_Navigator
                 else PlayNextToken(name.Substring(1));
             }
             return (true);
-        }
+        }*/
 
         private int GetprefixNumber(string name)
         {
@@ -9810,7 +9915,7 @@ namespace Logic_Navigator
             return (false);
         }
 
-        private void PlayNumberSound(int number)
+        /*private void PlayNumberSound(int number)
         {
             try
             {
@@ -9885,9 +9990,9 @@ namespace Logic_Navigator
             {
                 MessageBox.Show("An error has occurred: " + number + ", " + MyError.Message);
             }
-        }
+        }*/
 
-        private void PlayLetterSound(char letter)
+        /*private void PlayLetterSound(char letter)
         {
             try
             {
@@ -9956,7 +10061,7 @@ namespace Logic_Navigator
             {
                 MessageBox.Show("An error has occurred: " + letter + ", " + MyError.Message);
             }
-        }
+        }*/
 
         private void menuItem49_Click(object sender, EventArgs e)
         {
@@ -12259,6 +12364,11 @@ namespace Logic_Navigator
             menuItem119.Text = "500ms";
             menuItem120.Text = "1000ms";
             cycletimespeed = 125;
+        }
+
+        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

@@ -29,6 +29,7 @@ namespace Logic_Navigator
         public bool block = false;
         public string searchString = "";
         Color HighColor, LowColor;
+        public string inputToggle = "";
 
         private int X;
         private int Y;
@@ -177,6 +178,8 @@ namespace Logic_Navigator
             this.dataGridView1.Size = new System.Drawing.Size(230, 408);
             this.dataGridView1.TabIndex = 27;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
+            this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
             // 
             // frmMChild_SimOutputs
             // 
@@ -334,7 +337,11 @@ namespace Logic_Navigator
             if (row < dataGridView1.Rows.Count - 1)
             {
                 rungName = (string)dataGridView1.Rows[row].Cells[0].Value;
-                ShowRungWindow();
+
+                //if (e.Button == MouseButtons.Right)
+                      ShowRungWindow();
+                //else
+                   // inputToggle = "{FORCE LOW} - " + rungName;
             }
         }
 
@@ -425,6 +432,32 @@ namespace Logic_Navigator
             duplicate.Clear();
             for (int i = 0; i < original.Count; i++)
                 duplicate.Add(original[i].ToString());
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int row = dataGridView1.CurrentCell.RowIndex;
+            if (row < dataGridView1.Rows.Count - 1)
+            {
+                rungName = (string)dataGridView1.Rows[row].Cells[0].Value;
+                //ShowRungWindow();
+                inputToggle = "{FORCE HIGH} - " + rungName;
+            }            
+        }
+
+        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            int row = dataGridView1.CurrentCell.RowIndex;
+            if (row < dataGridView1.Rows.Count - 1)
+            {
+                rungName = (string)dataGridView1.Rows[row].Cells[0].Value;
+                //ShowRungWindow();
+
+                if (e.Button == MouseButtons.Right)
+                {
+                    inputToggle = "{FORCE LOW} - " + rungName;
+                }
+            }
         }
 
         private void DuplicateTimersList(ArrayList original, ArrayList duplicate)
