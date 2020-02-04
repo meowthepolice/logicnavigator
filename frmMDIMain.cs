@@ -492,10 +492,34 @@ namespace Logic_Navigator
         private TextBox TAL2FileName;
         private TextBox TAL3FileName;
         private TextBox TAL4FileName;
-        private TextBox prefixt4;
-        private TextBox prefixt3;
-        private TextBox prefixt2;
+        private TextBox TAL5FileName;
+        private TextBox TAL6FileName;
+        private TextBox TAL7FileName;
+        private TextBox TAL8FileName;
+        private TextBox TAL9FileName;
+        private TextBox TAL10FileName;
+        private TextBox TAL11FileName;
+        private TextBox TAL12FileName;
+        private TextBox TAL13FileName;
+        private TextBox TAL14FileName;
+        private TextBox TAL15FileName;
+        private TextBox TAL16FileName;
         private TextBox prefixt1;
+        private TextBox prefixt2;
+        private TextBox prefixt3;
+        private TextBox prefixt4;
+        private TextBox prefixt5;
+        private TextBox prefixt6;
+        private TextBox prefixt7;
+        private TextBox prefixt8;
+        private TextBox prefixt9;
+        private TextBox prefixt10;
+        private TextBox prefixt11;
+        private TextBox prefixt12;
+        private TextBox prefixt13;
+        private TextBox prefixt14;
+        private TextBox prefixt15;
+        private TextBox prefixt16;
         private TextBox prefixmain;
         private MenuItem menuItem112;
         private MenuItem menuItem113;
@@ -780,6 +804,30 @@ namespace Logic_Navigator
             this.TAL2FileName = new System.Windows.Forms.TextBox();
             this.TAL3FileName = new System.Windows.Forms.TextBox();
             this.TAL4FileName = new System.Windows.Forms.TextBox();
+            this.TAL5FileName = new System.Windows.Forms.TextBox();
+            this.TAL6FileName = new System.Windows.Forms.TextBox();
+            this.TAL7FileName = new System.Windows.Forms.TextBox();
+            this.TAL8FileName = new System.Windows.Forms.TextBox();
+            this.TAL9FileName = new System.Windows.Forms.TextBox();
+            this.TAL10FileName = new System.Windows.Forms.TextBox();
+            this.TAL11FileName = new System.Windows.Forms.TextBox();
+            this.TAL12FileName = new System.Windows.Forms.TextBox();
+            this.TAL13FileName = new System.Windows.Forms.TextBox();
+            this.TAL14FileName = new System.Windows.Forms.TextBox();
+            this.TAL15FileName = new System.Windows.Forms.TextBox();
+            this.TAL16FileName = new System.Windows.Forms.TextBox();
+            this.prefixt16 = new System.Windows.Forms.TextBox();
+            this.prefixt15 = new System.Windows.Forms.TextBox();
+            this.prefixt14 = new System.Windows.Forms.TextBox();
+            this.prefixt13 = new System.Windows.Forms.TextBox();
+            this.prefixt12 = new System.Windows.Forms.TextBox();
+            this.prefixt11 = new System.Windows.Forms.TextBox();
+            this.prefixt10 = new System.Windows.Forms.TextBox();
+            this.prefixt9 = new System.Windows.Forms.TextBox();
+            this.prefixt8 = new System.Windows.Forms.TextBox();
+            this.prefixt7 = new System.Windows.Forms.TextBox();
+            this.prefixt6 = new System.Windows.Forms.TextBox();
+            this.prefixt5 = new System.Windows.Forms.TextBox();
             this.prefixt4 = new System.Windows.Forms.TextBox();
             this.prefixt3 = new System.Windows.Forms.TextBox();
             this.prefixt2 = new System.Windows.Forms.TextBox();
@@ -2136,7 +2184,7 @@ namespace Logic_Navigator
             // 
             this.TALFileName.Location = new System.Drawing.Point(268, 228);
             this.TALFileName.Name = "TALFileName";
-            this.TALFileName.Size = new System.Drawing.Size(94, 20);
+            this.TALFileName.Size = new System.Drawing.Size(20, 20);
             this.TALFileName.TabIndex = 41;
             this.TALFileName.Visible = false;
             this.TALFileName.TextChanged += new System.EventHandler(this.TALFileName_TextChanged);
@@ -2584,49 +2632,134 @@ namespace Logic_Navigator
             // 
             // TAL2FileName
             // 
-            this.TAL2FileName.Location = new System.Drawing.Point(367, 228);
+            this.TAL2FileName.Location = new System.Drawing.Point(291, 228);
             this.TAL2FileName.Name = "TAL2FileName";
-            this.TAL2FileName.Size = new System.Drawing.Size(93, 20);
+            this.TAL2FileName.Size = new System.Drawing.Size(20, 20);
             this.TAL2FileName.TabIndex = 107;
             this.TAL2FileName.Visible = false;
             // 
             // TAL3FileName
             // 
-            this.TAL3FileName.Location = new System.Drawing.Point(466, 228);
+            this.TAL3FileName.Location = new System.Drawing.Point(319, 228);
             this.TAL3FileName.Name = "TAL3FileName";
-            this.TAL3FileName.Size = new System.Drawing.Size(93, 20);
+            this.TAL3FileName.Size = new System.Drawing.Size(20, 20);
             this.TAL3FileName.TabIndex = 108;
             this.TAL3FileName.Visible = false;
             // 
             // TAL4FileName
             // 
-            this.TAL4FileName.Location = new System.Drawing.Point(565, 228);
+            this.TAL4FileName.Location = new System.Drawing.Point(342, 228);
             this.TAL4FileName.Name = "TAL4FileName";
-            this.TAL4FileName.Size = new System.Drawing.Size(93, 20);
+            this.TAL4FileName.Size = new System.Drawing.Size(20, 20);
             this.TAL4FileName.TabIndex = 109;
             this.TAL4FileName.Visible = false;
             // 
+            // TAL5FileName
+            // 
+            this.TAL5FileName.Location = new System.Drawing.Point(575, 228);
+            this.TAL5FileName.Name = "TAL5FileName";
+            this.TAL5FileName.Size = new System.Drawing.Size(20, 20);
+            this.TAL5FileName.TabIndex = 109;
+            this.TAL5FileName.Visible = false;
+            // 
+            // TAL6FileName
+            // 
+            this.TAL6FileName.Location = new System.Drawing.Point(0, 0);
+            this.TAL6FileName.Name = "TAL6FileName";
+            this.TAL6FileName.Size = new System.Drawing.Size(20, 20);
+            this.TAL6FileName.TabIndex = 0;
+            // 
+            // TAL7FileName
+            // 
+            this.TAL7FileName.Location = new System.Drawing.Point(0, 0);
+            this.TAL7FileName.Name = "TAL7FileName";
+            this.TAL7FileName.Size = new System.Drawing.Size(100, 20);
+            this.TAL7FileName.TabIndex = 0;
+            // 
+            // TAL8FileName
+            // 
+            this.TAL8FileName.Location = new System.Drawing.Point(0, 0);
+            this.TAL8FileName.Name = "TAL8FileName";
+            this.TAL8FileName.Size = new System.Drawing.Size(100, 20);
+            this.TAL8FileName.TabIndex = 0;
+            // 
+            // TAL9FileName
+            // 
+            this.TAL9FileName.Location = new System.Drawing.Point(0, 0);
+            this.TAL9FileName.Name = "TAL9FileName";
+            this.TAL9FileName.Size = new System.Drawing.Size(100, 20);
+            this.TAL9FileName.TabIndex = 0;
+            // 
+            // TAL10FileName
+            // 
+            this.TAL10FileName.Location = new System.Drawing.Point(0, 0);
+            this.TAL10FileName.Name = "TAL10FileName";
+            this.TAL10FileName.Size = new System.Drawing.Size(100, 20);
+            this.TAL10FileName.TabIndex = 0;
+            // 
+            // TAL11FileName
+            // 
+            this.TAL11FileName.Location = new System.Drawing.Point(0, 0);
+            this.TAL11FileName.Name = "TAL11FileName";
+            this.TAL11FileName.Size = new System.Drawing.Size(100, 20);
+            this.TAL11FileName.TabIndex = 0;
+            // 
+            // TAL12FileName
+            // 
+            this.TAL12FileName.Location = new System.Drawing.Point(0, 0);
+            this.TAL12FileName.Name = "TAL12FileName";
+            this.TAL12FileName.Size = new System.Drawing.Size(100, 20);
+            this.TAL12FileName.TabIndex = 0;
+            // 
+            // TAL13FileName
+            // 
+            this.TAL13FileName.Location = new System.Drawing.Point(0, 0);
+            this.TAL13FileName.Name = "TAL13FileName";
+            this.TAL13FileName.Size = new System.Drawing.Size(100, 20);
+            this.TAL13FileName.TabIndex = 0;
+            // 
+            // TAL14FileName
+            // 
+            this.TAL14FileName.Location = new System.Drawing.Point(0, 0);
+            this.TAL14FileName.Name = "TAL14FileName";
+            this.TAL14FileName.Size = new System.Drawing.Size(100, 20);
+            this.TAL14FileName.TabIndex = 0;
+            // 
+            // TAL15FileName
+            // 
+            this.TAL15FileName.Location = new System.Drawing.Point(0, 0);
+            this.TAL15FileName.Name = "TAL15FileName";
+            this.TAL15FileName.Size = new System.Drawing.Size(100, 20);
+            this.TAL15FileName.TabIndex = 0;
+            // 
+            // TAL16FileName
+            // 
+            this.TAL16FileName.Location = new System.Drawing.Point(0, 0);
+            this.TAL16FileName.Name = "TAL16FileName";
+            this.TAL16FileName.Size = new System.Drawing.Size(100, 20);
+            this.TAL16FileName.TabIndex = 0;
+            // 
             // prefixt4
             // 
-            this.prefixt4.Location = new System.Drawing.Point(565, 254);
+            this.prefixt4.Location = new System.Drawing.Point(342, 254);
             this.prefixt4.Name = "prefixt4";
-            this.prefixt4.Size = new System.Drawing.Size(93, 20);
+            this.prefixt4.Size = new System.Drawing.Size(21, 20);
             this.prefixt4.TabIndex = 114;
             this.prefixt4.Visible = false;
             // 
             // prefixt3
             // 
-            this.prefixt3.Location = new System.Drawing.Point(466, 254);
+            this.prefixt3.Location = new System.Drawing.Point(319, 254);
             this.prefixt3.Name = "prefixt3";
-            this.prefixt3.Size = new System.Drawing.Size(93, 20);
+            this.prefixt3.Size = new System.Drawing.Size(17, 20);
             this.prefixt3.TabIndex = 113;
             this.prefixt3.Visible = false;
             // 
             // prefixt2
             // 
-            this.prefixt2.Location = new System.Drawing.Point(367, 254);
+            this.prefixt2.Location = new System.Drawing.Point(291, 254);
             this.prefixt2.Name = "prefixt2";
-            this.prefixt2.Size = new System.Drawing.Size(93, 20);
+            this.prefixt2.Size = new System.Drawing.Size(24, 20);
             this.prefixt2.TabIndex = 112;
             this.prefixt2.Visible = false;
             // 
@@ -2634,7 +2767,7 @@ namespace Logic_Navigator
             // 
             this.prefixt1.Location = new System.Drawing.Point(268, 254);
             this.prefixt1.Name = "prefixt1";
-            this.prefixt1.Size = new System.Drawing.Size(94, 20);
+            this.prefixt1.Size = new System.Drawing.Size(20, 20);
             this.prefixt1.TabIndex = 111;
             this.prefixt1.Visible = false;
             // 
@@ -10959,7 +11092,7 @@ namespace Logic_Navigator
                 }
                 //OpenNewFile(prefixmain.Text);
 
-                for (int i = -1; i < 4; i++)
+                for (int i = -1; i < 16; i++)
                 {
                     string cTALFileName = ""; string prefix = "";
                     if (i == -1) { cTALFileName = FileName.Text; prefix = prefixmain.Text; }
@@ -10967,6 +11100,19 @@ namespace Logic_Navigator
                     if (i == 1) { cTALFileName = TAL2FileName.Text; prefix = prefixt2.Text; }
                     if (i == 2) { cTALFileName = TAL3FileName.Text; prefix = prefixt3.Text; }
                     if (i == 3) { cTALFileName = TAL4FileName.Text; prefix = prefixt4.Text; }
+                    if (i == 4) { cTALFileName = TAL5FileName.Text; prefix = prefixt5.Text; }
+                    if (i == 5) { cTALFileName = TAL6FileName.Text; prefix = prefixt6.Text; }
+                    if (i == 6) { cTALFileName = TAL7FileName.Text; prefix = prefixt7.Text; }
+                    if (i == 7) { cTALFileName = TAL8FileName.Text; prefix = prefixt8.Text; }
+                    if (i == 8) { cTALFileName = TAL9FileName.Text; prefix = prefixt9.Text; }
+                    if (i == 9) { cTALFileName = TAL10FileName.Text; prefix = prefixt10.Text; }
+                    if (i == 10) { cTALFileName = TAL11FileName.Text; prefix = prefixt11.Text; }
+                    if (i == 11) { cTALFileName = TAL12FileName.Text; prefix = prefixt12.Text; }
+                    if (i == 12) { cTALFileName = TAL13FileName.Text; prefix = prefixt13.Text; }
+                    if (i == 13) { cTALFileName = TAL14FileName.Text; prefix = prefixt14.Text; }
+                    if (i == 14) { cTALFileName = TAL15FileName.Text; prefix = prefixt15.Text; }
+                    if (i == 15) { cTALFileName = TAL16FileName.Text; prefix = prefixt16.Text; }
+
                     interlockingTAL.Clear();
                     timersTAL.Clear();
                     if (cTALFileName != "")
@@ -11515,6 +11661,18 @@ namespace Logic_Navigator
             if (talnumber == 2) prefixt2.Text = prefix.Substring(7);
             if (talnumber == 3) prefixt3.Text = prefix.Substring(7);
             if (talnumber == 4) prefixt4.Text = prefix.Substring(7);
+            if (talnumber == 5) prefixt5.Text = prefix.Substring(7);
+            if (talnumber == 6) prefixt6.Text = prefix.Substring(7);
+            if (talnumber == 7) prefixt7.Text = prefix.Substring(7);
+            if (talnumber == 8) prefixt8.Text = prefix.Substring(7);
+            if (talnumber == 9) prefixt9.Text = prefix.Substring(7);
+            if (talnumber == 10) prefixt10.Text = prefix.Substring(7);
+            if (talnumber == 11) prefixt11.Text = prefix.Substring(7);
+            if (talnumber == 12) prefixt12.Text = prefix.Substring(7);
+            if (talnumber == 13) prefixt13.Text = prefix.Substring(7);
+            if (talnumber == 14) prefixt14.Text = prefix.Substring(7);
+            if (talnumber == 15) prefixt15.Text = prefix.Substring(7);
+            if (talnumber == 16) prefixt16.Text = prefix.Substring(7);
         }
 
         private void openprjFile(string prjFile)
@@ -11554,6 +11712,18 @@ namespace Logic_Navigator
                         TAL2FileName.Text = ""; prefixt2.Text = "";
                         TAL3FileName.Text = ""; prefixt3.Text = "";
                         TAL4FileName.Text = ""; prefixt4.Text = "";
+                        TAL5FileName.Text = ""; prefixt5.Text = "";
+                        TAL6FileName.Text = ""; prefixt6.Text = "";
+                        TAL7FileName.Text = ""; prefixt7.Text = "";
+                        TAL8FileName.Text = ""; prefixt8.Text = "";
+                        TAL9FileName.Text = ""; prefixt9.Text = "";
+                        TAL10FileName.Text = ""; prefixt10.Text = "";
+                        TAL11FileName.Text = ""; prefixt11.Text = "";
+                        TAL12FileName.Text = ""; prefixt12.Text = "";
+                        TAL13FileName.Text = ""; prefixt13.Text = "";
+                        TAL14FileName.Text = ""; prefixt14.Text = "";
+                        TAL15FileName.Text = ""; prefixt15.Text = "";
+                        TAL16FileName.Text = ""; prefixt16.Text = "";
                         CurrentTALFile.Text = ProjectDirectory.Text + "\\" + line;
                         TALFileName.Text = ProjectDirectory.Text + "\\" + line;
                         line = SR.ReadLine();
@@ -11568,6 +11738,18 @@ namespace Logic_Navigator
                                     if (TALnumber == 2) TAL2FileName.Text = ProjectDirectory.Text + "\\" + line;
                                     if (TALnumber == 3) TAL3FileName.Text = ProjectDirectory.Text + "\\" + line;
                                     if (TALnumber == 4) TAL4FileName.Text = ProjectDirectory.Text + "\\" + line;
+                                    if (TALnumber == 5) TAL5FileName.Text = ProjectDirectory.Text + "\\" + line;
+                                    if (TALnumber == 6) TAL6FileName.Text = ProjectDirectory.Text + "\\" + line;
+                                    if (TALnumber == 7) TAL7FileName.Text = ProjectDirectory.Text + "\\" + line;
+                                    if (TALnumber == 8) TAL8FileName.Text = ProjectDirectory.Text + "\\" + line;
+                                    if (TALnumber == 9) TAL9FileName.Text = ProjectDirectory.Text + "\\" + line;
+                                    if (TALnumber == 10) TAL10FileName.Text = ProjectDirectory.Text + "\\" + line;
+                                    if (TALnumber == 11) TAL11FileName.Text = ProjectDirectory.Text + "\\" + line;
+                                    if (TALnumber == 12) TAL12FileName.Text = ProjectDirectory.Text + "\\" + line;
+                                    if (TALnumber == 13) TAL13FileName.Text = ProjectDirectory.Text + "\\" + line;
+                                    if (TALnumber == 14) TAL14FileName.Text = ProjectDirectory.Text + "\\" + line;
+                                    if (TALnumber == 15) TAL15FileName.Text = ProjectDirectory.Text + "\\" + line;
+                                    if (TALnumber == 16) TAL16FileName.Text = ProjectDirectory.Text + "\\" + line;
                                     TALnumber++;
                                 }
                             }
