@@ -9009,7 +9009,7 @@ namespace Logic_Navigator
                 evalnexttime = false;
                 //if (Coildrive[r] && !Coilstates[r])
                     //runglisting += "^" + rungtitle;
-                if (evaluationlist[r] || (Coildrive[r] && !Coilstates[r]))// || (Coilnodrive[r] && Coilstates[r])) 
+                if (evaluationlist[r] || (Coildrive[r] && !Coilstates[r]) || (!Coildrive[r] && Coilstates[r])) 
                 //On the evaluation list because input has changed, or slow to pick timer not timed yet, or slow to drop timer not dropped yet
                 {
                     List<Contact> rung = (List<Contact>)sim[r];
@@ -9020,6 +9020,8 @@ namespace Logic_Navigator
                     { // Add to the list of High Rungs
                         try
                         {
+                            Coildrive[r] = true;//There is voltage on the coil, and it's a timer
+                            //Coilnodrive[r] = false;########
                             rungsevaluated++;
                             if (!inList(rungtitle, HighRungs))
                             {
@@ -9027,7 +9029,7 @@ namespace Logic_Navigator
                                 if (timerindex != -1) // Slow to pick timer
                                 {
                                     //evalnexttime = true;
-                                    Coildrive[r] = true;//There is voltage on the coil, and it's a timer
+                                    //Coildrive[r] = true;//There is voltage on the coil, and it's a timer#####
                                     int timerstartindex = inTimerList(rungtitle, S2PTimersTiming);
                                     if (timerstartindex == -1) // Start timing
                                     {
@@ -9106,7 +9108,7 @@ namespace Logic_Navigator
                             int timerindex = findS2DTimer(timersNew, rungtitle);
                             if (timerindex != -1) // Slow to drop timer
                             {
-                                //Coilnodrive[r] = true;//There is voltage on the coil, and it's a timer
+                                //Coilnodrive[r] = true;//There is no voltage on the coil, and it's a timer#########
                                 //evalnexttime = true; //because it is a timer
                                 int timerstartindex = inTimerList(rungtitle, S2DTimersTiming);
                                 if (timerstartindex == -1) // Start timing
