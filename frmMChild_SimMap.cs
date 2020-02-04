@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Collections;
@@ -44,9 +44,9 @@ namespace Logic_Navigator
         private Point Endadj = new Point(0, 0);
         private Point Interim = new Point(0, 0);
         private Point scaleClick = new Point(0, 0);
-        private Point pan = new Point(0, 0);
-        private Point totalpan = new Point(0, 0);
-        private Point panSinceClick = new Point(0, 0);
+        public Point pan = new Point(0, 0);
+        public Point totalpan = new Point(0, 0);
+        public Point panSinceClick = new Point(0, 0);
         private bool rubberband = false;
         private bool verticallock = false;
         private bool horizontallock = false;
@@ -93,6 +93,8 @@ namespace Logic_Navigator
         private bool middleMouseDown = false;
 
         private Color colorholder = Color.Pink;
+        private Color colormultiple = Color.FromArgb(191,191,191);
+        //(256, 191, 191, 191);
 
         private Point redOffset = new Point(0, 0);
         private Point blueOffset = new Point(0, 0);
@@ -147,9 +149,6 @@ namespace Logic_Navigator
             timersNew = timersNewPointer;
             populateInputList("");
             populateAutoComplete();
-            //FindBeads();
-            //DetermineBeadsLinked();
-           // GetOccupiedBeans();
             Indication1.AutoCompleteCustomSource = RungAndInputAutoCompleteSource;
             Indication2.AutoCompleteCustomSource = RungAndInputAutoCompleteSource;
             Indication3.AutoCompleteCustomSource = RungAndInputAutoCompleteSource;
@@ -252,8 +251,8 @@ namespace Logic_Navigator
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMChild_SimMap));
             this.searchString1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -271,7 +270,8 @@ namespace Logic_Navigator
             this.Thumbtack = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton18 = new System.Windows.Forms.ToolStripButton();
             this.ZoomOutButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton61 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton65 = new System.Windows.Forms.ToolStripButton();
+            this.ReloadProject = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.RectangleButton = new System.Windows.Forms.ToolStripButton();
             this.CircleButton = new System.Windows.Forms.ToolStripButton();
@@ -516,22 +516,22 @@ namespace Logic_Navigator
             // 
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.MediumBlue;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.MediumBlue;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.Location = new System.Drawing.Point(324, 93);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.SeaGreen;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.SeaGreen;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.Size = new System.Drawing.Size(366, 106);
             this.dataGridView1.TabIndex = 27;
             this.dataGridView1.Visible = false;
@@ -571,7 +571,8 @@ namespace Logic_Navigator
             this.Thumbtack,
             this.toolStripButton18,
             this.ZoomOutButton,
-            this.toolStripButton61,
+            this.toolStripButton65,
+            this.ReloadProject,
             this.toolStripSeparator1,
             this.RectangleButton,
             this.CircleButton,
@@ -662,7 +663,6 @@ namespace Logic_Navigator
             this.Thumbtack.Name = "Thumbtack";
             this.Thumbtack.Size = new System.Drawing.Size(23, 22);
             this.Thumbtack.ToolTipText = "Disable Pan - (Ctrl+T)";
-            this.Thumbtack.Click += new System.EventHandler(this.Thumbtack_Click);
             // 
             // toolStripButton18
             // 
@@ -686,16 +686,27 @@ namespace Logic_Navigator
             this.ZoomOutButton.ToolTipText = "Save the current logic state. (Ctrl+L)";
             this.ZoomOutButton.Click += new System.EventHandler(this.ZoomOutButton_Click);
             // 
-            // toolStripButton61
+            // toolStripButton65
             // 
-            this.toolStripButton61.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton61.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton61.Image")));
-            this.toolStripButton61.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton61.Name = "toolStripButton61";
-            this.toolStripButton61.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton61.Text = "Load previous logic state file";
-            this.toolStripButton61.ToolTipText = "Restore logic state to last saved state. (Ctrl+K)";
-            this.toolStripButton61.Click += new System.EventHandler(this.toolStripButton61_Click);
+            this.toolStripButton65.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton65.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton65.Image")));
+            this.toolStripButton65.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton65.Name = "toolStripButton65";
+            this.toolStripButton65.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton65.Text = "Load previous logic state file";
+            this.toolStripButton65.ToolTipText = "Restore logic state to last saved state. (Ctrl+K)";
+            // 
+            // ReloadProject
+            // 
+            this.ReloadProject.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ReloadProject.Image = ((System.Drawing.Image)(resources.GetObject("ReloadProject.Image")));
+            this.ReloadProject.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ReloadProject.Name = "ReloadProject";
+            this.ReloadProject.Size = new System.Drawing.Size(23, 22);
+            this.ReloadProject.Text = "Reload project";
+            this.ReloadProject.ToolTipText = "This button reloads the entire project, this is useful when source files have cha" +
+    "nged. (Ctrl+R)";
+            this.ReloadProject.Click += new System.EventHandler(this.ReloadProject_Click);
             // 
             // toolStripSeparator1
             // 
@@ -1093,7 +1104,6 @@ namespace Logic_Navigator
             this.toolTip1.SetToolTip(this.IndicationColour1, "Click to invoke the color dialog box to choose the color of the graphic.");
             this.IndicationColour1.Visible = false;
             this.IndicationColour1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.HighColourString_MouseClick);
-            this.IndicationColour1.TextChanged += new System.EventHandler(this.HighColourString_TextChanged);
             // 
             // LowColourString
             // 
@@ -1280,7 +1290,6 @@ namespace Logic_Navigator
             this.label10.TabIndex = 55;
             this.label10.Text = "Shape:";
             this.label10.Visible = false;
-            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // ShapecomboBox1
             // 
@@ -1604,7 +1613,6 @@ namespace Logic_Navigator
             this.textBox11.TabIndex = 89;
             this.textBox11.Text = "1.00";
             this.textBox11.Visible = false;
-            this.textBox11.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // button10
             // 
@@ -2297,7 +2305,6 @@ namespace Logic_Navigator
             this.toolStripButton30.Name = "toolStripButton30";
             this.toolStripButton30.Size = new System.Drawing.Size(108, 22);
             this.toolStripButton30.Text = "Hide Properties";
-            this.toolStripButton30.Click += new System.EventHandler(this.toolStripButton30_Click);
             // 
             // toolStripButton31
             // 
@@ -2679,7 +2686,7 @@ namespace Logic_Navigator
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1354, 749);
+            this.ClientSize = new System.Drawing.Size(1354, 800);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label18);
@@ -2735,7 +2742,6 @@ namespace Logic_Navigator
             this.Name = "frmMChild_SimMap";
             this.Text = "Map View";
             this.Load += new System.EventHandler(this.frmMChild_SimMap_Load);
-            this.Click += new System.EventHandler(this.frmMChild_SimMap_Click);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmMChild_SimMap_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMChild_SimMap_KeyDown);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmMChild_SimMap_KeyPress);
@@ -3343,15 +3349,15 @@ namespace Logic_Navigator
                                 if (ShapecomboBox1.Text != item.Shape) ShapecomboBox1.Text = "?";
                                 if (LabelText.Text != item.Text) LabelText.Text = "?";
                                 //if (IndicationColour1.BackColor != item.HighColour) IndicationColour1.BackColor = Color.Gray;
-                                if (LowColourString.BackColor != item.LowColour) LowColourString.BackColor = Color.Silver;
+                                if (LowColourString.BackColor != item.LowColour) LowColourString.BackColor = colormultiple;
                                 if (Indication1.Text != item.Indication1) Indication1.Text = "?";
                                 if (Indication2.Text != item.Indication2) Indication2.Text = "?";
                                 if (Indication3.Text != item.Indication3) Indication3.Text = "?";
                                 if (Indication4.Text != item.Indication4) Indication4.Text = "?";
-                                if (IndicationColour1.BackColor != item.IndColour1) IndicationColour1.BackColor = Color.Silver;
-                                if (IndicationColour2.BackColor != item.IndColour2) IndicationColour2.BackColor = Color.Silver;
-                                if (IndicationColour3.BackColor != item.IndColour3) IndicationColour3.BackColor = Color.Silver;
-                                if (IndicationColour4.BackColor != item.IndColour4) IndicationColour4.BackColor = Color.Silver;
+                                if (IndicationColour1.BackColor != item.IndColour1) IndicationColour1.BackColor = colormultiple;
+                                if (IndicationColour2.BackColor != item.IndColour2) IndicationColour2.BackColor = colormultiple;
+                                if (IndicationColour3.BackColor != item.IndColour3) IndicationColour3.BackColor = colormultiple;
+                                if (IndicationColour4.BackColor != item.IndColour4) IndicationColour4.BackColor = colormultiple;
                                 if (ControlName.Text != item.Control) ControlName.Text = "?";                                
                                 if (TransparentCheckbox.Checked != item.Transparent) TransparentCheckbox.BackColor = Color.Gray;
                                 if (IsTrackCheckbox.Checked != item.Transparent) IsTrackCheckbox.BackColor = Color.Gray;
@@ -3975,7 +3981,6 @@ namespace Logic_Navigator
             bool invert = false;
             string function = indication;
             if (indication == "") return (false);
-            //else if(indication != "111RRTI1") return true;
             if (indication.Substring(0, 1) == "~")
             {
                 invert = true;
@@ -4457,9 +4462,6 @@ namespace Logic_Navigator
         private TextBox textBox1;
         private TextBox textBox2;
 
-        private void frmMChild_SimMap_Click(object sender, EventArgs e)
-        {         
-        }
 
         private TextBox Indication1;
         private Label label1;
@@ -4498,8 +4500,8 @@ namespace Logic_Navigator
                         Start = item.StartLocation;
                         int width = item.EndLocation.X - item.StartLocation.X;
                         int height = item.EndLocation.Y - item.StartLocation.Y;
-                        if (Textsizetext.Text.ToString() != "?")
-                            textsize = parseint(Textsizetext.Text.ToString(), 100);
+                        if (isanumber(Textsizetext.Text.ToString()))
+                            textsize = parseint(Textsizetext.Text.ToString(), 10);                            
                         if (XCoord.Text.ToString() != "?")
                             Start.X = parseint(XCoord.Text.ToString(), 0);
                         if (YCoord.Text.ToString() != "?")
@@ -4507,7 +4509,6 @@ namespace Logic_Navigator
                         if (Width.Text.ToString() != "?")
                         { 
                             int widthtext = parseint(Width.Text.ToString(), 7);
-
                             if (widthtext < 0) widthtext -= widthtext;
                             End.X = Start.X + widthtext;
                         }
@@ -4521,7 +4522,8 @@ namespace Logic_Navigator
                         }
                         else
                             End.Y = Start.Y + height;
-                        item.Textsize = textsize;
+                        if (isanumber(Textsizetext.Text.ToString()))
+                            item.Textsize = textsize;
                         item.EndLocation = End;
                         item.StartLocation = Start;
                         item.Transparent = TransparentCheckbox.Checked;
@@ -4538,14 +4540,14 @@ namespace Logic_Navigator
                         if (Indication4.Text.ToString() != "?") item.Indication4 = Indication4.Text.ToString();
 
                         if (LabelText.Text.ToString() != "?") item.Text = LabelText.Text;
-                        if (item.HighColour != Color.Silver) item.HighColour = IndicationColour1.BackColor;
-                        //if (item.LowColour != Color.Silver) 
-                        if (LowColourString.BackColor != Color.Silver) 
+                        if (item.HighColour != colormultiple) item.HighColour = IndicationColour1.BackColor;
+                        //if (item.LowColour != colormultiple) 
+                        if (LowColourString.BackColor != colormultiple) 
                             item.LowColour = LowColourString.BackColor;
-                        if (IndicationColour1.BackColor != Color.Silver) item.IndColour1 = IndicationColour1.BackColor;
-                        if (IndicationColour2.BackColor != Color.Silver) item.IndColour2 = IndicationColour2.BackColor;
-                        if (IndicationColour3.BackColor != Color.Silver) item.IndColour3 = IndicationColour3.BackColor;
-                        if (IndicationColour4.BackColor != Color.Silver) item.IndColour4 = IndicationColour4.BackColor;
+                        if (IndicationColour1.BackColor != colormultiple) item.IndColour1 = IndicationColour1.BackColor;
+                        if (IndicationColour2.BackColor != colormultiple) item.IndColour2 = IndicationColour2.BackColor;
+                        if (IndicationColour3.BackColor != colormultiple) item.IndColour3 = IndicationColour3.BackColor;
+                        if (IndicationColour4.BackColor != colormultiple) item.IndColour4 = IndicationColour4.BackColor;
                         if (ControlName.Text != "?") item.Control = ControlName.Text;
                         if (TransparentCheckbox.BackColor != Color.Gray) item.Transparent = TransparentCheckbox.Checked;
                         if (IsTrackCheckbox.BackColor != Color.Gray) item.IsTrack = IsTrackCheckbox.Checked;     
@@ -4600,10 +4602,19 @@ namespace Logic_Navigator
             {
                 return (sanenumber);
             }
-            /*if ((text == "-") || (text == ""))
-                return (sanenumber);
-            else
-                return (Int32.Parse(text));*/
+        }
+
+        private bool isanumber(string text)
+        {
+            try
+            {
+                int num = Int32.Parse(text);
+                return (true);
+            }
+            catch
+            {
+                return (false);
+            }
         }
 
         private Label label7;
@@ -4821,8 +4832,7 @@ namespace Logic_Navigator
             cutting = true;
             Copy();
         }
-
-
+        
         private void Paste(int typeofpaste)
         {
             try
@@ -4963,29 +4973,8 @@ namespace Logic_Navigator
         }
 
         private void sendToBackToolStripMenuItem_Click(object sender, EventArgs e)
-        { 
-            
+        {             
                 SendObjectstoBack();
-            /*if ((highlighteditem > -1) && (highlighteditem < Indications.Count))
-            {
-                MapObj item = Indications[highlighteditem];
-                List<MapObj> temp = new List<MapObj>();
-                for (int i = 0; i < Indications.Count; i++)
-                    if (i != highlighteditem)
-                    {
-                        MapObj items = Indications[i];
-                        temp.Add(items);
-                    }
-                Indications.Clear();
-                Indications.Add(item);
-                PushIndications();
-                for (int i = 0; i < temp.Count; i++)
-                {
-                    MapObj items = temp[i];
-                    Indications.Add(items);
-                    PushIndications();
-                }
-            }*/
         }
 
         private void SendObjectstoBack()
@@ -5056,13 +5045,6 @@ namespace Logic_Navigator
         private void bringToFrontToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BringObjectstoFront();
-            /*if ((highlighteditem > -1) && (highlighteditem < Indications.Count))
-            {
-                MapObj item = Indications[highlighteditem];
-                Indications.RemoveAt(highlighteditem);
-                Indications.Add(item);
-                PushIndications();
-            }*/
         }
 
         private void BringObjecttoFront()
@@ -5111,24 +5093,14 @@ namespace Logic_Navigator
         }
 
         private Label label10;
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        
         private ComboBox ShapecomboBox1;
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             CommitChange();
         }
-
-        private void HighColourString_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        
         private void HighColourString_MouseClick(object sender, MouseEventArgs e)
         {
             IndicationColour1.BackColor = Choose_Colour();
@@ -5213,8 +5185,7 @@ namespace Logic_Navigator
         {
             ScaleHighlightedItems(1/1.25f);
         }
-
-
+        
         private void RotateC()
         {
             int refitem = 0;
@@ -5285,8 +5256,7 @@ namespace Logic_Navigator
             }
             Invalidate();
         }
-
-
+        
         private void RotateAC()
         {
             int refitem = 0;
@@ -5538,11 +5508,6 @@ namespace Logic_Navigator
 
         private Label label13;
         private TextBox textBox11;
-
-        private void textBox11_TextChanged(object sender, EventArgs e)
-        {
-            //ScaleHighlightedItems(1.25f);
-        }
 
         private Button button10;
 
@@ -6565,9 +6530,7 @@ namespace Logic_Navigator
 
 
         public ToolStripComboBox NudgeAmount;
-
-
-
+               
         private ToolStripButton toolStripButton52;
         private ToolStripButton toolStripButton53;
         private ToolStripButton toolStripButton54;
@@ -6619,8 +6582,7 @@ namespace Logic_Navigator
             }
             Invalidate();
         }
-
-
+        
         private void MoveNextUp(int dist)
         {
             int upmosty = 10000;
@@ -6894,8 +6856,7 @@ namespace Logic_Navigator
             {
                 rotateparameter(1);
                 e.Handled = true;
-            }
-  
+            }  
         }
 
         protected override bool IsInputKey(Keys keyData)
@@ -7123,6 +7084,8 @@ namespace Logic_Navigator
                     simspeedcommand = "SaveLogicState";
                 if (e.Control && e.KeyCode == Keys.K)
                     simspeedcommand = "LoadLogicState";
+                if (e.Control && e.KeyCode == Keys.R)
+                    simspeedcommand = "ReloadProject";
             }
             if (e.KeyCode == Keys.PageDown)
             {
@@ -7276,7 +7239,7 @@ namespace Logic_Navigator
         {
 
         }
-        private ToolStripButton toolStripButton61;
+        private ToolStripButton ReloadProject;
 
         private void toolStripButton15_Click_1(object sender, EventArgs e)
         {
@@ -7332,11 +7295,6 @@ namespace Logic_Navigator
             simspeedcommand = "SaveMap" + this.Text;
         }
 
-        private void Thumbtack_Click(object sender, EventArgs e)
-        {
-
-        }
-
         public ToolStripButton Thumbtack;
 
         private void frmMChild_SimMap_KeyUp(object sender, KeyEventArgs e)
@@ -7387,10 +7345,6 @@ namespace Logic_Navigator
 
         private ToolStripButton toolStripButton64;
 
-        private void toolStripButton30_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void closeprop_Click(object sender, EventArgs e)
         {
@@ -7401,6 +7355,13 @@ namespace Logic_Navigator
         }
 
         private Button closeprop;
+
+        private void ReloadProject_Click(object sender, EventArgs e)
+        {
+            simspeedcommand = "ReloadProject";
+        }
+
+        private ToolStripButton toolStripButton65;
     }
 
     //PushIndications();

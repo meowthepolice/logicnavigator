@@ -153,7 +153,6 @@ namespace Logic_Navigator
         private System.Windows.Forms.MenuItem menuItem2;
         private string toolbarState = "Maximise";
 
-
         private List<MapObj> mapObjects = new List<MapObj>();
 
         ArrayList interlockingOld = new ArrayList();
@@ -231,12 +230,12 @@ namespace Logic_Navigator
         public List<string> Inputnames = new List<string>();
         public List<bool> Inputstates = new List<bool>();
         public List<bool> InputstatesPrev = new List<bool>();
-              
+
 
         public List<string> ExclusionList = new List<string>();
 
         public List<Point> CoilContactrefs = new List<Point>();
-        
+
         public List<String> forceLow = new List<String>();
         public List<String> forceHigh = new List<String>();
         public List<List<int>> depbookCoils = new List<List<int>>();
@@ -530,6 +529,8 @@ namespace Logic_Navigator
         private MenuItem menuItem120;
         private MenuItem menuItem121;
         private ToolStripStatusLabel toolStripStatusLabel1;
+        private Label label15;
+        private TextBox ProjectFilename;
         private System.Windows.Forms.MenuItem menuItem6;
 
         public frmMDIMain()
@@ -835,6 +836,8 @@ namespace Logic_Navigator
             this.prefixmain = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
+            this.ProjectFilename = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.RungGrid)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -1809,7 +1812,7 @@ namespace Logic_Navigator
             // 
             // treeView
             // 
-            this.treeView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.treeView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.treeView.Location = new System.Drawing.Point(0, 88);
             this.treeView.Name = "treeView";
@@ -1869,7 +1872,7 @@ namespace Logic_Navigator
             // 
             // RungGrid
             // 
-            this.RungGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.RungGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.RungGrid.CaptionVisible = false;
             this.RungGrid.DataMember = "";
@@ -2427,7 +2430,7 @@ namespace Logic_Navigator
             // 
             this.ProjectDirectory.Location = new System.Drawing.Point(268, 287);
             this.ProjectDirectory.Name = "ProjectDirectory";
-            this.ProjectDirectory.Size = new System.Drawing.Size(544, 20);
+            this.ProjectDirectory.Size = new System.Drawing.Size(233, 20);
             this.ProjectDirectory.TabIndex = 73;
             this.ProjectDirectory.Visible = false;
             // 
@@ -2444,7 +2447,7 @@ namespace Logic_Navigator
             // 
             // NewFileText1
             // 
-            this.NewFileText1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.NewFileText1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NewFileText1.Location = new System.Drawing.Point(917, 444);
             this.NewFileText1.Name = "NewFileText1";
@@ -2454,7 +2457,7 @@ namespace Logic_Navigator
             // 
             // OldFileText1
             // 
-            this.OldFileText1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.OldFileText1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.OldFileText1.Location = new System.Drawing.Point(906, 362);
             this.OldFileText1.Name = "OldFileText1";
@@ -2464,7 +2467,7 @@ namespace Logic_Navigator
             // 
             // NewFileText
             // 
-            this.NewFileText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.NewFileText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NewFileText.Font = new System.Drawing.Font("Trebuchet MS", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NewFileText.ForeColor = System.Drawing.Color.Red;
@@ -2479,7 +2482,7 @@ namespace Logic_Navigator
             // 
             // OldFileText
             // 
-            this.OldFileText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.OldFileText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.OldFileText.Font = new System.Drawing.Font("Trebuchet MS", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OldFileText.ForeColor = System.Drawing.Color.Blue;
@@ -2739,6 +2742,90 @@ namespace Logic_Navigator
             this.TAL16FileName.Size = new System.Drawing.Size(100, 20);
             this.TAL16FileName.TabIndex = 0;
             // 
+            // prefixt16
+            // 
+            this.prefixt16.Location = new System.Drawing.Point(0, 0);
+            this.prefixt16.Name = "prefixt16";
+            this.prefixt16.Size = new System.Drawing.Size(100, 20);
+            this.prefixt16.TabIndex = 0;
+            // 
+            // prefixt15
+            // 
+            this.prefixt15.Location = new System.Drawing.Point(0, 0);
+            this.prefixt15.Name = "prefixt15";
+            this.prefixt15.Size = new System.Drawing.Size(100, 20);
+            this.prefixt15.TabIndex = 0;
+            // 
+            // prefixt14
+            // 
+            this.prefixt14.Location = new System.Drawing.Point(0, 0);
+            this.prefixt14.Name = "prefixt14";
+            this.prefixt14.Size = new System.Drawing.Size(100, 20);
+            this.prefixt14.TabIndex = 0;
+            // 
+            // prefixt13
+            // 
+            this.prefixt13.Location = new System.Drawing.Point(0, 0);
+            this.prefixt13.Name = "prefixt13";
+            this.prefixt13.Size = new System.Drawing.Size(100, 20);
+            this.prefixt13.TabIndex = 0;
+            // 
+            // prefixt12
+            // 
+            this.prefixt12.Location = new System.Drawing.Point(0, 0);
+            this.prefixt12.Name = "prefixt12";
+            this.prefixt12.Size = new System.Drawing.Size(100, 20);
+            this.prefixt12.TabIndex = 0;
+            // 
+            // prefixt11
+            // 
+            this.prefixt11.Location = new System.Drawing.Point(0, 0);
+            this.prefixt11.Name = "prefixt11";
+            this.prefixt11.Size = new System.Drawing.Size(100, 20);
+            this.prefixt11.TabIndex = 0;
+            // 
+            // prefixt10
+            // 
+            this.prefixt10.Location = new System.Drawing.Point(0, 0);
+            this.prefixt10.Name = "prefixt10";
+            this.prefixt10.Size = new System.Drawing.Size(100, 20);
+            this.prefixt10.TabIndex = 0;
+            // 
+            // prefixt9
+            // 
+            this.prefixt9.Location = new System.Drawing.Point(0, 0);
+            this.prefixt9.Name = "prefixt9";
+            this.prefixt9.Size = new System.Drawing.Size(100, 20);
+            this.prefixt9.TabIndex = 0;
+            // 
+            // prefixt8
+            // 
+            this.prefixt8.Location = new System.Drawing.Point(0, 0);
+            this.prefixt8.Name = "prefixt8";
+            this.prefixt8.Size = new System.Drawing.Size(100, 20);
+            this.prefixt8.TabIndex = 0;
+            // 
+            // prefixt7
+            // 
+            this.prefixt7.Location = new System.Drawing.Point(0, 0);
+            this.prefixt7.Name = "prefixt7";
+            this.prefixt7.Size = new System.Drawing.Size(100, 20);
+            this.prefixt7.TabIndex = 0;
+            // 
+            // prefixt6
+            // 
+            this.prefixt6.Location = new System.Drawing.Point(0, 0);
+            this.prefixt6.Name = "prefixt6";
+            this.prefixt6.Size = new System.Drawing.Size(100, 20);
+            this.prefixt6.TabIndex = 0;
+            // 
+            // prefixt5
+            // 
+            this.prefixt5.Location = new System.Drawing.Point(0, 0);
+            this.prefixt5.Name = "prefixt5";
+            this.prefixt5.Size = new System.Drawing.Size(100, 20);
+            this.prefixt5.TabIndex = 0;
+            // 
             // prefixt4
             // 
             this.prefixt4.Location = new System.Drawing.Point(342, 254);
@@ -2801,6 +2888,25 @@ namespace Logic_Navigator
             this.button1.TabIndex = 24;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label15
+            // 
+            this.label15.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(506, 287);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(116, 20);
+            this.label15.TabIndex = 119;
+            this.label15.Text = "Project Filename";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label15.Visible = false;
+            // 
+            // ProjectFilename
+            // 
+            this.ProjectFilename.Location = new System.Drawing.Point(627, 287);
+            this.ProjectFilename.Name = "ProjectFilename";
+            this.ProjectFilename.Size = new System.Drawing.Size(186, 20);
+            this.ProjectFilename.TabIndex = 118;
+            this.ProjectFilename.Visible = false;
+            // 
             // frmMDIMain
             // 
             this.AllowDrop = true;
@@ -2808,6 +2914,8 @@ namespace Logic_Navigator
             this.BackColor = System.Drawing.SystemColors.Control;
             this.CancelButton = this.button2;
             this.ClientSize = new System.Drawing.Size(1266, 552);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.ProjectFilename);
             this.Controls.Add(this.prefixmain);
             this.Controls.Add(this.prefixt4);
             this.Controls.Add(this.prefixt3);
@@ -3791,7 +3899,7 @@ namespace Logic_Navigator
                         if (lineofcode.LastIndexOf("BEGIN", sc) != -1)
                             endOfLadder = true;
                         if (lineofcode.LastIndexOf("CONSTANTS", sc) != -1)
-                            endOfLadder = true; 
+                            endOfLadder = true;
                         if (lineofcode.LastIndexOf("CONFIGURATION", sc) != -1)
                             endOfLadder = true;
                     }
@@ -7449,6 +7557,12 @@ namespace Logic_Navigator
             Close_All();
         }
 
+        private void ReloadProject()
+        {
+            Close_All();
+            openProjectFile(ProjectFilename.Text); 
+        }
+
         private void Close_All()
         {
             Close_All_Rungs();
@@ -7957,14 +8071,20 @@ namespace Logic_Navigator
                 exportVersion = SortVersionRecordsByVersionNumber(versionRecNew);//SortVersionRecordsByDate(versionRecNew);
                 if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                     if ((myStream = saveFileDialog1.OpenFile()) != null)
+                    {
+                        myStream.SetLength(0);
                         dialog1 = true;
+                    }
             }
             else
             {
                 exportVersion = SortVersionRecordsByVersionNumber(versionRecOld);
                 if (saveFileDialog2.ShowDialog() == DialogResult.OK)
                     if ((myStream = saveFileDialog2.OpenFile()) != null)
+                    {
+                        myStream.SetLength(0);
                         dialog2 = true;
+                    }
             }
             if ((dialog1 == true) || (dialog2 == true))
             {
@@ -8105,6 +8225,7 @@ namespace Logic_Navigator
             else
             {
                 myStream = File.OpenWrite(filename);
+                myStream.SetLength(0);
                 dialog = true;
             }
             if (dialog == true)
@@ -9084,6 +9205,8 @@ namespace Logic_Navigator
                             SaveLogicStateFile(CurrentState.Text);
                         if (command == "LoadLogicState")
                             LoadLogicState();
+                        if (command == "ReloadProject")
+                            ReloadProject();                        
                         if (command.IndexOf("SaveMap") != -1)
                             SaveMap(command.Substring(7), false);
                         menuItem44.Text = "Simulation Speed (x" + simspeed.ToString() + ")";
@@ -10255,7 +10378,7 @@ namespace Logic_Navigator
             PlayDownSound();
         }
 
-        private string SaveMapXMLFile(string filename, string name, int height, int width, int left, int top)
+        private string SaveMapXMLFile(string filename, string name, int height, int width, int left, int top, float scalefactor, Point pan)
         {
             string fileNameChosen = "";
             Stream myStream = null;
@@ -10271,13 +10394,17 @@ namespace Logic_Navigator
                 {
                     fileNameChosen = saveFileDialog3.FileName;
                     if ((myStream = saveFileDialog3.OpenFile()) != null)
+                    {
+                        myStream.SetLength(0);
                         dialog = true;
+                    }
                 }
             }
             else
             {
                 fileNameChosen = filename;
                 myStream = File.OpenWrite(filename);
+                myStream.SetLength(0);
                 dialog = true;
             }
 
@@ -10301,6 +10428,9 @@ namespace Logic_Navigator
                 WriteString(myStream, "\t\t<left>" + left + "</left>" + CRLF);
                 WriteString(myStream, "\t\t<height>" + height + "</height>" + CRLF);
                 WriteString(myStream, "\t\t<width>" + width + "</width>" + CRLF);
+                WriteString(myStream, "\t\t<scalefactor>" + scalefactor + "</scalefactor>" + CRLF);
+                WriteString(myStream, "\t\t<PanX>" + pan.X + "</PanX>" + CRLF);
+                WriteString(myStream, "\t\t<PanY>" + pan.Y + "</PanY>" + CRLF);
                 WriteString(myStream, "\t</window_properties>" + CRLF);
                 WriteString(myStream, "\t<objects>" + CRLF);
                 for (int i = 0; i < mapObjects.Count; i++)
@@ -10362,7 +10492,7 @@ namespace Logic_Navigator
         }
 
 
-        private string SaveMapFile(string filename, string name, int height, int width, int left, int top)
+        private string SaveMapFile(string filename, string name, int height, int width, int left, int top, float scalefactor, Point totalPan)
         {
             string fileNameChosen = "";
             Stream myStream = null;
@@ -10378,13 +10508,17 @@ namespace Logic_Navigator
                 {
                     fileNameChosen = saveFileDialog3.FileName;
                     if ((myStream = saveFileDialog3.OpenFile()) != null)
+                    {
+                        myStream.SetLength(0);
                         dialog = true;
+                    }
                 }
             }
             else
             {
                 fileNameChosen = filename;
                 myStream = File.OpenWrite(filename);
+                myStream.SetLength(0);
                 dialog = true;
             }
 
@@ -10399,6 +10533,8 @@ namespace Logic_Navigator
                 WriteString(myStream, CRLF);
                 WriteString(myStream, CRLF);
                 WriteString(myStream, "Window: Name: " + name + ", Top: " + top + ", Left: " + left + ", Height: " + height + ", Width: " + width);
+                WriteString(myStream, CRLF);
+                WriteString(myStream, "Window1: ScaleFactor: " + scalefactor + ", PanX: " + totalPan.X + ", PanY: " + totalPan.Y);
                 WriteString(myStream, CRLF);
                 WriteString(myStream, CRLF);
                 for (int i = 0; i < mapObjects.Count; i++)
@@ -10479,6 +10615,7 @@ namespace Logic_Navigator
                 if (saveLayoutFileDialog.ShowDialog() == DialogResult.OK)
                     if ((myStream = saveLayoutFileDialog.OpenFile()) != null)
                     {
+                        myStream.SetLength(0);
                         dialog = true;
                         CurrentLayout.Text = saveLayoutFileDialog.FileName;
                     }
@@ -10486,6 +10623,7 @@ namespace Logic_Navigator
             else
             {
                 myStream = File.OpenWrite(filename);
+                myStream.SetLength(0);
                 dialog = true;
             }
             if (dialog == true)
@@ -10810,6 +10948,8 @@ namespace Logic_Navigator
 
             int height = 0;
             int width = 0;
+            float scalefactor = 1;
+            Point pan = new Point(0, 0);
 
             mapObjects.Clear();
             SR1 = File.OpenText(filenameString);
@@ -10825,7 +10965,13 @@ namespace Logic_Navigator
                         if (top == 0) top = Int32.Parse(line.Substring(line.LastIndexOf("Top:") + 5, line.LastIndexOf("Left:") - (line.LastIndexOf("Top:") + 7)));
                         if (left == 0) left = Int32.Parse(line.Substring(line.LastIndexOf("Left:") + 6, line.LastIndexOf("Height:") - (line.LastIndexOf("Left:") + 8)));
                         height = Int32.Parse(line.Substring(line.LastIndexOf("Height:") + 8, line.LastIndexOf("Width:") - (line.LastIndexOf("Height:") + 10)));
-                        width = Int32.Parse(line.Substring(line.LastIndexOf("Width:") + 7));
+                        width = Int32.Parse(line.Substring(line.LastIndexOf("Width:") + 7));                        
+                    }
+                    if (line.LastIndexOf("Window1:") != -1)
+                    {
+                        scalefactor = float.Parse(line.Substring(line.LastIndexOf("ScaleFactor:") + 12, line.LastIndexOf("PanX:") - (line.LastIndexOf("ScaleFactor:") + 14)));
+                        pan.X = Int32.Parse(line.Substring(line.LastIndexOf("PanX:") + 5, line.LastIndexOf("PanY:") - (line.LastIndexOf("PanX:") + 7)));
+                        pan.Y = Int32.Parse(line.Substring(line.LastIndexOf("PanY:") + 5));
                     }
 
                     if (line.LastIndexOf("Object:") != -1)
@@ -10910,7 +11056,10 @@ namespace Logic_Navigator
             objfrmMChild.Location = new Point(left, top);
 
             objfrmMChild.Show();
-
+            objfrmMChild.scaleFactor = scalefactor;
+            objfrmMChild.totalpan = pan;
+            //objfrmMChild.panSinceClick = new Point(0, 0);
+            objfrmMChild.pan = pan;
             SR1.Close();
         }
 
@@ -11393,7 +11542,7 @@ namespace Logic_Navigator
         {
             bool found = false;
             mapObjects.Clear();
-            int height = 0; int width = 0; int left = 0; int top = 0; string name = "";
+            int height = 0; int width = 0; int left = 0; int top = 0; string name = ""; float scalefactor = 1; Point totalPan = new Point(0, 0);
             if (filename == "")
             {
                 for (int i = 0; i < this.MdiChildren.Length; i++)
@@ -11414,15 +11563,17 @@ namespace Logic_Navigator
                             left = frmMChild_SimMap.Left;
                             top = frmMChild_SimMap.Top;
                             name = frmMChild_SimMap.Text;
+                            scalefactor = frmMChild_SimMap.scaleFactor;
+                            totalPan = frmMChild_SimMap.totalpan;
                         }
                     }
                 }
                 if (found)
                 {
                     if (XML)
-                        CurrentMap1.Text = SaveMapXMLFile(filename, name, height, width, left, top);
+                        CurrentMap1.Text = SaveMapXMLFile(filename, name, height, width, left, top, scalefactor, totalPan);
                     else
-                        CurrentMap1.Text = SaveMapFile(filename, name, height, width, left, top);
+                        CurrentMap1.Text = SaveMapFile(filename, name, height, width, left, top, scalefactor, totalPan);
                 }
             }
             else
@@ -11445,10 +11596,12 @@ namespace Logic_Navigator
                             left = frmMChild_SimMap.Left;
                             top = frmMChild_SimMap.Top;
                             name = frmMChild_SimMap.Text;
+                            scalefactor = frmMChild_SimMap.scaleFactor;
+                            totalPan = frmMChild_SimMap.totalpan;
                         }
                     }
                 }
-                if (found) SaveMapFile(filename, name, height, width, left, top);
+                if (found) SaveMapFile(filename, name, height, width, left, top, scalefactor, totalPan);
             }
             if (!found) //CurrentMap1.Text = SaveMapFile(filename, name, height, width, left, top);
                 MessageBox.Show("Please select a map form first, then choose the save menu", "Directions");
@@ -11528,7 +11681,10 @@ namespace Logic_Navigator
             saveSt8FileDialog.FileName = "save.txt";
             if (saveSt8FileDialog.ShowDialog() == DialogResult.OK)
                 if ((myStream = saveSt8FileDialog.OpenFile()) != null)
+                {
+                    myStream.SetLength(0);
                     dialog = true;
+                }
             if (dialog == true)
             {
                 int index = 0;
@@ -11652,6 +11808,7 @@ namespace Logic_Navigator
             SimInputs.Clear();
             HighRungs.Clear();
             Changes.Clear();
+            
             if (projectfilename == "")
             {
                 if (openProjectFileDialog.ShowDialog() == DialogResult.OK)
@@ -11661,6 +11818,7 @@ namespace Logic_Navigator
                     if (directory.LastIndexOf("\\") != -1)
                         directory = directory.Substring(0, directory.LastIndexOf("\\"));
                     ProjectDirectory.Text = directory;
+                    ProjectFilename.Text = openProjectFileDialog.FileName;
                     openprjFile(openProjectFileDialog.FileName);
                 }
             }
@@ -11670,6 +11828,7 @@ namespace Logic_Navigator
                 if (directory.LastIndexOf("\\") != -1)
                     directory = directory.Substring(0, directory.LastIndexOf("\\"));
                 ProjectDirectory.Text = directory;
+                ProjectFilename.Text = projectfilename;
                 openprjFile(projectfilename);
             }
             OpenFiles();
@@ -11895,8 +12054,6 @@ namespace Logic_Navigator
             transferSimInputstoSimInputsForm();
 
             if (OpenLytFile(CurrentLayout.Text) == 0)
-
-
                 if (CurrentMap1.Text != "")
                     OpenMapFile(CurrentMap1.Text);
             if (CurrentMap2.Text != "")
@@ -11939,6 +12096,7 @@ namespace Logic_Navigator
             if (saveProjectFileDialog.ShowDialog() == DialogResult.OK)
                 if ((myStream = saveProjectFileDialog.OpenFile()) != null)
                 {
+                    myStream.SetLength(0);
                     dialog = true;
                     FileInfo fi = new FileInfo(saveProjectFileDialog.FileName);
                     directory = fi.DirectoryName;
@@ -12222,6 +12380,7 @@ namespace Logic_Navigator
                         if (directory.LastIndexOf("\\") != -1)
                             directory = directory.Substring(0, directory.LastIndexOf("\\"));
                         ProjectDirectory.Text = directory;
+                        ProjectFilename.Text = file;
                         openprjFile(file);
                         OpenFiles();
                     }
