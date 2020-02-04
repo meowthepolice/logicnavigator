@@ -223,10 +223,22 @@ namespace Logic_Navigator
 
         public List<string> Inputnames = new List<string>();
         public List<bool> Inputstates = new List<bool>();
+        public List<bool> InputstatesPrev = new List<bool>();
+              
 
         public List<string> ExclusionList = new List<string>();
 
         public List<Point> CoilContactrefs = new List<Point>();
+        
+        public List<List<int>> depbookCoils = new List<List<int>>();
+        public List<List<int>> depbookInputs = new List<List<int>>();
+
+        public List<bool> evaluationlist = new List<bool>();
+
+        //public List<string> depbookInputNames = new List<string>();
+        //public List<bool> inputstates = new List<bool>();
+
+
         //private Coilcoordsx  
         private int rungBeingEvaluated = 0;
 
@@ -8164,6 +8176,8 @@ namespace Logic_Navigator
             PopulateContactAnalysis();
             PrepareSimulationRungs();
             PrepareCoilPositions();
+            PrepareDependencyListCoils();
+            PrepareDependencyListInputs();
             PrepareTimerAnalysis();
             // if (!backgroundWorker1.IsBusy)
             //   backgroundWorker1.RunWorkerAsync();
@@ -8188,6 +8202,84 @@ namespace Logic_Navigator
                 List<Contact> rung = (List<Contact>)sim[j];
                 CoilContactrefs.Add(FindCoilList(rung));
             }
+        }
+
+        private void PrepareDependencyListCoils()
+        {
+            depbookCoils.Clear();
+            evaluationlist.Clear();
+            for (int i = 0; i < siminterlocking.Count; i++)
+            {
+                ArrayList rung = (ArrayList)siminterlocking[i];
+                List<int> coillinks = new List<int>();
+                for (int k = 0; k < siminterlocking.Count; k++)
+                {
+                    ArrayList rungr = (ArrayList)siminterlocking[k];
+                    for (int l = 1; l < rungr.Count - 1; l++) 
+                    {
+                        Contact cont = (Contact)rungr[l];
+                        if (cont.name == (string)rung[rung.Count - 1])
+                            if(cont.typeOfCell != "Coil")   
+                                if(coillinks.IndexOf(k) == -1)
+                                    coillinks.Add(k);
+                    }
+                }
+                depbookCoils.Add(coillinks);
+                evaluationlist.Add(true);
+            }
+        }
+
+        private void PrepareDependencyListInputs()
+        {
+            depbookInputs.Clear();
+            List<string> coils = new List<string>();
+            List<string> inputs = new List<string>();
+
+            for (int i = 0; i < siminterlocking.Count; i++)
+            {
+                ArrayList rung = (ArrayList)siminterlocking[i];
+                coils.Add((string)rung[rung.Count - 1]);
+            }
+
+            for (int k = 0; k < siminterlocking.Count; k++)
+            {
+                ArrayList rungr = (ArrayList)siminterlocking[k];
+                for (int l = 1; l < rungr.Count - 1; l++) 
+                {
+                    Contact cont = (Contact)rungr[l];
+                    bool incoillist = false; bool ininputlist = false;
+                    for (int c = 0; c < coils.Count; c++)
+                        if (cont.name == coils[c])                           
+                             incoillist = true;
+                    for (int c = 0; c < inputs.Count; c++)
+                        if (cont.name == inputs[c])
+                            ininputlist = true;
+                    if (!incoillist && !ininputlist)
+                        if(cont.name != "")
+                            inputs.Add(cont.name);
+                }
+            }
+
+            for (int i = 0; i < inputs.Count; i++)
+            {                
+                List<int> coillinks = new List<int>();
+                for (int k = 0; k < siminterlocking.Count; k++)
+                {
+                    ArrayList rungr = (ArrayList)siminterlocking[k];
+                    for (int l = 1; l < rungr.Count - 1; l++)
+                    {
+                        Contact cont = (Contact)rungr[l];
+                        if (cont.name == inputs[i])
+                            if (cont.typeOfCell != "Coil")
+                                if (coillinks.IndexOf(k) == -1)
+                                    coillinks.Add(k);
+                    }
+                }
+                depbookInputs.Add(coillinks);
+                //depbookInputNames.Add(inputs[i]);
+                //inputstates.Add(false);
+            }
+
         }
 
         private void PrepareSimulationRungs()
@@ -8346,6 +8438,7 @@ namespace Logic_Navigator
                         {
                             Inputnames.Add(contact.name);
                             Inputstates.Add(isInputHigh(contact.name));
+                            InputstatesPrev.Add(false);
                         }
                 }
             }
@@ -8467,8 +8560,10 @@ namespace Logic_Navigator
         {
             try
             {
-
+                getPreviousScan();
                 ScanInputs();
+                findChangesinInputs();
+
                 ScanSimSpeed();
                 if (windowsopen != this.MdiChildren.Length)
                 {
@@ -8547,6 +8642,12 @@ namespace Logic_Navigator
                     objfrmMChild.ScrollCommand = ScrollCommand;
                     objfrmMChild.InvalidateForm();
                 }
+        }
+
+        private void getPreviousScan()
+        {
+            for (int i = 0; i < Inputstates.Count; i++)
+                InputstatesPrev[i] = Inputstates[i];            
         }
 
         private void ScanInputs()
@@ -8646,6 +8747,27 @@ namespace Logic_Navigator
             }
         }
 
+        private void findChangesinInputs()
+        {
+            for(int i = 0; i < Inputstates.Count; i++)
+            {
+                if(Inputstates[i] != InputstatesPrev[i])
+                {
+                    for (int j = 0; j < depbookInputs[i].Count; j++)
+                        evaluationlist[depbookInputs[i][j]] = true;
+                }
+            }
+            int debg = 0;
+        }
+
+        private void findChangesinCoils(int coil)
+        {
+            for (int j = 0; j < depbookCoils[coil].Count; j++)
+                evaluationlist[depbookCoils[coil][j]] = true;
+            
+            int debg = 0;
+        }
+
         private void ScanSimSpeed()
         {
             try
@@ -8716,17 +8838,18 @@ namespace Logic_Navigator
             string rungtitle = "";
             int timerremoveindex;
             //HighRungs.Clear();
-            //GetRungstoEvaluate();
             //for (int r = 0; r < interlockingNew.Count; r++)
             globalcounter = 0; searchdepth = 0; rungsevaluated = 0;
+            bool evalnexttime = false;
             for (int r = 0; r < sim.Count; r++)
             {
                 List<Contact> rung = (List<Contact>)sim[r];
-                //for (int k = 0; k < rung.Count; k++)
+                rungtitle = Coilnames[r];
+                globalcounter++;
+                wipevoltages();
+                evalnexttime = false;
+                if (evaluationlist[r])
                 {
-                    rungtitle = Coilnames[r];
-                    globalcounter++;
-                    wipevoltages();
                     if (EvaluateRungList(rung, r))
                     { // Add to the list of High Rungs
                         try
@@ -8737,6 +8860,7 @@ namespace Logic_Navigator
                                 int timerindex = findS2PTimer(timersNew, rungtitle);
                                 if (timerindex != -1) // Slow to pick timer
                                 {
+                                    evalnexttime = true; //because it is a timer
                                     int timerstartindex = inTimerList(rungtitle, S2PTimersTiming);
                                     if (timerstartindex == -1) // Start timing
                                     {
@@ -8746,13 +8870,15 @@ namespace Logic_Navigator
                                         timing.timeElapsed = 0;
                                         timing.totaltime = (int)(((float)Gettime(timerindex, "Set")) / 1000);
                                         if (timing.totaltime == 0)
+                                        {
+                                            if (!Coilstates[r])
+                                                findChangesinCoils(r); //If there is a change of state, then work out what other rungs are affected
                                             Coilstates[r] = true;
+                                        }
                                         S2PTimersTiming.Add(timing);
                                         if (!InExclusionList(Coilnames[r]))
-                                        {
                                             if (sound)
                                                 PlayTimerStartUpSound();
-                                        }
                                     }
                                     else // In the timer list already, see if timed out yet
                                     {
@@ -8764,22 +8890,15 @@ namespace Logic_Navigator
                                         if (diffmsec > Gettime(timerindex, "Set")) //3 secs
                                         {
                                             if (Coilstates[r] != true)
-                                            {
                                                 if (!InExclusionList(Coilnames[r]))
-                                                {
                                                     LogEvent(Coilnames[r].ToString(), "High", DateTime.Now.ToLongTimeString());
-                                                    if (sound)
-                                                    {
-                                                        //PlayUpSound();
-                                                        //ReadCoil(Coilnames[r].ToString(), "High");
-                                                        //if (Coilnames[r].ToString() == null)
-                                                        //    test = 0;
-                                                        SoundQueue.Add(Coilnames[r].ToString() + "High");
-                                                        //SoundQueue.Add("High");
-                                                        playstuff = true;
-                                                    }
-                                                }
+                                            if (sound)
+                                            {
+                                                SoundQueue.Add(Coilnames[r].ToString() + "High");
+                                                playstuff = true;
                                             }
+                                            if (!Coilstates[r])
+                                                findChangesinCoils(r); //If there is a change of state, then work out what other rungs are affected
                                             Coilstates[r] = true;
                                         }
                                     }
@@ -8789,26 +8908,21 @@ namespace Logic_Navigator
                                     if (Coilstates[r] != true)
                                     {
                                         if (!InExclusionList(Coilnames[r]))
-                                        {
                                             LogEvent(Coilnames[r].ToString(), "High", DateTime.Now.ToLongTimeString());
-                                            if (sound)
-                                            {
-                                                //PlayUpSound();
-                                                //ReadCoil(Coilnames[r].ToString(), "High");
-                                                //if (Coilnames[r].ToString() == null)
-                                                //   test = 0;
-                                                SoundQueue.Add(Coilnames[r].ToString() + "High");
-                                                //SoundQueue.Add("High");
-                                                playstuff = true;
-                                            }
+                                        if (sound)
+                                        {
+                                            SoundQueue.Add(Coilnames[r].ToString() + "High");
+                                            playstuff = true;
                                         }
                                     }
+                                    if (!Coilstates[r])
+                                        findChangesinCoils(r); //If there is a change of state, then work out what other rungs are affected
                                     Coilstates[r] = true;
                                 }
                             }
                             if (CoilIsTimer[r] != -1) //Coil is a S2D timer 
                             {
-                                timerremoveindex = inTimerList(rungtitle, S2DTimersTiming); // remove the timer from list now that it has it is not timing
+                                timerremoveindex = inTimerList(rungtitle, S2DTimersTiming); // remove the timer from list now that it is not timing
                                 if (timerremoveindex != -1)
                                     S2DTimersTiming.RemoveRange(timerremoveindex, 1);
                             }
@@ -8822,6 +8936,7 @@ namespace Logic_Navigator
                             int timerindex = findS2DTimer(timersNew, rungtitle);
                             if (timerindex != -1) // Slow to drop timer
                             {
+                                evalnexttime = true; //because it is a timer
                                 int timerstartindex = inTimerList(rungtitle, S2DTimersTiming);
                                 if (timerstartindex == -1) // Start timing
                                 {
@@ -8831,13 +8946,15 @@ namespace Logic_Navigator
                                     timing.timeElapsed = 0;
                                     timing.totaltime = (int)(((float)Gettime(timerindex, "Clear")) / 1000);
                                     if (timing.totaltime == 0)
+                                    {
+                                        if (Coilstates[r])
+                                            findChangesinCoils(r); //If there is a change of state, then work out what other rungs are affected
                                         Coilstates[r] = false;
+                                    }
                                     S2DTimersTiming.Add(timing);
                                     if (!InExclusionList(Coilnames[r]))
-                                    {
                                         if (sound)
                                             PlayTimerStartDownSound();
-                                    }
                                 }
                                 else // In the timer list already, see if timed out yet
                                 {
@@ -8849,48 +8966,35 @@ namespace Logic_Navigator
                                     if (diffmsec > Gettime(timerindex, "Clear")) //3 secs
                                     {
                                         if (Coilstates[r] != false)
-                                        {
                                             if (!InExclusionList(Coilnames[r]))
                                             {
                                                 LogEvent(Coilnames[r].ToString(), "Low", DateTime.Now.ToLongTimeString());
                                                 if (sound)
                                                 {
-                                                    //PlayDownSound();
-                                                    //ReadCoil(Coilnames[r].ToString(), "Low");
-                                                    //int test;
-                                                    //if (Coilnames[r].ToString() == null)
-                                                    //    test = 0;
                                                     SoundQueue.Add(Coilnames[r].ToString() + "Low");
-                                                    //SoundQueue.Add("Low");
                                                     playstuff = true;
                                                 }
                                             }
-                                        }
+                                        if (Coilstates[r])
+                                            findChangesinCoils(r); //If there is a change of state, then work out what other rungs are affected
                                         Coilstates[r] = false;
                                     }
                                 }
                             }
-                            else
+                            else //  not a timer
                             {
                                 if (Coilstates[r] != false)
-                                {
                                     if (!InExclusionList(Coilnames[r]))
                                     {
                                         LogEvent(Coilnames[r].ToString(), "Low", DateTime.Now.ToLongTimeString());
                                         if (sound)
                                         {
-                                            //PlayDownSound();
-                                            //ReadCoil(Coilnames[r].ToString(), "Low");
-                                            //int test;
-                                            //if (Coilnames[r].ToString() == null)
-                                            //    test = 0;
                                             SoundQueue.Add(Coilnames[r].ToString() + "Low");
-                                            //SoundQueue.Add("Low");
                                             playstuff = true;
                                         }
-
                                     }
-                                }
+                                if (Coilstates[r])
+                                    findChangesinCoils(r); //If there is a change of state, then work out what other rungs are affected
                                 Coilstates[r] = false;
                             }
                             timerremoveindex = inTimerList(rungtitle, S2PTimersTiming); // remove the timer from list now that it has it is not timing
@@ -8900,6 +9004,7 @@ namespace Logic_Navigator
                         catch { MessageBox.Show("Error Evaluating Rungs - High to Low" + rungtitle.ToString(), "Logic Navigator Error"); }
                     }
                 }
+                if(!evalnexttime) evaluationlist[r] = false; // cross this off the list of rungs to evaluate
             }
             TransferCoilStatestoHighRungs();
             //statusBar1.Text = ((float)searchdepth / (float)globalcounter).ToString() + ", " + rungsevaluated.ToString();             
