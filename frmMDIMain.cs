@@ -176,6 +176,8 @@ namespace Logic_Navigator
         private List<string> objects = new List<string>();
         private int RELAYCALC = 0;
         private int WESTRACECALC = 1;
+        private int ticker = 0;
+        private int cycletimespeed = 250;
 
         private int calcmethod = 1;
 
@@ -260,6 +262,10 @@ namespace Logic_Navigator
         DateTime PreviousEvaluation;
         DateTime BeginEvaluation;
         DateTime EndEvaluation;
+        DateTime BeginScan;
+        DateTime EndScan;
+        DateTime BeginBroadcast;
+        DateTime EndBroadcast;
 
 
         private int widthBetweenColumns = 23;
@@ -488,6 +494,10 @@ namespace Logic_Navigator
         private MenuItem menuItem112;
         private MenuItem menuItem113;
         private MenuItem menuItem115;
+        private MenuItem menuItem117;
+        private MenuItem menuItem118;
+        private MenuItem menuItem119;
+        private MenuItem menuItem120;
         private System.Windows.Forms.MenuItem menuItem6;
 
         public frmMDIMain()
@@ -764,6 +774,10 @@ namespace Logic_Navigator
             this.prefixmain = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.menuItem117 = new System.Windows.Forms.MenuItem();
+            this.menuItem118 = new System.Windows.Forms.MenuItem();
+            this.menuItem119 = new System.Windows.Forms.MenuItem();
+            this.menuItem120 = new System.Windows.Forms.MenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.RungGrid)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -1170,6 +1184,7 @@ namespace Logic_Navigator
             this.menuItem109,
             this.menuItem59,
             this.menuItem44,
+            this.menuItem117,
             this.menuItem87,
             this.menuItem55,
             this.menuItem34,
@@ -1333,7 +1348,7 @@ namespace Logic_Navigator
             // 
             // menuItem87
             // 
-            this.menuItem87.Index = 19;
+            this.menuItem87.Index = 20;
             this.menuItem87.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuItem88,
             this.menuItem89});
@@ -1353,78 +1368,78 @@ namespace Logic_Navigator
             // 
             // menuItem55
             // 
-            this.menuItem55.Index = 20;
+            this.menuItem55.Index = 21;
             this.menuItem55.Text = "-";
             // 
             // menuItem34
             // 
-            this.menuItem34.Index = 21;
+            this.menuItem34.Index = 22;
             this.menuItem34.Text = "Open Simulator Input Panel";
             this.menuItem34.Click += new System.EventHandler(this.menuItem34_Click);
             // 
             // menuItem42
             // 
-            this.menuItem42.Index = 22;
+            this.menuItem42.Index = 23;
             this.menuItem42.Text = "Open Simulator Rung Panel";
             this.menuItem42.Click += new System.EventHandler(this.menuItem42_Click);
             // 
             // menuItem50
             // 
-            this.menuItem50.Index = 23;
+            this.menuItem50.Index = 24;
             this.menuItem50.Text = "New Map Panel";
             this.menuItem50.Click += new System.EventHandler(this.menuItem50_Click_3);
             // 
             // menuItem54
             // 
-            this.menuItem54.Index = 24;
+            this.menuItem54.Index = 25;
             this.menuItem54.Text = "New Change of State Panel";
             this.menuItem54.Click += new System.EventHandler(this.menuItem54_Click);
             // 
             // menuItem39
             // 
-            this.menuItem39.Index = 25;
+            this.menuItem39.Index = 26;
             this.menuItem39.Text = "-";
             this.menuItem39.Visible = false;
             // 
             // menuItem49
             // 
-            this.menuItem49.Index = 26;
+            this.menuItem49.Index = 27;
             this.menuItem49.Text = "Sound";
             this.menuItem49.Visible = false;
             this.menuItem49.Click += new System.EventHandler(this.menuItem49_Click);
             // 
             // menuItem57
             // 
-            this.menuItem57.Index = 27;
+            this.menuItem57.Index = 28;
             this.menuItem57.Text = "Clear Buffer";
             this.menuItem57.Visible = false;
             this.menuItem57.Click += new System.EventHandler(this.menuItem57_Click);
             // 
             // menuItem60
             // 
-            this.menuItem60.Index = 28;
+            this.menuItem60.Index = 29;
             this.menuItem60.Text = "-";
             // 
             // menuItem67
             // 
-            this.menuItem67.Index = 29;
+            this.menuItem67.Index = 30;
             this.menuItem67.Text = "Serial Comms Settings";
             this.menuItem67.Click += new System.EventHandler(this.menuItem67_Click_1);
             // 
             // menuItem108
             // 
-            this.menuItem108.Index = 30;
+            this.menuItem108.Index = 31;
             this.menuItem108.Text = "-";
             // 
             // menuItem106
             // 
-            this.menuItem106.Index = 31;
+            this.menuItem106.Index = 32;
             this.menuItem106.Text = "Start Arduino Serial Comms";
             this.menuItem106.Click += new System.EventHandler(this.menuItem106_Click);
             // 
             // menuItem107
             // 
-            this.menuItem107.Index = 32;
+            this.menuItem107.Index = 33;
             this.menuItem107.Text = "Stop Arduino Serial Comms";
             this.menuItem107.Click += new System.EventHandler(this.menuItem107_Click);
             // 
@@ -2039,7 +2054,7 @@ namespace Logic_Navigator
             // 
             // Simulationtimer
             // 
-            this.Simulationtimer.Interval = 500;
+            this.Simulationtimer.Interval = 300;
             this.Simulationtimer.Tick += new System.EventHandler(this.Simulationtimer_Tick);
             // 
             // saveSt8FileDialog
@@ -2607,6 +2622,33 @@ namespace Logic_Navigator
             this.button1.Size = new System.Drawing.Size(32, 23);
             this.button1.TabIndex = 24;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // menuItem117
+            // 
+            this.menuItem117.Index = 19;
+            this.menuItem117.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem118,
+            this.menuItem119,
+            this.menuItem120});
+            this.menuItem117.Text = "Cycle Time";
+            // 
+            // menuItem118
+            // 
+            this.menuItem118.Index = 0;
+            this.menuItem118.Text = "250ms <";
+            this.menuItem118.Click += new System.EventHandler(this.menuItem118_Click);
+            // 
+            // menuItem119
+            // 
+            this.menuItem119.Index = 1;
+            this.menuItem119.Text = "500ms";
+            this.menuItem119.Click += new System.EventHandler(this.menuItem119_Click);
+            // 
+            // menuItem120
+            // 
+            this.menuItem120.Index = 2;
+            this.menuItem120.Text = "1000ms";
+            this.menuItem120.Click += new System.EventHandler(this.menuItem120_Click);
             // 
             // frmMDIMain
             // 
@@ -8558,38 +8600,53 @@ namespace Logic_Navigator
 
         private void Simulationtimer_Tick(object sender, EventArgs e)
         {
-            try
+            ticker += 250;
+            if (ticker % cycletimespeed == 0)
             {
-                getPreviousScan();
-                ScanInputs();
-                findChangesinInputs();
-
-                ScanSimSpeed();
-                if (windowsopen != this.MdiChildren.Length)
-                {
-                    windowsopen = this.MdiChildren.Length;
-                    SetSimModeinWindows();
-                }
-                if (!freezeRungStates)
-                {
-                    PreviousEvaluation = EndEvaluation;
-                    BeginEvaluation = DateTime.Now;
-                    wipevoltages();
-                    EvaluateRungs();
-                    //DrawVoltageMatrix();
-                    EndEvaluation = DateTime.Now;
-                    TimeSpan evaltime = EndEvaluation - BeginEvaluation;
-                    TimeSpan waittime = BeginEvaluation - PreviousEvaluation;
-                    statusBar1.Text = "Cycle Time: " + (evaltime.TotalMilliseconds).ToString() + " msecs";
-                    //(100 * (evaltime.TotalMilliseconds / (waittime.TotalMilliseconds + evaltime.TotalMilliseconds))).ToString();
-                }
+                if (ticker == 1000) ticker = 0;
                 try
                 {
-                    BroadcastRungStates();
+                    //if (ticker % 3 == 0)
+                    {
+                        BeginScan = DateTime.Now;
+                        getPreviousScan();
+                        ScanInputs();
+                        findChangesinInputs();
+                        EndScan = DateTime.Now;
+                    }
+                    ScanSimSpeed();
+                    if (windowsopen != this.MdiChildren.Length)
+                    {
+                        windowsopen = this.MdiChildren.Length;
+                        SetSimModeinWindows();
+                    }
+                    if (!freezeRungStates)
+                    {
+                        PreviousEvaluation = EndEvaluation;
+                        BeginEvaluation = DateTime.Now;
+                        wipevoltages();
+                        EvaluateRungs();
+                        EndEvaluation = DateTime.Now;
+                    }
+                    try
+                    {
+                        BeginBroadcast = DateTime.Now;
+                        BroadcastRungStates();
+                        EndBroadcast = DateTime.Now;
+                    }
+                    catch { MessageBox.Show("Error Broadcasting Rung states", "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
+                    TimeSpan waittime = BeginEvaluation - PreviousEvaluation;
+                    TimeSpan evaltime = EndEvaluation - BeginEvaluation;
+                    TimeSpan scantime = EndScan - BeginScan;
+                    TimeSpan broadcasttime = EndBroadcast - BeginBroadcast;
+
+                    statusBar1.Text = "Cycle time: " + (waittime.TotalMilliseconds).ToString() + " msecs; "
+                         + "Evaluation time: " + (evaltime.TotalMilliseconds).ToString() + " msecs; "
+                         + "Scan time: " + (scantime.TotalMilliseconds).ToString() + " msecs; "
+                         + "Broadcast time: " + (broadcasttime.TotalMilliseconds).ToString() + " msecs";
                 }
-                catch { MessageBox.Show("Error Broadcasting Rung states", "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
+                catch { MessageBox.Show("Error with Simulation, " + debuginfo1, "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
             }
-            catch { MessageBox.Show("Error with Simulation, " + debuginfo1, "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
         }
 
         private void DrawVoltageMatrix()
@@ -12157,6 +12214,30 @@ namespace Logic_Navigator
             objfrmMChild_Visualiser.Text = rungName;
             objfrmMChild_Visualiser.MdiParent = this;
             objfrmMChild_Visualiser.Show();
+        }
+
+        private void menuItem118_Click(object sender, EventArgs e)
+        {
+            menuItem118.Text = "250ms <";
+            menuItem119.Text = "500ms";
+            menuItem120.Text = "1000ms";
+            cycletimespeed = 250;
+        }
+
+        private void menuItem119_Click(object sender, EventArgs e)
+        {
+            menuItem118.Text = "250ms";
+            menuItem119.Text = "500ms <";
+            menuItem120.Text = "1000ms";
+            cycletimespeed = 500;
+        }
+
+        private void menuItem120_Click(object sender, EventArgs e)
+        {
+            menuItem118.Text = "250ms";
+            menuItem119.Text = "500ms";
+            menuItem120.Text = "1000ms <";
+            cycletimespeed = 1000;
         }
     }
 }
