@@ -175,6 +175,7 @@ namespace Logic_Navigator
             this.SoundcheckBox.TabIndex = 33;
             this.SoundcheckBox.Text = "Sound";
             this.SoundcheckBox.UseVisualStyleBackColor = true;
+            this.SoundcheckBox.Visible = false;
             // 
             // frmMChild_Log
             // 

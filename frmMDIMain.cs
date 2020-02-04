@@ -7559,8 +7559,13 @@ namespace Logic_Navigator
 
         private void ReloadProject()
         {
+            SaveLogicStateFile(CurrentState.Text);
+            SaveLayoutFile(CurrentLayout.Text);
+            for (int x = 0; x < this.MdiChildren.Length; x++)
+              if (this.MdiChildren[x].Name == "frmMChild_SimMap")                
+                SaveMap(this.MdiChildren[x].Text, false);
             Close_All();
-            openProjectFile(ProjectFilename.Text); 
+            openProjectFile(ProjectFilename.Text);            
         }
 
         private void Close_All()
@@ -10872,6 +10877,27 @@ namespace Logic_Navigator
                             objfrmMChild.Show();
                         }
                     }
+
+                    if (line.LastIndexOf("Change of State: ") != -1)
+                    {
+                        top = Int32.Parse(line.Substring(line.LastIndexOf("Top: ") + 5, (line.LastIndexOf(", Left: ") - (5 + line.LastIndexOf("Top: ")))));
+                        left = Int32.Parse(line.Substring(line.LastIndexOf("Left: ") + 6, (line.LastIndexOf(", Height: ") - (6 + line.LastIndexOf("Left: ")))));
+                        height = Int32.Parse(line.Substring(line.LastIndexOf("Height: ") + 8, (line.LastIndexOf(", Width: ") - (8 + line.LastIndexOf("Height: ")))));
+                        width = Int32.Parse(line.Substring(line.LastIndexOf("Width: ") + 7, (line.LastIndexOf(", Wildcard: ") - (7 + line.LastIndexOf("Width: ")))));
+                        wildcard = line.Substring(line.LastIndexOf("Wildcard: ") + 10);
+                        frmMChild_Log objfrmMChild = new frmMChild_Log(interlockingOld, interlockingNew, timersOld, timersNew, drawFont);
+                        objfrmMChild.Text = "Change of State";
+                        objfrmMChild.MdiParent = this;
+                        objfrmMChild.Width = width;
+                        objfrmMChild.Height = height;
+                        objfrmMChild.StartPosition = FormStartPosition.Manual;
+                        objfrmMChild.Location = new Point(left, top);
+                        objfrmMChild.searchString = wildcard;
+                        objfrmMChild.Show();
+                        objfrmMChild.CommitSearchString();
+                        objfrmMChild.searchStringTextChanged();
+                    }
+
                     /*
                     if (line.LastIndexOf("Map: ") != -1)
                     {
