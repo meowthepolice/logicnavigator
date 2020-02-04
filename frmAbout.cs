@@ -169,7 +169,7 @@ namespace Logic_Navigator
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(80, 24);
             this.label7.TabIndex = 13;
-            this.label7.Text = "(Build 0.0601)";
+            this.label7.Text = "(Build 0.0602)";
             this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label10
