@@ -184,6 +184,7 @@ namespace Logic_Navigator
         ArrayList interlockingTAL = new ArrayList(); //TAL = Turn Around Logic
         ArrayList timersTAL = new ArrayList(); //TAL = Turn Around Logic
         string duplicates = "";
+        bool dataerror = false;
         public ArrayList SimInputs = new ArrayList();
         public ArrayList HighRungs = new ArrayList();
         public List<List<Contact>> sim = new List<List<Contact>>();
@@ -8666,36 +8667,38 @@ namespace Logic_Navigator
                     TimeSpan evaltime = EndEvaluation - BeginEvaluation;
                     TimeSpan scantime = EndScan - BeginScan;
                     TimeSpan broadcasttime = EndBroadcast - BeginBroadcast;
-
-                    if ((forceHigh.Count > 0) || (forceLow.Count > 0))
+                    if (!dataerror)
                     {
-                        statusStrip1.Visible = true;
-                        toolStripStatusLabel1.Text = "REMINDER: False feeds/pin pulls are currently applied, coils forced high [";
-                        for (int m = 0; m < forceHigh.Count; m++)
+                        if ((forceHigh.Count > 0) || (forceLow.Count > 0))
                         {
-                            toolStripStatusLabel1.Text += forceHigh[m] + ", ";
-                            if (m < forceLow.Count - 1)
-                                toolStripStatusLabel1.Text += ", ";
+                            statusStrip1.Visible = true;
+                            toolStripStatusLabel1.Text = "REMINDER: False feeds/pin pulls are currently applied, coils forced high [";
+                            for (int m = 0; m < forceHigh.Count; m++)
+                            {
+                                toolStripStatusLabel1.Text += forceHigh[m] + ", ";
+                                if (m < forceLow.Count - 1)
+                                    toolStripStatusLabel1.Text += ", ";
+                            }
+                            toolStripStatusLabel1.Text += "], coils forced low [";
+                            for (int m = 0; m < forceLow.Count; m++)
+                            {
+                                toolStripStatusLabel1.Text += forceLow[m];
+                                if (m < forceLow.Count - 1)
+                                    toolStripStatusLabel1.Text += ", ";
+                            }
+                            toolStripStatusLabel1.Text += "], To remove false feed left click on the coil, To remove coil suppression left click on the coil, Click HERE to remove all false feeds/suppressions";
+                            statusStrip1.BackColor = Color.Yellow;
                         }
-                        toolStripStatusLabel1.Text += "], coils forced low [";
-                        for (int m = 0; m < forceLow.Count; m++)
+                        else
                         {
-                            toolStripStatusLabel1.Text += forceLow[m];
-                            if (m < forceLow.Count - 1)
-                                toolStripStatusLabel1.Text += ", ";
+                            statusStrip1.Visible = false;
+                            toolStripStatusLabel1.Text = "";
                         }
-                        toolStripStatusLabel1.Text += "], To remove false feed left click on the coil, To remove coil suppression left click on the coil, Click HERE to remove all false feeds/suppressions";
-                        statusStrip1.BackColor = Color.Yellow;
                     }
-                    else
-                    {
-                        statusStrip1.Visible = false;
-                        toolStripStatusLabel1.Text = "";
-                    }
-                    statusBar1.Text = "Processing time: " + (evaltime.TotalMilliseconds + scantime.TotalMilliseconds + broadcasttime.TotalMilliseconds).ToString("000.000") + " msecs; "
-                         + "(Evaluation time (evaluate rungs): " + (evaltime.TotalMilliseconds).ToString("000.000") + " msecs; "
-                         + "Scan time (reading inputs): " + (scantime.TotalMilliseconds).ToString("000.000") + " msecs; "
-                         + "Broadcast time (render rungs and map view): " + (broadcasttime.TotalMilliseconds).ToString("000.000") + " msecs)" 
+                    statusBar1.Text = "Processing time: " + (evaltime.TotalMilliseconds + scantime.TotalMilliseconds + broadcasttime.TotalMilliseconds).ToString("00.000") + " msecs; "
+                         + "(Evaluation time (evaluate rungs): " + (evaltime.TotalMilliseconds).ToString("00.000") + " msecs; "
+                         + "Scan time (reading inputs): " + (scantime.TotalMilliseconds).ToString("00.000") + " msecs; "
+                         + "Broadcast time (render rungs and map view): " + (broadcasttime.TotalMilliseconds).ToString("00.000") + " msecs)" 
                          + " Cycle Trigger time : " + (waittime.TotalMilliseconds).ToString("000.000") + " msecs; "                         
                          + "(Workload: " + workload + " rungs evaulated, rungs " + runglisting + ")";
 
@@ -9020,7 +9023,7 @@ namespace Logic_Navigator
                     { // Add to the list of High Rungs
                         try
                         {
-                            Coildrive[r] = true;//There is voltage on the coil, and it's a timer
+                            Coildrive[r] = true;//There is voltage on the coil
                             //Coilnodrive[r] = false;########
                             rungsevaluated++;
                             if (!inList(rungtitle, HighRungs))
@@ -9070,7 +9073,7 @@ namespace Logic_Navigator
                                             if (!Coilstates[r])
                                                 findChangesinCoils(r); //If there is a change of state, then work out what other rungs are affected
                                             Coilstates[r] = true;//Coil has picked because because the Coil Voltage has been applied for the required time
-                                            //evalnexttime = true; //just in case the timer is contact in its own rung
+                                            //evalnexttime = true; //#####
                                         }
                                     }
                                 }
@@ -9152,7 +9155,7 @@ namespace Logic_Navigator
                                         if (Coilstates[r])
                                             findChangesinCoils(r); //If there is a change of state, then work out what other rungs are affected
                                         Coilstates[r] = false;
-                                        //evalnexttime = true; //just in case the timer is contact in its own rung
+                                        //evalnexttime = true; //#####
                                     }
                                 }
                             }
@@ -9586,13 +9589,11 @@ namespace Logic_Navigator
                 if (this.MdiChildren[i].Name == "frmMChild_SimOutputs")
                 {
                     frmMChild_SimOutputs frmMChild_SimOutputs = (frmMChild_SimOutputs)this.MdiChildren[i];
-                    //frmMChild_SimOutputs.SimRungs = HighRungs;
                     frmMChild_SimOutputs.UpdateSimInputsList(HighRungs, S2PTimersTiming, S2DTimersTiming);
                 }
                 if (this.MdiChildren[i].Name == "frmMChild_SimMap")
                 {
                     frmMChild_SimMap frmMChild_SimMap = (frmMChild_SimMap)this.MdiChildren[i];
-                    //frmMChild_SimOutputs.SimRungs = HighRungs;
                     frmMChild_SimMap.UpdateSimRungsList(HighRungs, S2PTimersTiming, S2DTimersTiming);
                     frmMChild_SimMap.UpdateSimInputsList(SimInputs);
                 }
@@ -10922,7 +10923,9 @@ namespace Logic_Navigator
                 {
                     toolStripStatusLabel1.Text = "Error - Duplicate rung found: - " + duplicates;
                     statusStrip1.Visible = true;
+                    dataerror = true;
                 }
+                else dataerror = false;
                 if ((interlockingOld.Count != 0) && (interlockingNew.Count != 0))
                 {
                     this.treeView.Nodes.Clear();
@@ -11079,7 +11082,9 @@ namespace Logic_Navigator
                 {
                     toolStripStatusLabel1.Text = "Error - Duplicate rung found: - " + duplicates;
                     statusStrip1.Visible = true;
+                    dataerror = true;
                 }
+                else dataerror = false;
                 if ((interlockingOld.Count != 0) && (interlockingNew.Count != 0))
                 {
                     this.treeView.Nodes.Clear();
