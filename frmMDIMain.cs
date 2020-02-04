@@ -761,6 +761,7 @@ namespace Logic_Navigator
             this.VoltageMatrixText = new System.Windows.Forms.TextBox();
             this.result = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.CurrentMap9 = new System.Windows.Forms.TextBox();
             this.CurrentMap7 = new System.Windows.Forms.TextBox();
             this.CurrentMap8 = new System.Windows.Forms.TextBox();
@@ -781,7 +782,6 @@ namespace Logic_Navigator
             this.prefixmain = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.RungGrid)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -2491,6 +2491,12 @@ namespace Logic_Navigator
             this.statusStrip1.Visible = false;
             this.statusStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip1_ItemClicked);
             // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(34, 17);
+            this.toolStripStatusLabel1.Text = "Okay";
+            // 
             // CurrentMap9
             // 
             this.CurrentMap9.Location = new System.Drawing.Point(507, 470);
@@ -2656,12 +2662,6 @@ namespace Logic_Navigator
             this.button1.Size = new System.Drawing.Size(32, 23);
             this.button1.TabIndex = 24;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(34, 17);
-            this.toolStripStatusLabel1.Text = "Okay";
             // 
             // frmMDIMain
             // 
@@ -8676,7 +8676,7 @@ namespace Logic_Navigator
                             if (m < forceLow.Count - 1)
                                 toolStripStatusLabel1.Text += ", ";
                         }
-                        toolStripStatusLabel1.Text += "], To remove false feed right click on the coil (or contact), To remove coil suppression double right click on the coil (or contact), ";
+                        toolStripStatusLabel1.Text += "], To remove false feed left click on the coil, To remove coil suppression left click on the coil, Click HERE to remove all false feeds/suppressions";
                         statusStrip1.BackColor = Color.Yellow;
                     }
                     else
@@ -12368,7 +12368,18 @@ namespace Logic_Navigator
 
         private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-
+            for (int lst = 0; lst < forceLow.Count; lst++)
+            {
+                forceLow.RemoveAt(lst);
+                break;
+            }
+            for (int lst = 0; lst < forceHigh.Count; lst++)
+            {
+                forceHigh.RemoveAt(lst);
+                break;
+            }
+            statusStrip1.Visible = false;
+            EvaluateAll();
         }
     }
 }

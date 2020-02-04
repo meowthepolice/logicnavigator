@@ -2107,7 +2107,7 @@ namespace Logic_Navigator
             this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
             this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(126, 22);
+            this.toolStripButton5.Size = new System.Drawing.Size(126, 20);
             this.toolStripButton5.Text = "Show/Hide Special";
             this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
             // 
@@ -3176,7 +3176,41 @@ namespace Logic_Navigator
                         panInArrowMode = true;
                     }
                 }
-                
+
+                /*
+                if (leftMouseDown && HandButton.Checked)
+                {
+                    leftMouseDown = false;
+                    //if (!Thumbtack.Checked)
+                    {
+                        pan.X += panSinceClick.X;
+                        pan.Y += panSinceClick.Y;
+                    }
+                    panSinceClick.X = 0;
+                    panSinceClick.Y = 0;
+                    textBox4.Text = pan.ToString();
+                    textBox5.Text = totalpan.ToString();
+                    textBox6.Text = panSinceClick.ToString();
+                    if (Start == End)
+                    {
+                        Point pointerLocation = new Point(0, 0);
+                        pointerLocation.X = (int)((float)(e.Location.X / scaleFactor) + totalpan.X);
+                        pointerLocation.Y = (int)((float)(e.Location.Y / scaleFactor) + totalpan.Y);
+                        for (int i = 0; i < Indications.Count; i++)
+                        {
+                            MapObj item = Indications[i];
+                            if (InBoundsRotated(item, pointerLocation))
+                                if (true)
+                                {
+                                    //if(inputToggle != "")
+                                    if (IsUp(item.Control))
+                                        RemoveRungfromList(item.Control, SimInputs);
+                                    else SimInputs.Add(item.Control);
+
+                                    inputToggle = item.Control + ";" + inputToggle;
+
+                                    */
+
                 if ((e.Button == MouseButtons.Left) || panInArrowMode)
                 {
                     if (true)
@@ -3198,12 +3232,25 @@ namespace Logic_Navigator
                         leftMouseDown = true;
                     }
 
-                    if(!setupmode && HandButton.Checked)
+                    if (!setupmode && HandButton.Checked)
                     {
-
+                        Point pointerLocation = new Point(0, 0);
+                        pointerLocation.X = (int)((float)(e.Location.X / scaleFactor) + totalpan.X);
+                        pointerLocation.Y = (int)((float)(e.Location.Y / scaleFactor) + totalpan.Y);
+                        for (int i = 0; i < Indications.Count; i++)
+                        {
+                            MapObj item = Indications[i];
+                            if (InBoundsRotated(item, pointerLocation))
+                                if (true)
+                                {
+                                    if (IsUp(item.Control))
+                                        RemoveRungfromList(item.Control, SimInputs);
+                                    else SimInputs.Add(item.Control);
+                                    inputToggle = item.Control + ";" + inputToggle;
+                                }
+                        }
                     }
-                    Invalidate();
-                    
+                    Invalidate();                    
                 }
 
                 if (e.Button == MouseButtons.Middle)
@@ -3462,7 +3509,7 @@ namespace Logic_Navigator
                     textBox4.Text = pan.ToString();
                     textBox5.Text = totalpan.ToString();
                     textBox6.Text = panSinceClick.ToString();
-                    if (Start == End)
+                    if (false)//(Start == End)
                     {
                         Point pointerLocation = new Point(0, 0);
                         pointerLocation.X = (int)((float)(e.Location.X / scaleFactor) + totalpan.X);
@@ -3478,7 +3525,7 @@ namespace Logic_Navigator
                                         RemoveRungfromList(item.Control, SimInputs);
                                     else SimInputs.Add(item.Control);
 
-                                    inputToggle = item.Control + ";" + inputToggle;                                    
+                                    //inputToggle = item.Control + ";" + inputToggle;                                    
                                     textBox14.Text = SimInputs.Count.ToString();
                                     serialtogglebit = "";
                                     if (item.Name.IndexOf("CONTROLSWITCH#") != -1) serialtogglebit = item.Name;

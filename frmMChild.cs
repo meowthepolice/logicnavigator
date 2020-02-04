@@ -1631,7 +1631,7 @@ namespace Logic_Navigator
                 contactHighlight = ""; Invalidate();
             }
 
-            if ((e.Button == MouseButtons.Right) && (e.Clicks == 2))
+            /*if ((e.Button == MouseButtons.Right) && (e.Clicks == 2))
             {
 
                 string rungName = "";
@@ -1641,7 +1641,7 @@ namespace Logic_Navigator
                 {
                     inputToggle = "{FORCE HIGH} - " + rungName;
                 }
-            }
+            }*/
 
             if ((e.Button == MouseButtons.Right) && (e.Clicks == 1))
             {
@@ -1684,9 +1684,20 @@ namespace Logic_Navigator
                         ArrayList rungPointer = (ArrayList)trueInterlockingNewPointer[j];
                         if ((string)rungPointer[rungPointer.Count - 1] == rungName) newIndex = j;
                     }
-
-                    rungNameTransition = rungName;
-                    inputToggle = rungName;
+                    if ((CurrentOldCell == oldIndex) && (CurrentOldCell == oldIndex))
+                    {
+                        if (rungName != "")
+                        {
+                            inputToggle = "{FORCE HIGH} - " + rungName;
+                            newIndex = -1;
+                            oldIndex = -1;
+                        }
+                    }
+                    else
+                    {
+                        rungNameTransition = rungName;
+                        inputToggle = rungName;
+                    }               
                     if ((newIndex == -1) && (oldIndex != -1))
                     {
                         oldindexTransition = oldIndex;
