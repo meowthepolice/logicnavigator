@@ -190,6 +190,10 @@ namespace Logic_Navigator
         public List<string> Coilnames = new List<string>();
         public List<int> CoilIsTimer = new List<int>();
         public List<bool> Coilstates = new List<bool>();
+        public List<bool> Coildrive = new List<bool>();//for Slow to pick timers
+        public List<bool> Coilnodrive = new List<bool>();//for slow to drop timers
+        public int workload = 0;
+        public string runglisting = "";
         public Contact globalcontact = new Contact();
         public bool[,] voltagematrix = new bool[64, 64];
         ArrayList voltagematrixes = new ArrayList();
@@ -8537,11 +8541,15 @@ namespace Logic_Navigator
         {
             Coilnames.Clear();
             Coilstates.Clear();
+            Coildrive.Clear();
+            Coilnodrive.Clear();
             for (int i = 0; i < interlockingNewPointer.Count; i++)
             {
                 ArrayList rungPointer = (ArrayList)interlockingNewPointer[i];
                 Coilnames.Add((string)rungPointer[rungPointer.Count - 1]);
                 Coilstates.Add(false);
+                Coildrive.Add(false);
+                Coilnodrive.Add(false);
             }
         }
 
@@ -8643,7 +8651,7 @@ namespace Logic_Navigator
                     {
                         PreviousEvaluation = EndEvaluation;
                         BeginEvaluation = DateTime.Now;
-                        wipevoltages();
+                        //wipevoltages();
                         EvaluateRungs();
                         EndEvaluation = DateTime.Now;
                     }
@@ -8684,10 +8692,12 @@ namespace Logic_Navigator
                         statusStrip1.Visible = false;
                         toolStripStatusLabel1.Text = "";
                     }
-                    statusBar1.Text = "Cycle time: " + (waittime.TotalMilliseconds).ToString() + " msecs; "
-                         + "Evaluation time: " + (evaltime.TotalMilliseconds).ToString() + " msecs; "
-                         + "Scan time: " + (scantime.TotalMilliseconds).ToString() + " msecs; "
-                         + "Broadcast time: " + (broadcasttime.TotalMilliseconds).ToString() + " msecs";
+                    statusBar1.Text = "Processing time: " + (evaltime.TotalMilliseconds + scantime.TotalMilliseconds + broadcasttime.TotalMilliseconds).ToString("000.000") + " msecs; "
+                         + "(Evaluation time (evaluate rungs): " + (evaltime.TotalMilliseconds).ToString("000.000") + " msecs; "
+                         + "Scan time (reading inputs): " + (scantime.TotalMilliseconds).ToString("000.000") + " msecs; "
+                         + "Broadcast time (render rungs and map view): " + (broadcasttime.TotalMilliseconds).ToString("000.000") + " msecs)" 
+                         + " Cycle Trigger time : " + (waittime.TotalMilliseconds).ToString("000.000") + " msecs; "                         
+                         + "(Workload: " + workload + " rungs evaulated, rungs " + runglisting + ")";
 
                 }
                 catch { MessageBox.Show("Error with Simulation, " + debuginfo1, "Logic Navigator failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
@@ -8990,15 +9000,22 @@ namespace Logic_Navigator
             //for (int r = 0; r < interlockingNew.Count; r++)
             globalcounter = 0; searchdepth = 0; rungsevaluated = 0;
             bool evalnexttime = false;
+            runglisting = "";
+            workload = 0;            
             for (int r = 0; r < sim.Count; r++)
             {
-                List<Contact> rung = (List<Contact>)sim[r];
                 rungtitle = Coilnames[r];
                 globalcounter++;
-                wipevoltages();
                 evalnexttime = false;
-                if (evaluationlist[r])
+                //if (Coildrive[r] && !Coilstates[r])
+                    //runglisting += "^" + rungtitle;
+                if (evaluationlist[r] || (Coildrive[r] && !Coilstates[r]))// || (Coilnodrive[r] && Coilstates[r])) 
+                //On the evaluation list because input has changed, or slow to pick timer not timed yet, or slow to drop timer not dropped yet
                 {
+                    List<Contact> rung = (List<Contact>)sim[r];
+                    wipevoltages();
+                    workload++;
+                    runglisting += ", " + rungtitle;
                     if ((EvaluateRungList(rung, r) || inforcehighlist(rung, r)) && !inforcelowlist(rung, r))
                     { // Add to the list of High Rungs
                         try
@@ -9009,7 +9026,8 @@ namespace Logic_Navigator
                                 int timerindex = findS2PTimer(timersNew, rungtitle);
                                 if (timerindex != -1) // Slow to pick timer
                                 {
-                                    evalnexttime = true; //because it is a timer
+                                    //evalnexttime = true;
+                                    Coildrive[r] = true;//There is voltage on the coil, and it's a timer
                                     int timerstartindex = inTimerList(rungtitle, S2PTimersTiming);
                                     if (timerstartindex == -1) // Start timing
                                     {
@@ -9022,7 +9040,8 @@ namespace Logic_Navigator
                                         {
                                             if (!Coilstates[r])
                                                 findChangesinCoils(r); //If there is a change of state, then work out what other rungs are affected
-                                            Coilstates[r] = true;
+                                            Coilstates[r] = true;//Coil has picked (straight away because zero timer)
+                                            evalnexttime = true; //just in case the timer is contact in its own rung
                                         }
                                         S2PTimersTiming.Add(timing);
                                         if (!InExclusionList(Coilnames[r]))
@@ -9036,7 +9055,7 @@ namespace Logic_Navigator
                                         int diffmsec = (int)(((float)(difference.TotalMilliseconds)) * simspeed);
                                         timerElement.timeElapsed = (int)(((float)diffmsec) / 1000);
                                         UpdateS2PTimersTiming(timerElement);
-                                        if (diffmsec > Gettime(timerindex, "Set")) //3 secs
+                                        if (diffmsec > Gettime(timerindex, "Set")) //timer completed
                                         {
                                             if (Coilstates[r] != true)
                                                 if (!InExclusionList(Coilnames[r]))
@@ -9048,7 +9067,8 @@ namespace Logic_Navigator
                                             }
                                             if (!Coilstates[r])
                                                 findChangesinCoils(r); //If there is a change of state, then work out what other rungs are affected
-                                            Coilstates[r] = true;
+                                            Coilstates[r] = true;//Coil has picked because because the Coil Voltage has been applied for the required time
+                                            //evalnexttime = true; //just in case the timer is contact in its own rung
                                         }
                                     }
                                 }
@@ -9082,10 +9102,12 @@ namespace Logic_Navigator
                     {
                         try
                         {
+                            Coildrive[r] = false;
                             int timerindex = findS2DTimer(timersNew, rungtitle);
                             if (timerindex != -1) // Slow to drop timer
                             {
-                                evalnexttime = true; //because it is a timer
+                                //Coilnodrive[r] = true;//There is voltage on the coil, and it's a timer
+                                //evalnexttime = true; //because it is a timer
                                 int timerstartindex = inTimerList(rungtitle, S2DTimersTiming);
                                 if (timerstartindex == -1) // Start timing
                                 {
@@ -9099,6 +9121,7 @@ namespace Logic_Navigator
                                         if (Coilstates[r])
                                             findChangesinCoils(r); //If there is a change of state, then work out what other rungs are affected
                                         Coilstates[r] = false;
+                                        evalnexttime = true; //just in case the timer is contact in its own rung
                                     }
                                     S2DTimersTiming.Add(timing);
                                     if (!InExclusionList(Coilnames[r]))
@@ -9127,6 +9150,7 @@ namespace Logic_Navigator
                                         if (Coilstates[r])
                                             findChangesinCoils(r); //If there is a change of state, then work out what other rungs are affected
                                         Coilstates[r] = false;
+                                        //evalnexttime = true; //just in case the timer is contact in its own rung
                                     }
                                 }
                             }
@@ -9153,9 +9177,10 @@ namespace Logic_Navigator
                         catch { MessageBox.Show("Error Evaluating Rungs - High to Low" + rungtitle.ToString(), "Logic Navigator Error"); }
                     }
                 }
-                if(!evalnexttime) evaluationlist[r] = false; // cross this off the list of rungs to evaluate
+                if (!evalnexttime) evaluationlist[r] = false; // cross this off the list of rungs to evaluate 
             }
             TransferCoilStatestoHighRungs();
+            //statusBar1.Text = "Workload " + workload.ToString() + ", " + runglisting;//;
             //statusBar1.Text = ((float)searchdepth / (float)globalcounter).ToString() + ", " + rungsevaluated.ToString();             
         }
 
@@ -10961,7 +10986,6 @@ namespace Logic_Navigator
                             ParseVersionRecord(versionRecNew, filenameString);
                             ParseINSRungs(interlockingTAL, filenameString);
                             ParseHousings(Housings_New, timersTAL, "INS", filenameString);
-                            //housing = true;
                         }
                         else if (filenameString.EndsWith(".wt2", true, ci))
                         {
@@ -10972,25 +10996,6 @@ namespace Logic_Navigator
                             ParseWT2Rungs(interlockingTAL, filenameString);
                             ParseHousings(Housings_New, timersTAL, "WT2", filenameString);
                         }
-                        /*
-                        else if (filenameString.EndsWith(".ins", true, ci))
-                        {
-                            fileType = "INS";
-                            installationNameOld = ParseInstallationName();
-                            GCSSVersionOld = ParseGCSSVersion();
-                            ParseVersionRecord(versionRecOld, filenameString);
-                            ParseINSRungs(interlockingTAL, filenameString);
-                            //ParseHousings(Housings_Old, timersOld);
-                        }
-                        else if (filenameString.EndsWith(".wt2", true, ci))
-                        {
-                            fileType = "WT2";
-                            installationNameOld = ParseInstallationName();
-                            GCSSVersionOld = ParseGCSSVersion();
-                            ParseVersionRecord(versionRecOld, filenameString);
-                            ParseWT2Rungs(interlockingTAL, filenameString);
-                            //ParseHousings(Housings_Old, timersOld);
-                        }*/
                         else if (filenameString.EndsWith(".ml2", true, ci))
                         {
                             fileType = "ML2";
